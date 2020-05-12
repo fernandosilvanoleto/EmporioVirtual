@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmporioVirtual", "EmporioVirtual.csproj", "{8DF5119F-0530-495B-B49D-15C24212ECAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DF5119F-0530-495B-B49D-15C24212ECAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF5119F-0530-495B-B49D-15C24212ECAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF5119F-0530-495B-B49D-15C24212ECAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF5119F-0530-495B-B49D-15C24212ECAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4406B68D-7819-4F35-9CFE-834EEA4DE20A}
+	EndGlobalSection
+EndGlobal
