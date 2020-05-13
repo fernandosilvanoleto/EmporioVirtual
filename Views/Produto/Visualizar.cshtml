@@ -1,0 +1,17 @@
+﻿@model EmporioVirtual.Models.Produto
+
+@{
+    ViewData["Title"] = "Visualizar";
+}
+
+<h1>Lista de Produtos</h1>
+
+<h3>Produto:</h3>
+<b>Código: </b>@Model.Id <br />
+<b>Nome: </b>@Model.Nome <br />
+<b>Descrição: </b>@Model.Descricao <br />
+<b>Valor: </b>@Model.Valor.ToString("C") <br />
+
+<br />
+
+@DateTime.Now.Year

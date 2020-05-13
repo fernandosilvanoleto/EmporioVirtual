@@ -40,11 +40,19 @@ namespace EmporioVirtual
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();            
             app.UseRouting();
 
             app.UseAuthorization();
+
+            /* configurando rotas
+             * 
+             * https://www.fernando.com.br um site -> qual controlador (gestão de conexões) usar -> uso de rotas
+             * 
+             * 
+             */
+
 
             app.UseEndpoints(endpoints =>
             {
