@@ -28,6 +28,30 @@ namespace EmporioVirtual.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ContatoAcao()
+        {
+            string nome = HttpContext.Request.Form["nome"];
+            string email = HttpContext.Request.Form["email"];
+            string texto = HttpContext.Request.Form["texto"];
+            return new ContentResult() { Content = $"Dados recebidos com sucesso!<br/> Nome: {nome} <br/> E-mail: {email} <br/>Texto: {texto}" , ContentType = "text/html"};
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult CadastroCliente()
+        {
+            return View();
+        }
+
+        public IActionResult CarrinhoCompra()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

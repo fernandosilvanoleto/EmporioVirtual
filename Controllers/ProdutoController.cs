@@ -33,5 +33,6 @@ namespace EmporioVirtual.Controllers
                 Valor = 4731.31M
             };
         }
+
     }
 }

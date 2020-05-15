@@ -111,3 +111,6 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Pro
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Produto\Visualizar.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contato.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\CadastroCliente.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\CarrinhoCompra.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
