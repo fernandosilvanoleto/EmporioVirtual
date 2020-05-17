@@ -39,7 +39,15 @@
 
                     <article class="card">
                         <div class="card-body p-5">
-                            <p class="alert alert-success">Mensagem de sucesso!</p>
+                            @if (ViewData["Msg_S"] != null)
+                            {
+                                <p class="alert alert-success">@ViewData["Msg_S"]</p>
+                            }
+
+                            @if (ViewData["Msg_Error"] != null)
+                            {
+                                <p class="alert alert-danger">@ViewData["Msg_Error"]</p>
+                            }
 
                             <form role="form" method="post" asp-action="ContatoAcao">
                                 <div class="form-group">

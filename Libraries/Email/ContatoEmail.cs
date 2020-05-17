@@ -36,7 +36,7 @@ namespace EmporioVirtual.Libraries.Email
              */
             MailMessage mensagem = new MailMessage();
             mensagem.From = new MailAddress("boloteca.teste@gmail.com");
-            mensagem.To.Add("boloteca.teste@gmail.com");
+            mensagem.To.Add(contato.Email);
             mensagem.Subject = "Contato - Empório Virtual - E-mail: " + contato.Email;
             mensagem.Body = corpoMsg;
             mensagem.IsBodyHtml = true;

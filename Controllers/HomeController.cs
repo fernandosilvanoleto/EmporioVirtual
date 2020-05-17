@@ -32,14 +32,25 @@ namespace EmporioVirtual.Controllers
         [HttpPost]
         public IActionResult ContatoAcao()
         {
-            Contato contato = new Contato();
+            try
+            {
+                Contato contato = new Contato();
+                contato.Nome = HttpContext.Request.Form["nome"];
+                contato.Email = HttpContext.Request.Form["email"];
+                contato.Texto = HttpContext.Request.Form["texto"];
 
-            contato.Nome = HttpContext.Request.Form["nome"];
-            contato.Email = HttpContext.Request.Form["email"];
-            contato.Texto = HttpContext.Request.Form["texto"];
+                ContatoEmail.EnviarContatoPorEmail(contato); 
 
-            ContatoEmail.EnviarContatoPorEmail(contato); 
-            return new ContentResult() { Content = $"Dados recebidos com sucesso!<br/> Nome: {contato.Nome} <br/> E-mail: {contato.Email} <br/>Texto: {contato.Texto}" , ContentType = "text/html"};
+                ViewData["Msg_S"] = "Mensagem de contato enviado com sucesso";
+            }
+            catch (Exception e)
+            {
+                ViewData["Msg_Error"] = "Ops! Tivemos um erro, tente novamente mais tarde!!!";
+                
+                // TODO - Implementar log
+            }
+
+            return View(nameof(Contato));
         }
 
         public IActionResult Login()
