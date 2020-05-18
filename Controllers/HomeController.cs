@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EmporioVirtual.Models;
 using EmporioVirtual.Libraries.Email;
+using System.Text;
 
 namespace EmporioVirtual.Controllers
 {
@@ -39,9 +41,27 @@ namespace EmporioVirtual.Controllers
                 contato.Email = HttpContext.Request.Form["email"];
                 contato.Texto = HttpContext.Request.Form["texto"];
 
-                ContatoEmail.EnviarContatoPorEmail(contato); 
+                var listamensagens = new List<ValidationResult>();
+                var contexto = new ValidationContext(contato);
+                bool isValid = Validator.TryValidateObject(contato, contexto, listamensagens, true);
 
-                ViewData["Msg_S"] = "Mensagem de contato enviado com sucesso";
+                if (isValid)
+                {
+                    ContatoEmail.EnviarContatoPorEmail(contato);
+
+                    ViewData["Msg_S"] = "Mensagem de contato enviado com sucesso";
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var item in listamensagens)
+                    {
+                        sb.Append(item.ErrorMessage + "<br />");
+                    }
+                    ViewData["Msg_Error"] = sb.ToString();
+                    ViewData["Contato"] = contato;
+                }
+
             }
             catch (Exception e)
             {

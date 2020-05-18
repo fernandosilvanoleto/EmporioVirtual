@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Contato";
+    EmporioVirtual.Models.Contato contato = (EmporioVirtual.Models.Contato) ViewData["Contato"];
 }
 
 <main role="main">
@@ -46,7 +47,7 @@
 
                             @if (ViewData["Msg_Error"] != null)
                             {
-                                <p class="alert alert-danger">@ViewData["Msg_Error"]</p>
+                                <p class="alert alert-danger">@Html.Raw(ViewData["Msg_Error"])</p>
                             }
 
                             <form role="form" method="post" asp-action="ContatoAcao">
@@ -57,7 +58,7 @@
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                                         </div>
                                         <input type="text" id="nome" class="form-control" name="nome" placeholder=""
-                                               required="">
+                                               required="" value="@(contato != null ? contato.Nome : "")">
                                     </div>
                                 </div>
 
@@ -67,7 +68,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-at"></i></span>
                                         </div>
-                                        <input type="text" id="email" class="form-control" name="email" placeholder="">
+                                        <input type="text" id="email" class="form-control" name="email" placeholder="" value="@(contato != null ? contato.Email : "")">
                                     </div>
                                 </div>
 
@@ -76,7 +77,7 @@
                                         <div class="form-group">
                                             <label for="texto"><span class="hidden-xs">Texto</span> </label>
                                             <div class="form-inline">
-                                                <textarea class="form-control" name="texto" id="texto" style="width:100%"></textarea>
+                                                <textarea class="form-control" name="texto" id="texto" style="width:100%">@(contato != null ? contato.Texto : "")</textarea>
                                             </div>
                                         </div>
                                     </div>
