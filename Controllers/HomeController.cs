@@ -65,7 +65,7 @@ namespace EmporioVirtual.Controllers
             }
             catch (Exception e)
             {
-                ViewData["Msg_Error"] = "Ops! Tivemos um erro, tente novamente mais tarde!!!";
+                ViewData["Msg_Error"] = "Ops! Tivemos um erro, tente novamente mais tarde!!!" + e.Message;
                 
                 // TODO - Implementar log
             }
