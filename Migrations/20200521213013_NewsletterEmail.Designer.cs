@@ -4,14 +4,16 @@ using EmporioVirtual.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmporioVirtual.Migrations
 {
     [DbContext(typeof(EmporioVirtualContext))]
-    partial class EmporioVirtualContextModelSnapshot : ModelSnapshot
+    [Migration("20200521213013_NewsletterEmail")]
+    partial class NewsletterEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
