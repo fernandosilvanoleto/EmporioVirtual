@@ -21,8 +21,20 @@ namespace EmporioVirtual.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm]NewsletterEmail newsletter)
+        {
+            //ADIÇÃO NO BANCO DE DADOS
+
+            NewsletterEmail email = new NewsletterEmail();
+            email = newsletter;
+            //VALIDAÇÕES
             return View();
         }
 

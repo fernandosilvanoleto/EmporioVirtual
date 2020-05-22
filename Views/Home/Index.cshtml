@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EmporioVirtual.Models.NewsletterEmail
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -34,7 +35,8 @@
                             Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
                             gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                         </p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p></div>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item">
@@ -218,7 +220,7 @@
                             gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                         </p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-      </div>
+                    </div>
                 </div>
             </div>
             <div class="carousel-item">
@@ -341,40 +343,26 @@
     </div>
 </main>
 
-@{
-    /*
-    - Html Helper - Interface que proporcionar gerar código HTMl por meio do C#, isso ajuda na manipulação de informações entre HTML e Asp Net
-    
-
-
-
-    */
-
-
-
-}
-<a href="/Home/Index">Home</a>
-@Html.ActionLink("Home", "Contato")
-<form role="form" method="post" action="">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 offset-sm-2">
-                <div class="form-group">
-                    <label for="nome">Cadastre seu e-mail para receber promoções</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                        </div>
-                        <input type="email" id="nome" class="form-control" name="nome" placeholder=""
-                               required="" value="">
+@using (Html.BeginForm("index", "home", FormMethod.Post))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-2">
+            <div class="form-group">
+                <label for="nome">Cadastre seu e-mail para receber promoções</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                     </div>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
-            <br />
-            <br />
-            <div class="col-sm-3">
-                <button class="subscribe btn btn-primary" type="submit"> Enviar </button>
-            </div>
+        </div>
+        <br />
+        <br />
+        <div class="col-sm-3">
+            <button class="subscribe btn btn-primary" type="submit"> Enviar </button>
         </div>
     </div>
-</form>
+</div>
+}
