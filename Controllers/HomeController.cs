@@ -9,17 +9,25 @@ using Microsoft.Extensions.Logging;
 using EmporioVirtual.Models;
 using EmporioVirtual.Libraries.Email;
 using System.Text;
+using EmporioVirtual.Database;
 
 namespace EmporioVirtual.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private EmporioVirtualContext _banco;
 
-        public HomeController(ILogger<HomeController> logger)
+        //INJEÇÃO DE DEPENDÊNCIA
+        public HomeController(EmporioVirtualContext banco)
+        {
+            _banco = banco;
+        }
+
+        /*public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        }*/
 
         [HttpGet]
         public IActionResult Index()
@@ -30,12 +38,22 @@ namespace EmporioVirtual.Controllers
         [HttpPost]
         public IActionResult Index([FromForm]NewsletterEmail newsletter)
         {
-            //ADIÇÃO NO BANCO DE DADOS
+            //VALIDANDO FORMULÁRIO VINDO DA VIEW
+            if (ModelState.IsValid)
+            {
+                //ADIÇÃO NO BANCO DE DADOS
+                _banco.NewsletterEmail.Add(newsletter);
+                _banco.SaveChanges();
 
-            NewsletterEmail email = new NewsletterEmail();
-            email = newsletter;
-            //VALIDAÇÕES
-            return View();
+                //
+                TempData["Mensagem_S"] = "Obrigado pelo cadastro e-mail! Vamos enviar promoções especiais ao seu email!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }            
         }
 
         public IActionResult Contato()
