@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zMrBeB0GmL6xItRAmCShkyMmc5+sQDQ7ItmeDujdOF8Ho0IGKIZ9RRH3YNHMkDBJNRz8mbK5iQZe6khBOFcFbw==",
+  "dgSpecHash": "4TBYI4oVsKwtXoDcX5iZCQlIvj7Lkzu/e3w2rmJDt/9Zkzu/Ha2ffxA4Gy8xY+H5hJy8b4enYltgL31vHd7Hww==",
   "success": true,
   "projectFilePath": "G:\\Programação_Udemy\\C#\\EmporioVirtual\\EmporioVirtual.csproj",
   "expectedPackageFiles": [
@@ -128,8 +128,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Fernando\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512",
-    "C:\\Users\\Fernando\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.4\\microsoft.netcore.app.host.win-x64.3.1.4.nupkg.sha512"
+    "C:\\Users\\Fernando\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }

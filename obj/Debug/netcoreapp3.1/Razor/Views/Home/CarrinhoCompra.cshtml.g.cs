@@ -27,7 +27,7 @@ using EmporioVirtual.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5ebf2519a2a24ca0d494e3122b84816389df53d5", @"/Views/Home/CarrinhoCompra.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6304c51393f0f2d87b02b183f7a1a7e9cf950111", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"724e259fa9af6dd93a7124e837d66b24b585dfff", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_CarrinhoCompra : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #line hidden

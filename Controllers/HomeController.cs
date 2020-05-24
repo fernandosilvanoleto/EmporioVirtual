@@ -108,10 +108,28 @@ namespace EmporioVirtual.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult CadastroCliente()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CadastroCliente([FromForm] Cliente cliente)
+        {
+            if (ModelState.IsValid)
+            {
+                _banco.Add(cliente);
+                _banco.SaveChanges();
+
+                TempData["Mensagem_S"] = "Cadastro realizado com sucesso";
+
+                //TODO: Implementar redirecionamento diferentes(Painel)
+                return RedirectToAction(nameof(CadastroCliente));
+            }
+            return View();
+        }
+
 
         public IActionResult CarrinhoCompra()
         {
