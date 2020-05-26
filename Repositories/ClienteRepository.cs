@@ -1,5 +1,6 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
+using EmporioVirtual.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace EmporioVirtual.Repositories
             return _banco.Clientes.Find(id);
         }
 
-        public List<Cliente> ObterTodosClientes()
+        public IEnumerable<Cliente> ObterTodosClientes()
         {
             return _banco.Clientes.ToList();
         }

@@ -10,18 +10,21 @@ using EmporioVirtual.Models;
 using EmporioVirtual.Libraries.Email;
 using System.Text;
 using EmporioVirtual.Database;
+using EmporioVirtual.Repositories.Contracts;
 
 namespace EmporioVirtual.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private EmporioVirtualContext _banco;
+        private IClienteRepository _repositoryCliente;
+        private INewsLetterRepository _repositoryNewsLetter;
 
         //INJEÇÃO DE DEPENDÊNCIA
-        public HomeController(EmporioVirtualContext banco)
+        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter)
         {
-            _banco = banco;
+            _repositoryCliente = repositorycliente;
+            _repositoryNewsLetter = repositorynewsletter;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -41,11 +44,8 @@ namespace EmporioVirtual.Controllers
             //VALIDANDO FORMULÁRIO VINDO DA VIEW
             if (ModelState.IsValid)
             {
-                //ADIÇÃO NO BANCO DE DADOS
-                _banco.NewsletterEmail.Add(newsletter);
-                _banco.SaveChanges();
+                _repositoryNewsLetter.Cadastrar(newsletter);
 
-                //
                 TempData["Mensagem_S"] = "Obrigado pelo cadastro e-mail! Vamos enviar promoções especiais ao seu email!";
 
                 return RedirectToAction(nameof(Index));
@@ -119,8 +119,7 @@ namespace EmporioVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Add(cliente);
-                _banco.SaveChanges();
+                _repositoryCliente.Cadastrar(cliente);
 
                 TempData["Mensagem_S"] = "Cadastro realizado com sucesso";
 

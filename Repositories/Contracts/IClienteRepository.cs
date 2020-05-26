@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmporioVirtual.Repositories
+namespace EmporioVirtual.Repositories.Contracts
 {
-    interface IClienteRepository
+    public interface IClienteRepository
     {
         Cliente Login(string Email, string Senha);
         
@@ -14,7 +14,7 @@ namespace EmporioVirtual.Repositories
         void Atualizar(Cliente cliente);
         void Excluir(int id);
         Cliente ObterCliente(int id);
-        List<Cliente> ObterTodosClientes();
+        IEnumerable<Cliente> ObterTodosClientes();
 
     }
 }
