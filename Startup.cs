@@ -26,7 +26,7 @@ namespace EmporioVirtual
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
             /*
              * Padrão repositório utilizado
              */
@@ -34,6 +34,12 @@ namespace EmporioVirtual
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
+
+            //SESSION - Configuração 
+            services.AddMemoryCache(); // guardar dados na memória
+            services.AddSession(options => { 
+                
+            });
 
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmporioVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
@@ -57,6 +63,7 @@ namespace EmporioVirtual
             app.UseDefaultFiles();
             app.UseStaticFiles();            
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
@@ -66,6 +73,8 @@ namespace EmporioVirtual
              * 
              * 
              */
+
+
 
 
             app.UseEndpoints(endpoints =>
