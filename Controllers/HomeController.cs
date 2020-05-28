@@ -103,9 +103,23 @@ namespace EmporioVirtual.Controllers
             return View(nameof(Contato));
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromForm] Cliente cliente)
+        {
+            if (cliente.Email == "teste@gmail.com" && cliente.Senha == "12345678")
+            {
+                return new ContentResult() { Content = "Logado!" };
+            }
+            else
+            {
+                return new ContentResult() { Content = "Deslogado!" };
+            }            
         }
 
         [HttpGet]
