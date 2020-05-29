@@ -11,6 +11,7 @@ using EmporioVirtual.Libraries.Email;
 using System.Text;
 using EmporioVirtual.Database;
 using EmporioVirtual.Repositories.Contracts;
+using Microsoft.AspNetCore.Http;
 
 namespace EmporioVirtual.Controllers
 {
@@ -114,12 +115,29 @@ namespace EmporioVirtual.Controllers
         {
             if (cliente.Email == "teste@gmail.com" && cliente.Senha == "12345678")
             {
+                HttpContext.Session.Set("ID", new byte[] { 52 });
+                HttpContext.Session.SetString("Email", cliente.Email);
+                HttpContext.Session.SetInt32("CPF", 1234567898);
+
                 return new ContentResult() { Content = "Logado!" };
             }
             else
             {
                 return new ContentResult() { Content = "Deslogado!" };
             }            
+        }
+
+        [HttpGet]
+        public IActionResult Painel()
+        {
+            byte[] UsuarioID;
+            if (HttpContext.Session.TryGetValue("ID", out UsuarioID))
+            {
+                return new ContentResult() { Content = "Usuario " + UsuarioID[0] + ". E-mail: " + HttpContext.Session.GetString("Email") + ". CPF: " + HttpContext.Session.GetInt32("CPF") + ". Logado" };
+            } else
+            {
+                return new ContentResult() { Content = "Acesso negado." };
+            }
         }
 
         [HttpGet]
