@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using EmporioVirtual.Repositories;
 using EmporioVirtual.Repositories.Contracts;
+using EmporioVirtual.Libraries.Sessao;
 
 namespace EmporioVirtual
 {
@@ -26,10 +27,12 @@ namespace EmporioVirtual
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        { 
+        {
             /*
              * Padrão repositório utilizado
              */
+            // consigo injetar dependência da Libraries/Sessao/Sessao
+            services.AddHttpContextAccessor();
             services.AddControllersWithViews();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
@@ -40,6 +43,9 @@ namespace EmporioVirtual
             services.AddSession(options => { 
                 
             });
+
+            //posso injetar a classe Sessao em qualquer elemento
+            services.AddScoped<Sessao>();
 
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmporioVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
