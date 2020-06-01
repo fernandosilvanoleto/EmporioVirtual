@@ -8,7 +8,7 @@ namespace EmporioVirtual.Libraries.Sessao
 {
     public class Sessao
     {
-        IHttpContextAccessor _context;
+        private IHttpContextAccessor _context;
         public Sessao(HttpContextAccessor context)
         {
             _context = context;
@@ -32,9 +32,9 @@ namespace EmporioVirtual.Libraries.Sessao
             _context.HttpContext.Session.Remove(Key);
         }
 
-        public void Consultar(string Key)
+        public string Consultar(string Key)
         {
-            _context.HttpContext.Session.GetString(Key);
+           return _context.HttpContext.Session.GetString(Key);
         }
 
         public bool Existe(string Key)
