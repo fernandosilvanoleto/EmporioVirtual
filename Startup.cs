@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using EmporioVirtual.Repositories;
 using EmporioVirtual.Repositories.Contracts;
 using EmporioVirtual.Libraries.Sessao;
+using EmporioVirtual.Libraries.Login;
 
 namespace EmporioVirtual
 {
@@ -35,6 +36,10 @@ namespace EmporioVirtual
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
 
+            //posso injetar a classe Sessao em qualquer elemento
+            services.AddScoped<Sessao>();
+            services.AddScoped<LoginCliente>();
+
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
 
@@ -42,10 +47,7 @@ namespace EmporioVirtual
             services.AddMemoryCache(); // guardar dados na memória
             services.AddSession(options => { 
                 
-            });
-
-            //posso injetar a classe Sessao em qualquer elemento
-            services.AddScoped<Sessao>();
+            });            
 
             string connection = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EmporioVirtual;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 

@@ -8,8 +8,9 @@ namespace EmporioVirtual.Libraries.Sessao
 {
     public class Sessao
     {
+        // injenção de dependência
         private IHttpContextAccessor _context;
-        public Sessao(HttpContextAccessor context)
+        public Sessao(IHttpContextAccessor context)
         {
             _context = context;
         }

@@ -1,4 +1,5 @@
 ﻿using EmporioVirtual.Models;
+using EmporioVirtual.Libraries.Sessao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,15 @@ namespace EmporioVirtual.Libraries.Login
 
         public Cliente GetCliente()
         {
-            string clienteJsonString = _sessao.Consultar(Key);
-            return JsonConvert.DeserializeObject<Cliente>(clienteJsonString);
+            if(_sessao.Existe(Key))
+            {
+                string clienteJsonString = _sessao.Consultar(Key);
+                return JsonConvert.DeserializeObject<Cliente>(clienteJsonString);
+            } else
+            {
+                return null;
+            }
+            
         }
 
         public void Logout()

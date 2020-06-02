@@ -12,6 +12,7 @@ using System.Text;
 using EmporioVirtual.Database;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
+using EmporioVirtual.Libraries.Login;
 
 namespace EmporioVirtual.Controllers
 {
@@ -20,12 +21,14 @@ namespace EmporioVirtual.Controllers
         private readonly ILogger<HomeController> _logger;
         private IClienteRepository _repositoryCliente;
         private INewsLetterRepository _repositoryNewsLetter;
+        private LoginCliente _loginCliente;
 
         //INJEÇÃO DE DEPENDÊNCIA
-        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter)
+        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter, LoginCliente loginCliente)
         {
             _repositoryCliente = repositorycliente;
             _repositoryNewsLetter = repositorynewsletter;
+            _loginCliente = loginCliente;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -113,27 +116,29 @@ namespace EmporioVirtual.Controllers
         [HttpPost]
         public IActionResult Login([FromForm] Cliente cliente)
         {
-            if (cliente.Email == "teste@gmail.com" && cliente.Senha == "12345678")
-            {
-                HttpContext.Session.Set("ID", new byte[] { 52 });
-                HttpContext.Session.SetString("Email", cliente.Email);
-                HttpContext.Session.SetInt32("CPF", 1234567898);
+            Cliente clienteDB = _repositoryCliente.Login(cliente.Email, cliente.Senha);
 
-                return new ContentResult() { Content = "Logado!" };
+            if (clienteDB != null)
+            {
+                _loginCliente.Login(clienteDB);
+
+                // com url action se tiver alteração de nome no método, aqui altera tbém
+                return new RedirectResult(Url.Action(nameof(Painel)));
             }
             else
             {
-                return new ContentResult() { Content = "Deslogado!" };
+                ViewData["Msg_Error"] = "Usuário ou Senha incorretos! Por favor, coloque as informações corretas!!!";
+                return View();
             }            
         }
 
         [HttpGet]
         public IActionResult Painel()
         {
-            byte[] UsuarioID;
-            if (HttpContext.Session.TryGetValue("ID", out UsuarioID))
+            Cliente clienteDB = _loginCliente.GetCliente();
+            if (clienteDB != null)
             {
-                return new ContentResult() { Content = "Usuario " + UsuarioID[0] + ". E-mail: " + HttpContext.Session.GetString("Email") + ". CPF: " + HttpContext.Session.GetInt32("CPF") + ". Logado" };
+                return new ContentResult() { Content = "Usuario " + clienteDB.Id + ". E-mail: " + clienteDB.Email + ". Idade: " + DateTime.Now.AddYears(-clienteDB.DataNascimento.Year).ToString("yyyy") + ". Logado" };
             } else
             {
                 return new ContentResult() { Content = "Acesso negado." };
