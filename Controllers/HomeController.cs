@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using EmporioVirtual.Models;
-using EmporioVirtual.Libraries.Email;
-using System.Text;
-using EmporioVirtual.Database;
-using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
+using EmporioVirtual.Database;
+using EmporioVirtual.Models;
+using EmporioVirtual.Repositories.Contracts;
 using EmporioVirtual.Libraries.Login;
+using EmporioVirtual.Libraries.Filtro;
+using EmporioVirtual.Libraries.Email;
 
 namespace EmporioVirtual.Controllers
 {
@@ -133,16 +134,10 @@ namespace EmporioVirtual.Controllers
         }
 
         [HttpGet]
+        [ClienteAutorizacaoAttribute]
         public IActionResult Painel()
         {
-            Cliente clienteDB = _loginCliente.GetCliente();
-            if (clienteDB != null)
-            {
-                return new ContentResult() { Content = "Usuario " + clienteDB.Id + ". E-mail: " + clienteDB.Email + ". Idade: " + DateTime.Now.AddYears(-clienteDB.DataNascimento.Year).ToString("yyyy") + ". Logado" };
-            } else
-            {
-                return new ContentResult() { Content = "Acesso negado." };
-            }
+            return new ContentResult() { Content = "Este é o painel do Cliente!!!" };
         }
 
         [HttpGet]
