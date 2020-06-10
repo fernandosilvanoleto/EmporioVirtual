@@ -8,6 +8,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     public class HomeController : Controller
     {
+        [Area("Colaborador")]
         public IActionResult Login()
         {
             return View();
