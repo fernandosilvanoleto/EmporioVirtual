@@ -152,3 +152,5 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Col
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Home\RecuperarSenha.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Home\Login.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csprojAssemblyReference.cache
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\_ViewImports.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Home\Painel.cshtml.g.cs

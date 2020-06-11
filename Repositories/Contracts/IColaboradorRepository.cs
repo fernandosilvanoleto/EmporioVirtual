@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmporioVirtual.Repositories.Contracts
 {
-    interface IColaboradorRepository
+    public interface IColaboradorRepository
     {
         Colaborador Login(string Email, string Senha);
         void Cadastrar(Colaborador colaborador);
