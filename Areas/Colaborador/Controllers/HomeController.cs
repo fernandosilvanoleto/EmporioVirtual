@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Login;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,14 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             }
         }
 
+        [ColaboradorAutorizacao]
+        public IActionResult Logout()
+        {
+            _loginColaborador.Logout();
+            return RedirectToAction("Login", "Home");
+        }
+
+        [ColaboradorAutorizacao]
         public IActionResult Painel()
         {
             return View();
