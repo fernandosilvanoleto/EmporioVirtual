@@ -44,6 +44,7 @@ namespace EmporioVirtual
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
             //SESSION - Configuração 
             services.AddMemoryCache(); // guardar dados na memória
