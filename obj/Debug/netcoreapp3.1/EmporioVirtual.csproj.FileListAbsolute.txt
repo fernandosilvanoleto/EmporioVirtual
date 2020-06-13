@@ -113,8 +113,6 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Hom
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.Libraries.Lang.Mensagem.resources
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.GenerateResource.cache
-G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
-G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
@@ -157,3 +155,13 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Col
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Shared\_Layout.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\_ViewStart.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Categoria\Index.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\X.PagedList.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Web.Common.dll
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache

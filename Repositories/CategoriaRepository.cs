@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmporioVirtual.Repositories
 {
     public class CategoriaRepository : ICategoriaRepository
     {
+        const int _registroPorPagina = 10;
         EmporioVirtualContext _banco;
         public CategoriaRepository(EmporioVirtualContext banco)
         {
@@ -39,9 +41,11 @@ namespace EmporioVirtual.Repositories
             return _banco.Categoria.Find(id);
         }
 
-        public IEnumerable<Categoria> ObterTodosCategorias()
+        public IPagedList<Categoria> ObterTodosCategorias(int? pagina)
         {
-            return _banco.Categoria.ToList();
+            // se pagina for igual a null, atribui o valor padrão 1
+            int numeroPagina = pagina ?? 1;
+            return _banco.Categoria.ToPagedList<Categoria>(numeroPagina, _registroPorPagina);
         }
     }
 }

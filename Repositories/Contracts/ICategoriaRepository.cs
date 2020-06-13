@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmporioVirtual.Repositories.Contracts
 {
@@ -13,6 +14,6 @@ namespace EmporioVirtual.Repositories.Contracts
         void Atualizar(Categoria categoria);
         void Excluir(int id);
         Categoria ObterCategoria(int id);
-        IEnumerable<Categoria> ObterTodosCategorias();
+        IPagedList<Categoria> ObterTodosCategorias(int? pagina);
     }
 }

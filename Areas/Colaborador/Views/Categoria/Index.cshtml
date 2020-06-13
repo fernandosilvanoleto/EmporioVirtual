@@ -1,4 +1,4 @@
-﻿@model List<EmporioVirtual.Models.Categoria>
+﻿@model X.PagedList.IPagedList<EmporioVirtual.Models.Categoria>
 
 @{
     ViewData["Title"] = "Itens de Categoria";
@@ -12,3 +12,4 @@
     <br/>
 }
 
+@Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }))

@@ -6,6 +6,7 @@ using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
@@ -20,9 +21,13 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         {
             _categoriaRepository = categoriaRepository;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? pagina, string nome)
         {
-            List<Categoria> categorias = _categoriaRepository.ObterTodosCategorias().ToList();
+            /*
+             * PAGINAÇÃO
+             */
+            var categorias = _categoriaRepository.ObterTodosCategorias(pagina);
+            
             return View(categorias);
         }
 
