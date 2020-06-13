@@ -1,0 +1,14 @@
+﻿@model List<EmporioVirtual.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Itens de Categoria";
+}
+
+    <h1>@ViewData["Title"]</h1>
+
+@foreach (Categoria categoria in Model)
+{
+    @categoria.Nome;
+    <br/>
+}
+
