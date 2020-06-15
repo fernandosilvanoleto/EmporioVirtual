@@ -1,6 +1,7 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace EmporioVirtual.Repositories
         {
             // se pagina for igual a null, atribui o valor padrão 1
             int numeroPagina = pagina ?? 1;
-            return _banco.Categoria.ToPagedList<Categoria>(numeroPagina, _registroPorPagina);
+            return _banco.Categoria.Include(a=>a.CategoriaPai).ToPagedList<Categoria>(numeroPagina, _registroPorPagina);
         }
     }
 }

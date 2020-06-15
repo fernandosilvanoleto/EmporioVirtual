@@ -24,7 +24,11 @@
                     <tr>
                         <td>@categoria.Id</td>
                         <td>@categoria.Nome</td>
-                        <td>@categoria.CategoriaPaiId</td>
+                        <td>
+                            @Html.DisplayFor(model => categoria.CategoriaPai.Id)
+                            -
+                            @Html.DisplayFor(model => categoria.CategoriaPai.Nome)
+                        </td>
                         <td>
                             <a asp-action="Atualizar" asp-route-id="@categoria.Id" class="btn btn-secondary">Atualizar</a>
                             <a asp-action="Excluir" asp-route-id="@categoria.Id" class="btn btn-danger">Excluir</a>
