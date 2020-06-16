@@ -40,7 +40,14 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Cadastrar([FromForm]Categoria categoria )
         {
-            //TODO: implementar
+            if (ModelState.IsValid)
+            {
+                _categoriaRepository.Cadastrar(categoria);
+
+                TempData["Mens_S"] = "Registro salvo com sucesso!";
+
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 

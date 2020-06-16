@@ -6,6 +6,11 @@
 <h1>@ViewData["Title"]</h1>
 
 <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
+@if (TempData["Mens_S"] != null)
+{
+<p class="alert alert-success">@TempData["Mens_S"]</p>
+}
+
 @if (Model.Count > 0)
 {
     <div class="table-responsive">
@@ -38,8 +43,9 @@
             </tbody>
         </table>
     </div>
-@Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }))
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }))
 }
-else {
+else
+{
     <span>Nenhum registro cadastrado!!!</span>
 }

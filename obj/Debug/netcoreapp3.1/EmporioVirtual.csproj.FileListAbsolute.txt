@@ -165,3 +165,4 @@ G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\X.PagedList.Web
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Categoria\Cadastrar.cshtml.g.cs
