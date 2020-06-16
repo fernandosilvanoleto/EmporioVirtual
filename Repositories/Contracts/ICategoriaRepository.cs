@@ -14,6 +14,7 @@ namespace EmporioVirtual.Repositories.Contracts
         void Atualizar(Categoria categoria);
         void Excluir(int id);
         Categoria ObterCategoria(int id);
+        IEnumerable<Categoria> ObterTodasCategoriasSelect();
         IPagedList<Categoria> ObterTodosCategorias(int? pagina);
     }
 }

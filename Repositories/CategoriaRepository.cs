@@ -42,6 +42,11 @@ namespace EmporioVirtual.Repositories
             return _banco.Categoria.Find(id);
         }
 
+        public IEnumerable<Categoria> ObterTodasCategoriasSelect()
+        {
+            return _banco.Categoria;
+        }
+
         public IPagedList<Categoria> ObterTodosCategorias(int? pagina)
         {
             // se pagina for igual a null, atribui o valor padrão 1

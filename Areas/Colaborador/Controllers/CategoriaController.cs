@@ -6,6 +6,7 @@ using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
@@ -34,6 +35,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
 
@@ -48,6 +50,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
             return View();
         }
 
