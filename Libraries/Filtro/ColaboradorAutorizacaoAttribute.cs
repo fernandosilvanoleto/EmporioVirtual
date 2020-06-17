@@ -22,7 +22,7 @@ namespace EmporioVirtual.Libraries.Filtro
 
             if (clienteDB == null)
             {
-                context.Result = new ContentResult() { Content = "Acesso negado." };
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }  
     }

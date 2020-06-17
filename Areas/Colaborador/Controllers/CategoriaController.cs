@@ -12,8 +12,7 @@ using X.PagedList;
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    //TODO: habilitar verificação de login
-   // [ColaboradorAutorizacao]
+    [ColaboradorAutorizacao]
     public class CategoriaController : Controller
     {
         private ICategoriaRepository _categoriaRepository;

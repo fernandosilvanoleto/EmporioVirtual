@@ -10,8 +10,10 @@ namespace EmporioVirtual.Models
 {
     public class Categoria
     {
+        [Display(Name = "Código")]
         public int Id { get; set; }
 
+        
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         //TODO: Criar validação - Nome categoria único
@@ -29,6 +31,7 @@ namespace EmporioVirtual.Models
          * Hierarquia e criar subcategoria
          * int? permitir null em C#
          */
+        [Display(Name = "Categoria Pai")]
         public int? CategoriaPaiId { get; set; }
 
         /*
