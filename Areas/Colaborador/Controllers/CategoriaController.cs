@@ -81,7 +81,9 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            return View();
+            _categoriaRepository.Excluir(id);
+            TempData["Mens_S"] = "Registro foi excluído salvo com sucesso!";
+            return RedirectToAction(nameof(Index));
         }
     }
 }
