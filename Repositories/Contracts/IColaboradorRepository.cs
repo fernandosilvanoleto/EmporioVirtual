@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmporioVirtual.Repositories.Contracts
 {
@@ -14,6 +15,8 @@ namespace EmporioVirtual.Repositories.Contracts
         void Excluir(int id);
         Colaborador ObterColaborador(int id);
         IEnumerable<Colaborador> ObterColaboradores();
+
+        IPagedList<Colaborador> ObterTodosColaboradores(int? pagina);
 
     }
 }

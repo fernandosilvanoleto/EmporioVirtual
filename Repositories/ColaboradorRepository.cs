@@ -1,21 +1,25 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmporioVirtual.Repositories
 {
     public class ColaboradorRepository : IColaboradorRepository
     {
         private EmporioVirtualContext _banco;
+        private IConfiguration _configuration;
 
         // injenção de dependência
-        public ColaboradorRepository(EmporioVirtualContext banco)
+        public ColaboradorRepository(EmporioVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
         public void Cadastrar(Colaborador colaborador)
         {
@@ -50,6 +54,13 @@ namespace EmporioVirtual.Repositories
         public IEnumerable<Colaborador> ObterColaboradores()
         {
             return _banco.Colaborador.ToList();
+        }
+
+        public IPagedList<Colaborador> ObterTodosColaboradores(int? pagina)
+        {
+            // se pagina for igual a null, atribui o valor padrão 1
+            int numeroPagina = pagina ?? 1;
+            return _banco.Colaborador.ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
     }
 }

@@ -2,6 +2,7 @@
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace EmporioVirtual.Repositories
     public class CategoriaRepository : ICategoriaRepository
     {
         const int _registroPorPagina = 10;
+        private IConfiguration _configuration;
         EmporioVirtualContext _banco;
-        public CategoriaRepository(EmporioVirtualContext banco)
+        public CategoriaRepository(EmporioVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
         public void Atualizar(Categoria categoria)
         {
@@ -51,7 +54,7 @@ namespace EmporioVirtual.Repositories
         {
             // se pagina for igual a null, atribui o valor padrão 1
             int numeroPagina = pagina ?? 1;
-            return _banco.Categoria.Include(a=>a.CategoriaPai).ToPagedList<Categoria>(numeroPagina, _registroPorPagina);
+            return _banco.Categoria.Include(a=>a.CategoriaPai).ToPagedList<Categoria>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
     }
 }
