@@ -53,14 +53,14 @@ namespace EmporioVirtual.Repositories
 
         public IEnumerable<Colaborador> ObterColaboradores()
         {
-            return _banco.Colaborador.ToList();
+            return _banco.Colaborador.Where(a=>a.Tipo != "G").ToList();
         }
 
         public IPagedList<Colaborador> ObterTodosColaboradores(int? pagina)
         {
             // se pagina for igual a null, atribui o valor padrão 1
             int numeroPagina = pagina ?? 1;
-            return _banco.Colaborador.ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
+            return _banco.Colaborador.Where(a => a.Tipo != "G").ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
     }
 }

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
+    [Area("Colaborador")]
     public class ColaboradorController : Controller
     {
         IColaboradorRepository _colaboradorrepository;
@@ -17,7 +20,8 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
 
         public IActionResult Index(int? pagina)
         {
-            return View();
+            IPagedList<Models.Colaborador> colaboradores = _colaboradorrepository.ObterTodosColaboradores(pagina);
+            return View(colaboradores);
         }
 
         [HttpGet]
@@ -29,6 +33,16 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Cadastrar([FromForm]Models.Colaborador colaborador)
         {
+            if (ModelState.IsValid)
+            {
+                //TODO: Implementar tabela de Tipo Colaborador
+                colaborador.Tipo = "C";
+                _colaboradorrepository.Cadastrar(colaborador);
+
+                TempData["Mens_S"] = Mensagem.MSG_S001;
+
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 

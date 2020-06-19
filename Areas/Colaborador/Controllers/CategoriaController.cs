@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Libraries.Filtro;
+using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             {
                 _categoriaRepository.Cadastrar(categoria);
 
-                TempData["Mens_S"] = "Registro salvo com sucesso!";
+                TempData["Mens_S"] = Mensagem.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -68,7 +69,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             {
                 _categoriaRepository.Atualizar(categoria);
 
-                TempData["Mens_S"] = "Registro salvo com sucesso!";
+                TempData["Mens_S"] = Mensagem.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
@@ -81,7 +82,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         public IActionResult Excluir(int id)
         {
             _categoriaRepository.Excluir(id);
-            TempData["Mens_S"] = "Registro foi excluído salvo com sucesso!";
+            TempData["Mens_S"] = Mensagem.MSG_S002;
             return RedirectToAction(nameof(Index));
         }
     }
