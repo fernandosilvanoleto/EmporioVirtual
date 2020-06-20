@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Repositories.Contracts;
+using EmporioVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -49,12 +50,22 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Atualizar(int id)
         {
-            return View();
+            // não importa do Models principal
+            Models.Colaborador colaborador = _colaboradorrepository.ObterColaborador(id);
+            return View(colaborador);
         }
 
         [HttpPost]
         public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int id)
         {
+            if (ModelState.IsValid)
+            {
+                _colaboradorrepository.Atualizar(colaborador);
+
+                TempData["Mens_S"] = Mensagem.MSG_S001;
+
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 
