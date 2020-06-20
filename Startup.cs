@@ -14,6 +14,9 @@ using EmporioVirtual.Repositories;
 using EmporioVirtual.Repositories.Contracts;
 using EmporioVirtual.Libraries.Sessao;
 using EmporioVirtual.Libraries.Login;
+using System.Net.Mail;
+using System.Net;
+using Microsoft.Extensions.Options;
 
 namespace EmporioVirtual
 {
@@ -45,6 +48,25 @@ namespace EmporioVirtual
             services.AddScoped<INewsLetterRepository, NewsLetterRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+
+            /*
+             * SMTP 
+             * AGORA INJETAR PARA OUTRAS CLASSES VEREM
+             */
+            services.AddScoped<SmtpClient>(options=> {
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = Configuration.GetValue<string>("Email:ServerSMTP"),
+                    Port = Configuration.GetValue<int>("Email:ServerPort"),
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:UserEmail"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true
+                };
+
+                return smtp;
+            });           
+        
 
             //SESSION - Configuração 
             services.AddMemoryCache(); // guardar dados na memória

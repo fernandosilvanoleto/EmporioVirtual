@@ -7,6 +7,7 @@ using EmporioVirtual.Repositories.Contracts;
 using EmporioVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+using EmporioVirtual.Libraries.Texto;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
@@ -36,6 +37,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 //TODO: Implementar tabela de Tipo Colaborador
                 colaborador.Tipo = "C";
                 _colaboradorrepository.Cadastrar(colaborador);
@@ -45,6 +47,17 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GerarSenha(int id)
+        {
+            Models.Colaborador colaborador = _colaboradorrepository.ObterColaborador(id);
+            colaborador.Senha = KeyGenerator.GetUnique(8);
+            _colaboradorrepository.Atualizar(colaborador);
+
+
+            //SALVAR SENHA E ENVIAR E-MAIL
         }
 
         [HttpGet]
@@ -72,7 +85,11 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            return View();
+            _colaboradorrepository.Excluir(id);
+
+            TempData["Mens_S"] = Mensagem.MSG_S002;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
