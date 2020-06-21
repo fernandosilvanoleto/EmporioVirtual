@@ -17,6 +17,7 @@ using EmporioVirtual.Libraries.Login;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Options;
+using EmporioVirtual.Libraries.Email;
 
 namespace EmporioVirtual
 {
@@ -65,7 +66,8 @@ namespace EmporioVirtual
                 };
 
                 return smtp;
-            });           
+            });
+            services.AddScoped<GerenciarEmail>();
         
 
             //SESSION - Configuração 

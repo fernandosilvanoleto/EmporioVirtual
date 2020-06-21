@@ -23,13 +23,15 @@ namespace EmporioVirtual.Controllers
         private IClienteRepository _repositoryCliente;
         private INewsLetterRepository _repositoryNewsLetter;
         private LoginCliente _loginCliente;
+        private GerenciarEmail _gerenciaremail;
 
         //INJEÇÃO DE DEPENDÊNCIA
-        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter, LoginCliente loginCliente)
+        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter, LoginCliente loginCliente, GerenciarEmail gerenciaremail)
         {
             _repositoryCliente = repositorycliente;
             _repositoryNewsLetter = repositorynewsletter;
             _loginCliente = loginCliente;
+            _gerenciaremail = gerenciaremail;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -82,7 +84,7 @@ namespace EmporioVirtual.Controllers
 
                 if (isValid)
                 {
-                    ContatoEmail.EnviarContatoPorEmail(contato);
+                    _gerenciaremail.EnviarContatoPorEmail(contato);
 
                     ViewData["Msg_S"] = "Mensagem de contato enviado com sucesso";
                 }

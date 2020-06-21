@@ -1,6 +1,7 @@
 ﻿using EmporioVirtual.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,20 @@ using System.Threading.Tasks;
 
 namespace EmporioVirtual.Libraries.Email
 {
-    public class ContatoEmail
+    public class GerenciarEmail
     {
-        public static void EnviarContatoPorEmail (Contato contato)
+        private SmtpClient _smtp;
+        private IConfiguration _configuration;
+        public GerenciarEmail(SmtpClient smtpclient, IConfiguration configuration)
+        {
+            _smtp = smtpclient;
+            _configuration = configuration;
+        }
+        public void EnviarContatoPorEmail (Contato contato)
         {
             /*
                 SMTP - Servidor que vai enviar a mensagem
              */
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("boloteca.teste@gmail.com", "684@Fgvkab37_2");
-            smtp.EnableSsl = true;
 
             string corpoMsg = string.Format("<h2>Contato - Empório Virtual</h2>"+
                 "<b>Nome: </b> {0} <br />"+
@@ -35,14 +38,14 @@ namespace EmporioVirtual.Libraries.Email
              * MailMessage -> contruir mensagem
              */
             MailMessage mensagem = new MailMessage();
-            mensagem.From = new MailAddress("boloteca.teste@gmail.com");
+            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:UserEmail"));
             mensagem.To.Add(contato.Email);
             mensagem.Subject = "Contato - Empório Virtual - E-mail: " + contato.Email;
             mensagem.Body = corpoMsg;
             mensagem.IsBodyHtml = true;
 
             //enviar email
-            smtp.Send(mensagem);
+            _smtp.Send(mensagem);
         }
     }
 }
