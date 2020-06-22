@@ -122,5 +122,14 @@ namespace EmporioVirtual.Libraries.Lang {
                 return ResourceManager.GetString("MSG_S002", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha enviada com sucesso!!!.
+        /// </summary>
+        public static string MSG_S003 {
+            get {
+                return ResourceManager.GetString("MSG_S003", resourceCulture);
+            }
+        }
     }
 }

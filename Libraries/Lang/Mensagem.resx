@@ -138,4 +138,7 @@
   <data name="MSG_S002" xml:space="preserve">
     <value>Registro foi excluído salvo com sucesso!!!</value>
   </data>
+  <data name="MSG_S003" xml:space="preserve">
+    <value>Senha enviada com sucesso!!!</value>
+  </data>
 </root>

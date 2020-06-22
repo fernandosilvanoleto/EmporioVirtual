@@ -22,10 +22,6 @@ namespace EmporioVirtual.Libraries.Email
         }
         public void EnviarContatoPorEmail (Contato contato)
         {
-            /*
-                SMTP - Servidor que vai enviar a mensagem
-             */
-
             string corpoMsg = string.Format("<h2>Contato - Empório Virtual</h2>"+
                 "<b>Nome: </b> {0} <br />"+
                 "<b>Email: </b> {1} <br />"+
@@ -47,5 +43,25 @@ namespace EmporioVirtual.Libraries.Email
             //enviar email
             _smtp.Send(mensagem);
         }
+
+        public void EnvarEmailParaColaboradorPorEmail(Colaborador colaborador)
+        {
+            string corpoMsg = string.Format("<h2>Colaborador - Empório Virtual</h2>" +
+                "Sua senha é: " +
+                "<h3>{0}</h3>", colaborador.Senha);
+            /*
+             * MailMessage -> contruir mensagem
+             */
+            MailMessage mensagem = new MailMessage();
+            mensagem.From = new MailAddress(_configuration.GetValue<string>("Email:UserEmail"));
+            mensagem.To.Add(colaborador.Email);
+            mensagem.Subject = "Colaborador - Empório Virtual - Senha do Colaborador: " + colaborador.Email;
+            mensagem.Body = corpoMsg;
+            mensagem.IsBodyHtml = true;
+
+            //enviar email
+            _smtp.Send(mensagem);
+        }
+
     }
 }

@@ -8,16 +8,19 @@ using EmporioVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using EmporioVirtual.Libraries.Texto;
+using EmporioVirtual.Libraries.Email;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
     public class ColaboradorController : Controller
     {
-        IColaboradorRepository _colaboradorrepository;
-        public ColaboradorController(IColaboradorRepository colaboradorrepository)
+        private IColaboradorRepository _colaboradorrepository;
+        private GerenciarEmail _gerenciaremail;
+        public ColaboradorController(IColaboradorRepository colaboradorrepository, GerenciarEmail gerenciaremail)
         {
             _colaboradorrepository = colaboradorrepository;
+            _gerenciaremail = gerenciaremail;
         }
 
         public IActionResult Index(int? pagina)
@@ -56,8 +59,12 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             colaborador.Senha = KeyGenerator.GetUnique(8);
             _colaboradorrepository.Atualizar(colaborador);
 
+            _gerenciaremail.EnvarEmailParaColaboradorPorEmail(colaborador);
 
-            //SALVAR SENHA E ENVIAR E-MAIL
+            TempData["Mens_S"] = Mensagem.MSG_S003;
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         [HttpGet]
