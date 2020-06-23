@@ -29,9 +29,23 @@ namespace EmporioVirtual.Repositories
 
         public void Atualizar(Colaborador colaborador)
         {
+            //Atualiza o Nome - Email - Tipo
             _banco.Update(colaborador);
+            // a senha ou qualquer campo colocado aqui não será atualizada quando fizer update
+            _banco.Entry(colaborador).Property(a => a.Senha).IsModified = false;
             _banco.SaveChanges();
-        }        
+        }
+
+        public void AtualizarSenha(Colaborador colaborador)
+        {
+            // Atualiza somente Senha do Colaborador
+            _banco.Update(colaborador);
+            // a senha ou qualquer campo colocado aqui não será atualizada quando fizer update
+            _banco.Entry(colaborador).Property(a => a.Nome).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Email).IsModified = false;
+            _banco.Entry(colaborador).Property(a => a.Tipo).IsModified = false;
+            _banco.SaveChanges();
+        }
 
         public void Excluir(int id)
         {

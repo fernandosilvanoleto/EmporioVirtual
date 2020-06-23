@@ -12,6 +12,7 @@ namespace EmporioVirtual.Repositories.Contracts
         Colaborador Login(string Email, string Senha);
         void Cadastrar(Colaborador colaborador);
         void Atualizar(Colaborador colaborador);
+        void AtualizarSenha(Colaborador colaborador);
         void Excluir(int id);
         Colaborador ObterColaborador(int id);
         IEnumerable<Colaborador> ObterColaboradores();

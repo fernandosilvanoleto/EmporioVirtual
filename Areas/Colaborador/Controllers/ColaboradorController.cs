@@ -38,12 +38,16 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Cadastrar([FromForm]Models.Colaborador colaborador)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
 
                 //TODO: Implementar tabela de Tipo Colaborador
                 colaborador.Tipo = "C";
+                colaborador.Senha = KeyGenerator.GetUnique(8);
                 _colaboradorrepository.Cadastrar(colaborador);
+
+                _gerenciaremail.EnvarEmailParaColaboradorPorEmail(colaborador);
 
                 TempData["Mens_S"] = Mensagem.MSG_S001;
 
@@ -57,7 +61,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         {
             Models.Colaborador colaborador = _colaboradorrepository.ObterColaborador(id);
             colaborador.Senha = KeyGenerator.GetUnique(8);
-            _colaboradorrepository.Atualizar(colaborador);
+            _colaboradorrepository.AtualizarSenha(colaborador);
 
             _gerenciaremail.EnvarEmailParaColaboradorPorEmail(colaborador);
 
@@ -78,6 +82,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int id)
         {
+            ModelState.Remove("Senha"); // remove o campo Senha de Colaborador do Model State
             if (ModelState.IsValid)
             {
                 _colaboradorrepository.Atualizar(colaborador);
