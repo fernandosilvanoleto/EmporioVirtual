@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using EmporioVirtual.Libraries.Texto;
 using EmporioVirtual.Libraries.Email;
+using EmporioVirtual.Libraries.Filtro;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
+    [ColaboradorAutorizacao("G")]
     public class ColaboradorController : Controller
     {
         private IColaboradorRepository _colaboradorrepository;

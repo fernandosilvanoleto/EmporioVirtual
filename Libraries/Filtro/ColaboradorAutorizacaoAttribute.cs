@@ -8,9 +8,15 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace EmporioVirtual.Libraries.Filtro
-{
+{    
     public class ColaboradorAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {
+        private string _tipocolaboradornecessario;
+        public ColaboradorAutorizacaoAttribute(string TipoColaboradorNecessario = "C")
+        {
+            _tipocolaboradornecessario = TipoColaboradorNecessario;
+        }
+
         LoginColaborador _loginColaborador;
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -18,11 +24,18 @@ namespace EmporioVirtual.Libraries.Filtro
             // precisou colocar o cast para retornar objeto do tipo LoginCliente
             _loginColaborador = (LoginColaborador)context.HttpContext.RequestServices.GetService(typeof(LoginColaborador));
 
-            Colaborador clienteDB = _loginColaborador.GetColaborador();
+            Colaborador colaboradorDB = _loginColaborador.GetColaborador();
 
-            if (clienteDB == null)
+            if (colaboradorDB == null)
             {
                 context.Result = new RedirectToActionResult("Login", "Home", null);
+            } 
+            else
+            {
+                if (colaboradorDB.Tipo == "C" && _tipocolaboradornecessario == "G")
+                {
+                    context.Result = new ForbidResult();
+                }
             }
         }  
     }
