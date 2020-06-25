@@ -17,6 +17,7 @@ namespace EmporioVirtual.Repositories.Contracts
         Colaborador ObterColaborador(int id);
         IEnumerable<Colaborador> ObterColaboradores();
 
+        List<Colaborador> ObterColaboradorPorEmail(string email);
         IPagedList<Colaborador> ObterTodosColaboradores(int? pagina);
 
     }

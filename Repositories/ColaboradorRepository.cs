@@ -76,5 +76,10 @@ namespace EmporioVirtual.Repositories
             int numeroPagina = pagina ?? 1;
             return _banco.Colaborador.Where(a => a.Tipo != "G").ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
+
+        public List<Colaborador> ObterColaboradorPorEmail(string email)
+        {
+            return _banco.Colaborador.Where(a => a.Email == email).ToList(); 
+        }
     }
 }
