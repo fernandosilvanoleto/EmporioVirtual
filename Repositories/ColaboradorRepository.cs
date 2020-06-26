@@ -1,6 +1,7 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,9 @@ namespace EmporioVirtual.Repositories
 
         public List<Colaborador> ObterColaboradorPorEmail(string email)
         {
-            return _banco.Colaborador.Where(a => a.Email == email).ToList(); 
+            // não vai ter o objeto do banco acompanhado :)
+            // AsNoTracking = correção de atualização do colaborador
+            return _banco.Colaborador.Where(a => a.Email == email).AsNoTracking().ToList(); 
         }
     }
 }
