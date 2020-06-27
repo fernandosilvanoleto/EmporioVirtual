@@ -36,7 +36,7 @@ namespace EmporioVirtual.Models
         public string ConfirmarSenha { get; set; }
 
         /*
-         * Tipo:
+         * Tipo = ColaboradorTipoConstant
          * C - Comum
          * G - Gerente
          */

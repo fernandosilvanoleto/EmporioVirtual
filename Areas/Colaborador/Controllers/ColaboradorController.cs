@@ -10,11 +10,12 @@ using X.PagedList;
 using EmporioVirtual.Libraries.Texto;
 using EmporioVirtual.Libraries.Email;
 using EmporioVirtual.Libraries.Filtro;
+using EmporioVirtual.Models.Constants;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    [ColaboradorAutorizacao("G")]
+    [ColaboradorAutorizacao(ColaboradorTipoConstant.Gerente)]
     public class ColaboradorController : Controller
     {
         private IColaboradorRepository _colaboradorrepository;
@@ -45,7 +46,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             {
 
                 //TODO: Implementar tabela de Tipo Colaborador
-                colaborador.Tipo = "C";
+                colaborador.Tipo = ColaboradorTipoConstant.Comum;
                 colaborador.Senha = KeyGenerator.GetUnique(8);
                 _colaboradorrepository.Cadastrar(colaborador);
 
@@ -59,6 +60,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValidateHttpReferer]
         public IActionResult GerarSenha(int id)
         {
             Models.Colaborador colaborador = _colaboradorrepository.ObterColaborador(id);
@@ -97,6 +99,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValidateHttpReferer]
         public IActionResult Excluir(int id)
         {
             _colaboradorrepository.Excluir(id);

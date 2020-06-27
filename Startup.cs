@@ -18,6 +18,7 @@ using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Options;
 using EmporioVirtual.Libraries.Email;
+using EmporioVirtual.Libraries.Middleware;
 
 namespace EmporioVirtual
 {
@@ -99,6 +100,7 @@ namespace EmporioVirtual
             app.UseStaticFiles();            
             app.UseRouting();
             app.UseSession();
+            app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
             app.UseAuthorization();
 

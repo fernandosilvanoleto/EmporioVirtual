@@ -28,6 +28,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken] // IMPEDIR ACESSO DE OUTRAS PÁGINAS MALICIOSAS
         public IActionResult Login([FromForm]Models.Colaborador colaborador)
         {
             //USA ISSO PQ O MODEL ESTÁ LOCALIZADO EM OUTRO LOCAL
@@ -48,6 +49,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
 
         [ColaboradorAutorizacao]
+        [ValidateHttpReferer]
         public IActionResult Logout()
         {
             _loginColaborador.Logout();

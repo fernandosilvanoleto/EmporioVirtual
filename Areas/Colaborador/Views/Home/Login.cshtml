@@ -35,6 +35,10 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Login </button>
                             </div>
+                            @{ 
+                                /* Não esquecer de usar o código abaixo caso esteja usando Html Helper */
+                            }
+                            @Html.AntiForgeryToken()
                         </form>
                     </article>
                 </div>

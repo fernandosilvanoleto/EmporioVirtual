@@ -1,5 +1,6 @@
 ﻿using EmporioVirtual.Libraries.Login;
 using EmporioVirtual.Models;
+using EmporioVirtual.Models.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -12,7 +13,7 @@ namespace EmporioVirtual.Libraries.Filtro
     public class ColaboradorAutorizacaoAttribute : Attribute, IAuthorizationFilter
     {
         private string _tipocolaboradornecessario;
-        public ColaboradorAutorizacaoAttribute(string TipoColaboradorNecessario = "C")
+        public ColaboradorAutorizacaoAttribute(string TipoColaboradorNecessario = ColaboradorTipoConstant.Comum)
         {
             _tipocolaboradornecessario = TipoColaboradorNecessario;
         }
@@ -32,7 +33,7 @@ namespace EmporioVirtual.Libraries.Filtro
             } 
             else
             {
-                if (colaboradorDB.Tipo == "C" && _tipocolaboradornecessario == "G")
+                if (colaboradorDB.Tipo == ColaboradorTipoConstant.Comum && _tipocolaboradornecessario == ColaboradorTipoConstant.Gerente)
                 {
                     context.Result = new ForbidResult();
                 }

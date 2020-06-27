@@ -1,5 +1,6 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
+using EmporioVirtual.Models.Constants;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -75,7 +76,7 @@ namespace EmporioVirtual.Repositories
         {
             // se pagina for igual a null, atribui o valor padrão 1
             int numeroPagina = pagina ?? 1;
-            return _banco.Colaborador.Where(a => a.Tipo != "G").ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
+            return _banco.Colaborador.Where(a => a.Tipo != ColaboradorTipoConstant.Gerente).ToPagedList<Colaborador>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
 
         public List<Colaborador> ObterColaboradorPorEmail(string email)
