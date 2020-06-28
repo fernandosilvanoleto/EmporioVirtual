@@ -1,19 +1,23 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmporioVirtual.Repositories
 {
     public class ClienteRepository : IClienteRepository
     {
+        private IConfiguration _configuration;
         private EmporioVirtualContext _banco;
-        public ClienteRepository(EmporioVirtualContext banco)
+        public ClienteRepository(EmporioVirtualContext banco, IConfiguration configuration)
         {
             _banco = banco;
+            _configuration = configuration;
         }
         public void Atualizar(Cliente cliente)
         {
@@ -45,9 +49,12 @@ namespace EmporioVirtual.Repositories
             return _banco.Clientes.Find(id);
         }
 
-        public IEnumerable<Cliente> ObterTodosClientes()
+        public IPagedList<Cliente> ObterTodosClientes(int? pagina)
         {
-            return _banco.Clientes.ToList();
+            int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
+            
+            int numeroPagina = pagina ?? 1;
+            return _banco.Clientes.ToPagedList<Cliente>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
         }
     }
 }

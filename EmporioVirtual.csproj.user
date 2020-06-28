@@ -15,5 +15,6 @@
     <WebStackScaffolding_DependencyDialogWidth>600</WebStackScaffolding_DependencyDialogWidth>
     <View_SelectedScaffolderID>RazorViewScaffolder</View_SelectedScaffolderID>
     <View_SelectedScaffolderCategoryPath>root/View</View_SelectedScaffolderCategoryPath>
+    <WebStackScaffolding_DbContextTypeFullName>EmporioVirtual.Database.EmporioVirtualContext</WebStackScaffolding_DbContextTypeFullName>
   </PropertyGroup>
 </Project>

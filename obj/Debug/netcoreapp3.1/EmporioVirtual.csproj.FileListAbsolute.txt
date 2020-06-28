@@ -170,3 +170,4 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Col
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Colaborador\Index.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Colaborador\Cadastrar.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Colaborador\Atualizar.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Cliente\Index.cshtml.g.cs
