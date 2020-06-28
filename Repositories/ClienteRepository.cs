@@ -54,7 +54,7 @@ namespace EmporioVirtual.Repositories
             int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
             
             int numeroPagina = pagina ?? 1;
-            return _banco.Clientes.ToPagedList<Cliente>(numeroPagina, _configuration.GetValue<int>("RegistroPorPagina"));
+            return _banco.Clientes.ToPagedList<Cliente>(numeroPagina, RegistroPorPagina);
         }
     }
 }
