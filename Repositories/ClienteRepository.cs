@@ -49,12 +49,21 @@ namespace EmporioVirtual.Repositories
             return _banco.Clientes.Find(id);
         }
 
-        public IPagedList<Cliente> ObterTodosClientes(int? pagina)
+        public IPagedList<Cliente> ObterTodosClientes(int? pagina, string pesquisa)
         {
             int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
             
             int numeroPagina = pagina ?? 1;
-            return _banco.Clientes.ToPagedList<Cliente>(numeroPagina, RegistroPorPagina);
+
+            var bancoCliente = _banco.Clientes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                //NÃO ESTÁ VAZIO
+                bancoCliente = bancoCliente.Where(a => a.Nome.Contains(pesquisa.Trim()) || a.Email.Contains(pesquisa.Trim()));
+            }
+
+            return bancoCliente.ToPagedList<Cliente>(numeroPagina, RegistroPorPagina);
         }
     }
 }

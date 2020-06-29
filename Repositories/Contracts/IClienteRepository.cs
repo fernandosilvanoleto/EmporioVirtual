@@ -15,7 +15,7 @@ namespace EmporioVirtual.Repositories.Contracts
         void Atualizar(Cliente cliente);
         void Excluir(int id);
         Cliente ObterCliente(int id);
-        IPagedList<Cliente> ObterTodosClientes(int? pagina);
+        IPagedList<Cliente> ObterTodosClientes(int? pagina, string pesquisa);
 
     }
 }

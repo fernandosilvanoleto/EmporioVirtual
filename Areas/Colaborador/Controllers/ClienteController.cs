@@ -21,9 +21,9 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         {
             _clienterepository = clienterepository;
         }
-        public IActionResult Index(int? pagina)
+        public IActionResult Index(int? pagina, string pesquisa)
         {
-            IPagedList<Cliente> clientes = _clienterepository.ObterTodosClientes(pagina);
+            IPagedList<Cliente> clientes = _clienterepository.ObterTodosClientes(pagina, pesquisa);
             return View(clientes);
         }
 

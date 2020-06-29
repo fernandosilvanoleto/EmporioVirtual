@@ -2,8 +2,17 @@
 
 @{
     ViewData["Title"] = "Clientes";
+    var pesquisa = Context.Request.Query["pesquisa"];
 }
 <h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="pesquisa"></label>
+        <input type="text" name="pesquisa" id="pesquisa" value ="@pesquisa" class="form-control" placeholder="Digite o nome ou e-mail do cliente">
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
 
 <br />
 <br />
@@ -46,7 +55,7 @@
             </tbody>
         </table>
     </div>
-    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }))
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa }))
 }
 else
 {

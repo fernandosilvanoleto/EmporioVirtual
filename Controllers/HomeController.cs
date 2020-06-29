@@ -14,6 +14,8 @@ using EmporioVirtual.Repositories.Contracts;
 using EmporioVirtual.Libraries.Login;
 using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Email;
+using EmporioVirtual.Models.Constants;
+using EmporioVirtual.Libraries.Texto;
 
 namespace EmporioVirtual.Controllers
 {
@@ -151,9 +153,14 @@ namespace EmporioVirtual.Controllers
         [HttpPost]
         public IActionResult CadastroCliente([FromForm] Cliente cliente)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
-                _repositoryCliente.Cadastrar(cliente);
+                cliente.Situacao = SituacaoConstant.Ativo; 
+                
+                cliente.Senha = KeyGenerator.GetUnique(8);
+
+                _repositoryCliente.Cadastrar(cliente);                
 
                 TempData["Mensagem_S"] = "Cadastro realizado com sucesso";
 

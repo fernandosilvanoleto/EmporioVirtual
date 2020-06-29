@@ -47,7 +47,9 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
 
                 //TODO: Implementar tabela de Tipo Colaborador
                 colaborador.Tipo = ColaboradorTipoConstant.Comum;
+
                 colaborador.Senha = KeyGenerator.GetUnique(8);
+
                 _colaboradorrepository.Cadastrar(colaborador);
 
                 _gerenciaremail.EnvarEmailParaColaboradorPorEmail(colaborador);
