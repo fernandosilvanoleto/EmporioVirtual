@@ -24,6 +24,8 @@ namespace EmporioVirtual.Database
         public DbSet<NewsletterEmail> NewsletterEmail { get; set; }
         public DbSet<Colaborador> Colaborador { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Imagem> Imagem { get; set; }
 
     }
 }
