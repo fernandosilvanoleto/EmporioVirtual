@@ -21,5 +21,11 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             var produtos = _produtorepository.ObterTodosProdutos(pagina, pesquisa);
             return View(produtos);
         }
+
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        } 
     }
 }

@@ -16,6 +16,8 @@
 
 <br />
 <br />
+<a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
+
 @if (TempData["Mens_S"] != null)
 {
     <p class="alert alert-success">@TempData["Mens_S"]</p>
@@ -37,16 +39,16 @@
             <tbody>
                 @foreach (Produto produto in Model)
                 {
-                <tr>
-                    <td>@produto.Id</td>
-                    <td>@produto.Nome</td>
-                    <td>@produto.CategoriaId</td>
-                    <td>@produto.Valor</td>
-                    <td>
-                        <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>
-                        <a asp-action="Excluir" asp-route-id="@produto.Id" class="btn btn-danger">Excluir</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@produto.Id</td>
+                        <td>@produto.Nome</td>
+                        <td>@produto.CategoriaId</td>
+                        <td>@produto.Valor</td>
+                        <td>
+                            <a asp-action="Atualizar" asp-route-id="@produto.Id" class="btn btn-secondary">Atualizar</a>
+                            <a asp-action="Excluir" asp-route-id="@produto.Id" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
