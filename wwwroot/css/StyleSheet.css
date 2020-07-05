@@ -7,8 +7,15 @@
 
 .Imagens .btn-Imagens-excluir {
     width: 100%;
+    margin-bottom: 30px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .Imagens div {
     text-align: center;
+}
+
+.Imagens .img-thumbnail {
+    width: 100%;
 }
