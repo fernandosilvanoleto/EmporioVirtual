@@ -173,3 +173,4 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Col
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csprojAssemblyReference.cache
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Produto\Index.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Produto\Cadastrar.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Areas\Colaborador\Views\Produto\Atualizar.cshtml.g.cs
