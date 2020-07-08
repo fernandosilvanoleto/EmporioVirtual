@@ -13,13 +13,29 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
     {
         public IActionResult Armazenar(IFormFile file)
         {
-            GerenciadorArquivo.CadastrarImagemProduto(file);
-            return View();
+            var Caminho = GerenciadorArquivo.CadastrarImagemProduto(file);
+
+            if (Caminho.Length > 0)
+            {
+                // STATUS DO HTTP :: 200 - OK
+                return Ok( new { caminho = Caminho }); //JSON
+            }
+            else
+            {
+                return new StatusCodeResult(500);
+            }
         }
 
-        public IActionResult Deletar()
+        public IActionResult Deletar(string caminho)
         {
-            return View();
+            if (GerenciadorArquivo.ExcluirImagemProduto(caminho))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

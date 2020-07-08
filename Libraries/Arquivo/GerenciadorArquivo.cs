@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,14 +9,38 @@ namespace EmporioVirtual.Libraries.Arquivo
 {
     public class GerenciadorArquivo
     {
-        public static void CadastrarImagemProduto(IFormFile file) 
-        { 
-            //TODO - Armazenar imagem em uma pasta
+        public static string CadastrarImagemProduto(IFormFile file) 
+        {
+            //Armazenar imagem em uma pasta
+            var NomeArquivo = Path.GetFileName(file.FileName);
+
+            var Caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/temp", NomeArquivo);
+
+            using (var stream = new FileStream(Caminho, FileMode.Create)) 
+            {
+                file.CopyTo(stream);
+            }
+
+            return Path.Combine("/uploads/temp", NomeArquivo);
+
         }
 
-        public static void ExcluirImagemProduto()
+        public static bool ExcluirImagemProduto(string caminho)
         {
-            //TODO - Deletar imagem na pasta
+            //Deletar imagem na pasta
+            string Caminho = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho.TrimStart('/'));
+
+            if (File.Exists(Caminho))
+            {
+                //DELETAR ARQUIVO
+                File.Delete(Caminho);
+
+                return true;
+            } else
+            {
+                return false;
+            }
+
         }
     }
 }
