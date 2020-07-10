@@ -20,9 +20,12 @@ namespace EmporioVirtual.Libraries.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            if (HttpMethods.IsPost(context.Request.Method))
-            {
-                await _antiforgery.ValidateRequestAsync(context);
+            var Cabecalho = context.Request.Headers["x-requested-with"];
+            var Ajax = (Cabecalho == "XMLHttpRequest") ? true : false;
+
+            if (HttpMethods.IsPost(context.Request.Method) && !(context.Request.Cookies.Count == 1 && Ajax))
+            {                
+                    await _antiforgery.ValidateRequestAsync(context);           
             }
 
             await _next(context);

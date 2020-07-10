@@ -17,11 +17,23 @@ $(document).ready(function () {
 
     $(".input-file").change(function () {
         // FORMULÁRIO DE DADOS VIA JAVASCRIPT
-        var Binary = $(this)[0].file[0]; // campo selecionado
+        var Binary = $(this)[0].files[0]; // campo selecionado
         var formulario = new FormData();
         formulario.append("file", Binary);
 
         //TODO -Requisição Ajax enviando o formulário para model
-
+        $.ajax({
+            type: "POST",
+            url: "/Colaborador/Imagem/Armazenar",
+            data: FormData,
+            contentType: false,
+            processData: false,
+            error: function () {
+                alert("Teve erro no envio do arquivo");
+            },
+            success: function (data) {
+                alert("Arquivo enviado com sucesso!!!" + data.caminho )
+            }
+        });
     });
 });
