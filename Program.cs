@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using EmporioVirtual.Libraries.Bug;
 
 namespace EmporioVirtual
 {
@@ -13,6 +14,7 @@ namespace EmporioVirtual
     {
         public static void Main(string[] args)
         {
+            CurrentDirectoryHelpers.SetCurrentDirectory(); // call it here
             CreateHostBuilder(args).Build().Run();
         }
 

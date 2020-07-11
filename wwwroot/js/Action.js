@@ -25,7 +25,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/Colaborador/Imagem/Armazenar",
-            data: FormData,
+            data: formulario,
             contentType: false,
             processData: false,
             error: function () {
