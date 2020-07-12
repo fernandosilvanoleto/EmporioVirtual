@@ -27,6 +27,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult Deletar(string caminho)
         {
             if (GerenciadorArquivo.ExcluirImagemProduto(caminho))
