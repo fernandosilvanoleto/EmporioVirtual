@@ -6,10 +6,17 @@
 }
 
 .Imagens .btn-Imagens-excluir {
-    width: 100%;
-    margin-bottom: 30px;
+    width: 100%;    
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+}
+
+.Imagens .col-md-2 {
+    margin-bottom: 30px;
+}
+
+.Imagens .btn-ocultar {
+    display: none;
 }
 
 .Imagens div {
@@ -26,4 +33,8 @@
 
 .img-upload {
     cursor: pointer;
+}
+
+.Imagens input[name=imagem] {
+    display: block;
 }

@@ -21,7 +21,7 @@ namespace EmporioVirtual.Libraries.Arquivo
                 file.CopyTo(stream);
             }
 
-            return Path.Combine("/uploads/temp", NomeArquivo);
+            return Path.Combine("/uploads/temp", NomeArquivo).Replace("\\", "/");
 
         }
 
