@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmporioVirtual.Libraries.Arquivo;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
@@ -41,6 +42,12 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             {
                 //salvar produto
                 _produtorepository.Cadastrar(produto);
+                
+                List<string> ListaCaminhoDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id.ToString());
+                //CaminhoTemp -> Mover a Imagem para caminho definitivo
+                //TODO -> Salvar o caminho definitivo e salvar no banco de dados
+
+
 
                 TempData["Mens_S"] = Mensagem.MSG_S001;
 

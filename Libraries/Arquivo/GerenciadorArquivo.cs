@@ -42,5 +42,49 @@ namespace EmporioVirtual.Libraries.Arquivo
             }
 
         }
+
+        public static List<string> MoverImagensProduto(List<string> listacaminhotemp, string produto_id)
+        {
+            /*
+             * Criar a pasta para cada produto
+             */
+            var CaminhoDefinitivoPastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id);
+
+            if (!Directory.Exists(CaminhoDefinitivoPastaProduto))
+            {
+                Directory.CreateDirectory(CaminhoDefinitivoPastaProduto);
+            }
+
+            /*
+             * Mover a Imagem da pasta temp para a Pasta definitiva
+             */
+            List<string> ListaCaminhoDef = new List<string>();
+            foreach (var caminho_temp in listacaminhotemp)
+            {
+                if (string.IsNullOrEmpty(caminho_temp))
+                {
+                    var NomeArquivo = Path.GetFileName(caminho_temp);
+                    var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho_temp);
+                    var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id, NomeArquivo);
+
+                    if (File.Exists(CaminhoAbsolutoTemp))
+                    {
+                        //MOVER
+                        File.Copy(CaminhoAbsolutoTemp, CaminhoAbsolutoDef);
+                        if (File.Exists(CaminhoAbsolutoDef))
+                        {
+                            File.Delete(CaminhoAbsolutoTemp);
+                        }
+                        ListaCaminhoDef.Add(Path.Combine("/uploads", produto_id, NomeArquivo).Replace("\\", "/"));
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }                
+            }
+
+            return ListaCaminhoDef;
+        }
     }
 }
