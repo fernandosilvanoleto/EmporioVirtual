@@ -16,10 +16,12 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
     {
         private IProdutoRepository _produtorepository;
         private ICategoriaRepository _categoriaRepository;
-        public ProdutoController(IProdutoRepository produtorepository, ICategoriaRepository categoriaRepository)
+        private IImagemRepository _imagemRepository;
+        public ProdutoController(IProdutoRepository produtorepository, ICategoriaRepository categoriaRepository, IImagemRepository imagemRepository)
         {
             _produtorepository = produtorepository;
             _categoriaRepository = categoriaRepository;
+            _imagemRepository = imagemRepository;
         }
 
         public IActionResult Index(int? pagina, string pesquisa)
@@ -43,11 +45,11 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
                 //salvar produto
                 _produtorepository.Cadastrar(produto);
                 
-                List<string> ListaCaminhoDef = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id.ToString());
+                List<Imagem> ListaImagensDefinitiva = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
                 //CaminhoTemp -> Mover a Imagem para caminho definitivo
-                //TODO -> Salvar o caminho definitivo e salvar no banco de dados
+                // Salvar o caminho definitivo e salvar no banco de dados
 
-
+                _imagemRepository.CadastrarImagens(ListaImagensDefinitiva, produto.Id);
 
                 TempData["Mens_S"] = Mensagem.MSG_S001;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EmporioVirtual.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,12 +44,12 @@ namespace EmporioVirtual.Libraries.Arquivo
 
         }
 
-        public static List<string> MoverImagensProduto(List<string> listacaminhotemp, string produto_id)
+        public static List<Imagem> MoverImagensProduto(List<string> listacaminhotemp, int produto_id)
         {
             /*
              * Criar a pasta para cada produto
              */
-            var CaminhoDefinitivoPastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id);
+            var CaminhoDefinitivoPastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id.ToString());
 
             if (!Directory.Exists(CaminhoDefinitivoPastaProduto))
             {
@@ -58,14 +59,14 @@ namespace EmporioVirtual.Libraries.Arquivo
             /*
              * Mover a Imagem da pasta temp para a Pasta definitiva
              */
-            List<string> ListaCaminhoDef = new List<string>();
+            List<Imagem> ListaDeImagens = new List<Imagem>();
             foreach (var caminho_temp in listacaminhotemp)
             {
                 if (string.IsNullOrEmpty(caminho_temp))
                 {
                     var NomeArquivo = Path.GetFileName(caminho_temp);
                     var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho_temp);
-                    var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id, NomeArquivo);
+                    var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id.ToString(), NomeArquivo);
 
                     if (File.Exists(CaminhoAbsolutoTemp))
                     {
@@ -75,7 +76,7 @@ namespace EmporioVirtual.Libraries.Arquivo
                         {
                             File.Delete(CaminhoAbsolutoTemp);
                         }
-                        ListaCaminhoDef.Add(Path.Combine("/uploads", produto_id, NomeArquivo).Replace("\\", "/"));
+                        ListaDeImagens.Add(new Imagem() { Caminho = Path.Combine("/uploads", produto_id.ToString(), NomeArquivo).Replace("\\", "/"), ProdutoId = produto_id });
                     }
                     else
                     {
@@ -84,7 +85,7 @@ namespace EmporioVirtual.Libraries.Arquivo
                 }                
             }
 
-            return ListaCaminhoDef;
+            return ListaDeImagens;
         }
     }
 }

@@ -15,6 +15,13 @@ namespace EmporioVirtual.Repositories
         {
             _banco = banco;
         }
+        public void CadastrarImagens(List<Imagem> ListaImagens, int produto_id)
+        {
+            foreach (var Imagem in ListaImagens)
+            {
+                Cadastrar(Imagem);
+            }
+        }
         public void Cadastrar(Imagem imagem)
         {
             _banco.Add(imagem);
