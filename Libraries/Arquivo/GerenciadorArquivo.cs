@@ -62,10 +62,10 @@ namespace EmporioVirtual.Libraries.Arquivo
             List<Imagem> ListaDeImagens = new List<Imagem>();
             foreach (var caminho_temp in listacaminhotemp)
             {
-                if (string.IsNullOrEmpty(caminho_temp))
+                if (!string.IsNullOrEmpty(caminho_temp))
                 {
                     var NomeArquivo = Path.GetFileName(caminho_temp);
-                    var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", caminho_temp);
+                    var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/temp", NomeArquivo);
                     var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", produto_id.ToString(), NomeArquivo);
 
                     if (File.Exists(CaminhoAbsolutoTemp))

@@ -17,10 +17,13 @@ namespace EmporioVirtual.Repositories
         }
         public void CadastrarImagens(List<Imagem> ListaImagens, int produto_id)
         {
-            foreach (var Imagem in ListaImagens)
+            if (ListaImagens != null && ListaImagens.Count > 0)
             {
-                Cadastrar(Imagem);
-            }
+                foreach (var Imagem in ListaImagens)
+                {
+                    Cadastrar(Imagem);
+                }
+            }            
         }
         public void Cadastrar(Imagem imagem)
         {
