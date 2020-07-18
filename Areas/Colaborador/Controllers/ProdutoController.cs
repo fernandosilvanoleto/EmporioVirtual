@@ -55,9 +55,13 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-            return View();
+            else
+            {                
+               produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a=>a.Trim().Length > 0).Select(a=>new Imagem() { Caminho = a  }).ToList();
+               ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+               
+                return View(produto);
+            }            
         }
 
         [HttpGet]
