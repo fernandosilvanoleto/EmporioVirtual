@@ -59,8 +59,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
             {                
                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a=>a.Trim().Length > 0).Select(a=>new Imagem() { Caminho = a  }).ToList();
                ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-               
-                return View(produto);
+               return View(produto);
             }            
         }
 
@@ -79,16 +78,27 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         {
             if (ModelState.IsValid)
             {
-                _produtorepository.Atualizar(produto);
+                //salvar produto
+                _produtorepository.Atualizar(produto);                
+
+                List<Imagem> ListaImagensDefinitiva = GerenciadorArquivo.MoverImagensProduto(new List<string>(Request.Form["imagem"]), produto.Id);
+                //CaminhoTemp -> Mover a Imagem para caminho definitivo
+                // Salvar o caminho definitivo e salvar no banco de dados
+
+                _imagemRepository.ExcluirImagensdoProduto(produto.Id);
+
+                _imagemRepository.CadastrarImagens(ListaImagensDefinitiva, produto.Id);
 
                 TempData["Mens_S"] = Mensagem.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
-
-            return View(produto);
+            else
+            {
+                produto.Imagens = new List<string>(Request.Form["imagem"]).Where(a => a.Trim().Length > 0).Select(a => new Imagem() { Caminho = a }).ToList();
+                ViewBag.Categorias = _categoriaRepository.ObterTodasCategoriasSelect().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
+                return View(produto);
+            }
         }
     }
 }
