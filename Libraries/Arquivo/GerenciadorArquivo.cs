@@ -90,7 +90,9 @@ namespace EmporioVirtual.Libraries.Arquivo
                             {
                                 File.Delete(CaminhoAbsolutoTemp);
                             }
+
                             ListaDeImagens.Add(new Imagem() { Caminho = Path.Combine("/uploads", produto_id.ToString(), NomeArquivo).Replace("\\", "/"), ProdutoId = produto_id });
+                        
                         }
                         else
                         {

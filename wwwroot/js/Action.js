@@ -14,6 +14,7 @@ $(document).ready(function () {
         $(this).parent().find(".input-file").click();
         //alert('oi');
     });
+
     $(".btn-Imagens-excluir").click(function () {
         var CampoHidden = $(this).parent().find("input[name=imagem]");
         var Imagem = $(this).parent().find(".img-upload");
@@ -36,12 +37,14 @@ $(document).ready(function () {
         });
     });
 
+    console.log("oi");
+
     $(".input-file").change(function () {
         // FORMULÁRIO DE DADOS VIA JAVASCRIPT
         var Binary = $(this)[0].files[0]; // campo selecionado
         var formulario = new FormData();
         formulario.append("file", Binary);
-
+        
         var CampoHidden = $(this).parent().find("input[name=imagem]");
         var Imagem = $(this).parent().find(".img-upload");
         var BtnExcluir = $(this).parent().find(".btn-Imagens-excluir");
