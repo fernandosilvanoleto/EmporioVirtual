@@ -11,7 +11,7 @@
 
 $(document).ready(function () {
     $(".img-upload").click(function () {
-        $(this).parent().find(".input-file").click();
+        $(this).parent().parent().find(".input-file").click();
         //alert('oi');
     });
 
