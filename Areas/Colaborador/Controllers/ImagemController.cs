@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Libraries.Arquivo;
+using EmporioVirtual.Libraries.Filtro;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
+    [ColaboradorAutorizacao]
     public class ImagemController : Controller
     {
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Armazenar(IFormFile file)
         {
             var Caminho = GerenciadorArquivo.CadastrarImagemProduto(file);

@@ -53,9 +53,15 @@ $(document).ready(function () {
         Imagem.attr("src", "/img/Loading.gif");
         Imagem.addClass("thumb");
 
+        // IR COM TOKEN DO REQUEST TOKEN, ISSO É CAUSADO POR CAUSA DO ColaboradorAutorizacao E DO ValidateAntiForgeryToken e dos ataques CRSF
+        var AntiToken = $('[name=__RequestVerificationToken]').val();
+
         $.ajax({
             type: "POST",
             url: "/Colaborador/Imagem/Armazenar",
+            headers: {
+                "RequestVerificationToken": AntiToken
+            },
             data: formulario,
             contentType: false,
             processData: false,

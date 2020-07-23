@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Libraries.Arquivo;
+using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models;
 using EmporioVirtual.Repositories.Contracts;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace EmporioVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
+    [ColaboradorAutorizacao]
     public class ProdutoController : Controller
     {
         private IProdutoRepository _produtorepository;
