@@ -100,5 +100,25 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
                 return View(produto);
             }
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int id)
+        {
+            // LER O PRODUTO
+            Produto Produto = _produtorepository.ObterProduto(id);
+
+            // DELETAR IMAGENS DA PASTA
+            GerenciadorArquivo.ExcluirImagensDeProduto(Produto.Imagens.ToList());
+
+            //DELETAR IMAGENS DO BANCO
+            _imagemRepository.ExcluirImagensdoProduto(id);
+
+            //DELETAR PRODUTO
+            _produtorepository.Excluir(id);
+
+            TempData["Mens_S"] = Mensagem.MSG_S002;
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

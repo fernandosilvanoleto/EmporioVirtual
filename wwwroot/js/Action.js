@@ -37,9 +37,8 @@ $(document).ready(function () {
         });
     });
 
-    console.log("oi");
-
-    $(".input-file").change(function () {
+    
+    $(".input-file").change(function () {      
         // FORMULÁRIO DE DADOS VIA JAVASCRIPT
         var Binary = $(this)[0].files[0]; // campo selecionado
         var formulario = new FormData();
@@ -49,6 +48,11 @@ $(document).ready(function () {
         var Imagem = $(this).parent().find(".img-upload");
         var BtnExcluir = $(this).parent().find(".btn-Imagens-excluir");
         //TODO -Requisição Ajax enviando o formulário para model
+
+        //APRESENTA IMAGEM LOADING
+        Imagem.attr("src", "/img/Loading.gif");
+        Imagem.addClass("thumb");
+
         $.ajax({
             type: "POST",
             url: "/Colaborador/Imagem/Armazenar",
@@ -57,10 +61,13 @@ $(document).ready(function () {
             processData: false,
             error: function () {
                 alert("Teve erro no envio do arquivo");
+                Imagem.attr("src", "/img/Img_Padrao.png");
+                Imagem.removeClass("thumb");
             },
             success: function (data) {
                 var caminho = data.caminho;
                 Imagem.attr("src", caminho);
+                Imagem.removeClass("thumb");
                 CampoHidden.val(caminho);
                 BtnExcluir.removeClass("btn-ocultar");
             }

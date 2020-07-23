@@ -108,5 +108,22 @@ namespace EmporioVirtual.Libraries.Arquivo
 
             return ListaDeImagens;
         }
+
+        public static void ExcluirImagensDeProduto(List<Imagem> ListaImagens)
+        {
+            int ProdutoId = 0;
+            foreach (var imagem in ListaImagens)
+            {
+                ProdutoId = imagem.ProdutoId;
+                ExcluirImagemProduto(imagem.Caminho);
+            }
+
+            var PastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId.ToString());
+
+            if (Directory.Exists(PastaProduto))
+            {
+                Directory.Delete(PastaProduto);
+            }
+        }
     }
 }
