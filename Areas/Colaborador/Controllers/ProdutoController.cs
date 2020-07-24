@@ -104,6 +104,7 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValidateHttpReferer]
         public IActionResult Excluir(int id)
         {
             // LER O PRODUTO

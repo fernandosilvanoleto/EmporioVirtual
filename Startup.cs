@@ -54,6 +54,8 @@ namespace EmporioVirtual
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IImagemRepository, ImagemRepository>();
 
+            services.AddMvc( options => options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "O campo deve ser preenchido"));
+
             /*
              * SMTP 
              * AGORA INJETAR PARA OUTRAS CLASSES VEREM
