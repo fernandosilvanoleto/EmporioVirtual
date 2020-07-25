@@ -27,7 +27,7 @@ using EmporioVirtual.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dc680c879d842e020a044adc9fbc70b82a61e546", @"/Views/Home/Login.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"724e259fa9af6dd93a7124e837d66b24b585dfff", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1781c712003fb51f6cbad8d557b86f35f36170e2", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<EmporioVirtual.Models.Cliente>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "CadastroCliente", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
