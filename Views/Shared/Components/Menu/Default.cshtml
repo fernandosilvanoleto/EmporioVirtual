@@ -50,7 +50,27 @@
                     </li>
                 </ul>
             </div>
-
+            @{
+                var TodasCategorias = Model.ToList();
+            }
+            @if (TodasCategorias != null && TodasCategorias.Count > 0)
+            {
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categoria
+                    </button>
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                        @{
+                            var CategoriasPrincipais = TodasCategorias.Where(a => a.CategoriaPaiId == null).ToList();
+                            ViewData["TodasCategorias"] = TodasCategorias;
+                        }
+                        @foreach (var categoria in CategoriasPrincipais)
+                        {
+                            @await Html.PartialAsync("~/Views/Shared/Components/Menu/_SubMenu.cshtml", new ViewDataDictionary(ViewData) { { "CategoriaPai", categoria } });
+                        }
+                    </ul>
+                </div>
+            }
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
