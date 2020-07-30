@@ -16,6 +16,7 @@ using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Email;
 using EmporioVirtual.Models.Constants;
 using EmporioVirtual.Libraries.Texto;
+using EmporioVirtual.Models.ViewModels;
 
 namespace EmporioVirtual.Controllers
 {
@@ -24,16 +25,18 @@ namespace EmporioVirtual.Controllers
         private readonly ILogger<HomeController> _logger;
         private IClienteRepository _repositoryCliente;
         private INewsLetterRepository _repositoryNewsLetter;
+        private IProdutoRepository _produtorepository;
         private LoginCliente _loginCliente;
         private GerenciarEmail _gerenciaremail;
 
         //INJEÇÃO DE DEPENDÊNCIA
-        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter, LoginCliente loginCliente, GerenciarEmail gerenciaremail)
+        public HomeController(IClienteRepository repositorycliente, INewsLetterRepository repositorynewsletter, LoginCliente loginCliente, GerenciarEmail gerenciaremail, IProdutoRepository produtorepository)
         {
             _repositoryCliente = repositorycliente;
             _repositoryNewsLetter = repositorynewsletter;
             _loginCliente = loginCliente;
             _gerenciaremail = gerenciaremail;
+            _produtorepository = produtorepository;
         }
 
         /*public HomeController(ILogger<HomeController> logger)
@@ -42,13 +45,14 @@ namespace EmporioVirtual.Controllers
         }*/
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? pagina, string pesquisa)
         {
-            return View();
+            var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa) };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Index([FromForm]NewsletterEmail newsletter)
+        public IActionResult Index(int? pagina, string pesquisa, [FromForm]NewsletterEmail newsletter)
         {
             //VALIDANDO FORMULÁRIO VINDO DA VIEW
             if (ModelState.IsValid)
@@ -61,8 +65,14 @@ namespace EmporioVirtual.Controllers
             }
             else
             {
-                return View();
+                var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa) };
+                return View(viewModel);
             }            
+        }
+
+        public IActionResult Categoria()
+        {
+            return View();
         }
 
         public IActionResult Contato()
