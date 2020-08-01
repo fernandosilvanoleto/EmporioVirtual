@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
     var pesquisa = Context.Request.Query["pesquisa"];
+    var ordenacao = Context.Request.Query["ordenacao"].ToString();
 }
 
     <main role="main">
@@ -76,9 +77,9 @@
         {
             <div class="container" id="code_prod_complex">
                 <div class="row">
-                    <div class="offseet-md-10 col-md-3">
+                    <div class="offset-md-10 col-md-3">
                         <!-- Ordenação : Ordem Alfabética, Menor, Maior -->
-                        <select id="ordenacao" asp-items="Model.Ordenacao"></select>
+                        <select id="ordenacao" asp-for="@ordenacao" class="form-control" asp-items="Model.Ordenacao"></select>
                     </div>
                 </div>
                 <div class="row">
@@ -111,7 +112,7 @@
                     }
 
                 </div> <!-- row.// -->
-                @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa }))
+                @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }))
             </div>
         }
     </main>

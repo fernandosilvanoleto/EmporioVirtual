@@ -45,14 +45,14 @@ namespace EmporioVirtual.Controllers
         }*/
 
         [HttpGet]
-        public IActionResult Index(int? pagina, string pesquisa)
+        public IActionResult Index(int? pagina, string pesquisa, string ordenacao)
         {
-            var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa) };
+            var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
             return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Index(int? pagina, string pesquisa, [FromForm]NewsletterEmail newsletter)
+        public IActionResult Index(int? pagina, string pesquisa, string ordenacao, [FromForm]NewsletterEmail newsletter)
         {
             //VALIDANDO FORMULÁRIO VINDO DA VIEW
             if (ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace EmporioVirtual.Controllers
             }
             else
             {
-                var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa) };
+                var viewModel = new IndexViewModel() { Lista = _produtorepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
                 return View(viewModel);
             }            
         }

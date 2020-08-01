@@ -42,10 +42,30 @@ namespace EmporioVirtual.Repositories
 
         public Produto ObterProduto(int id)
         {
-            return _banco.Produto.Include(a => a.Imagens).Where(a => a.Id == id).FirstOrDefault() ;
+            return _banco.Produto.Include(a => a.Imagens).OrderBy(a => a.Nome).Where(a => a.Id == id).FirstOrDefault() ;
         }
 
         public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa)
+        {
+            return ObterTodosProdutos(pagina, pesquisa, "A");
+            /*
+            int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
+
+            int numeroPagina = pagina ?? 1;
+
+            var bancoProduto = _banco.Produto.AsQueryable();
+
+            if (!string.IsNullOrEmpty(pesquisa))
+            {
+                //NÃO ESTÁ VAZIO
+                bancoProduto = bancoProduto.Where(a => a.Nome.Contains(pesquisa.Trim()));
+            }
+
+            return bancoProduto.Include(a => a.Imagens).OrderBy(a => a.Nome).ToPagedList<Produto>(numeroPagina, RegistroPorPagina);
+            */
+        }
+
+        public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa, string ordenacao)
         {
             int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
 
@@ -57,6 +77,18 @@ namespace EmporioVirtual.Repositories
             {
                 //NÃO ESTÁ VAZIO
                 bancoProduto = bancoProduto.Where(a => a.Nome.Contains(pesquisa.Trim()));
+            }
+            if (ordenacao == "A")
+            {
+                bancoProduto = bancoProduto.OrderBy(a => a.Nome);
+            }
+            if (ordenacao == "ME")
+            {
+                bancoProduto = bancoProduto.OrderBy(a => a.Valor);
+            }
+            if (ordenacao == "MA")
+            {
+                bancoProduto = bancoProduto.OrderByDescending(a => a.Valor);
             }
 
             return bancoProduto.Include(a => a.Imagens).ToPagedList<Produto>(numeroPagina, RegistroPorPagina);

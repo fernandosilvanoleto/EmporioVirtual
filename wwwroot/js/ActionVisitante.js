@@ -5,6 +5,8 @@
         var Pesquisa = "";
         var Ordenacao = $(this).val();
 
+        MoverScrollOrdenacao();
+
         var QueryString = new URLSearchParams(window.location.search);
         if (QueryString.has("pagina")) {
             Pagina = QueryString.get("pagina");
@@ -18,7 +20,7 @@
         // não precisa, mas deixa ela aqui
         var URL = window.location.hostname + "//" + window.location.port + window.location.pathname;
 
-        var URLComparametros = "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao=" + Ordenacao + "#ordenacao";
+        var URLComparametros = "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao=" + Ordenacao + "#posicao-produto";
 
         //alert(URLComparametros);
 
@@ -26,3 +28,12 @@
 
     });
 });
+
+function MoverScrollOrdenacao() {
+    if (window.location.hash.length > 0) {
+        var hash = window.location.hash;
+        if (hash == "#posicao-produto") {            
+            window.scrollBy(0, 450);
+        }
+    }
+}
