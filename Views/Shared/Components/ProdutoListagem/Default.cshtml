@@ -1,0 +1,47 @@
+﻿@model ProdutoListagemViewModel
+@{ 
+    var pesquisa = Context.Request.Query["pesquisa"];
+    var ordenacao = Context.Request.Query["ordenacao"].ToString();
+}
+@if (Model.Lista.Count > 0)
+{
+    <div class="container" id="code_prod_complex">
+        <div class="row">
+            <div class="offset-md-10 col-md-3">
+                <!-- Ordenação : Ordem Alfabética, Menor, Maior -->
+                <select id="ordenacao" asp-for="@ordenacao" class="form-control" asp-items="Model.Ordenacao"></select>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var produto in Model.Lista)
+            {
+                <div class="col-md-3">
+                    <figure class="card card-product">
+                        <div class="img-wrap">
+                            @if (produto.Imagens != null && produto.Imagens.Count() > 0)
+                            {
+                                <img src="@produto.Imagens.ElementAt(0).Caminho" />
+                            }
+                            else
+                            {
+                                <img src="~/img/imagem-produto.jpg" />
+                            }
+                        </div>
+                        <figcaption class="info-wrap">
+                            <h4 class="title">@produto.Nome</h4>
+
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <a href="" class="btn btn-sm btn-primary float-right">Adicionar no carrinho</a>
+                            <div class="price-wrap h5">
+                                <span class="price-new">@produto.Valor.ToString("C")</span> <del class="price-old">@produto.Valor.ToString("C")</del>
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- bottom-wrap.// -->
+                    </figure>
+                </div> <!-- col // -->
+            }
+
+        </div> <!-- row.// -->
+        @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }))
+    </div>
+}

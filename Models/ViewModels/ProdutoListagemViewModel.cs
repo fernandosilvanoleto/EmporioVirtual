@@ -7,11 +7,13 @@ using X.PagedList;
 
 namespace EmporioVirtual.Models.ViewModels
 {
-    public class IndexViewModel
+    public class ProdutoListagemViewModel
     {
-        public NewsletterEmail Newsletter { get; set; }
         public IPagedList<Produto> Lista { get; set; }
-        public List<SelectListItem> Ordenacao { get {
+        public List<SelectListItem> Ordenacao
+        {
+            get
+            {
                 return new List<SelectListItem>()
                 {
                     new SelectListItem("Alfabetica", "A"),
@@ -19,6 +21,7 @@ namespace EmporioVirtual.Models.ViewModels
                     new SelectListItem("Maior preço", "MA"),
                 };
             }
-            private set { } }
+            private set { }
+        }
     }
 }
