@@ -22,6 +22,7 @@ namespace EmporioVirtual.Models
         /*
          * Slog
          */
+        // TODO - Criar validação de Slog único (Ou geração automática)
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(2, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Slog { get; set; }

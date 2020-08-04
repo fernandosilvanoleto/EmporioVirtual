@@ -178,3 +178,4 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Sha
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Home\Categoria.cshtml.g.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csprojAssemblyReference.cache
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\ProdutoListagem\Default.cshtml.g.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Produto\ListagemCategoria.cshtml.g.cs

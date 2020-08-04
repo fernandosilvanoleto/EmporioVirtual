@@ -45,6 +45,11 @@ namespace EmporioVirtual.Repositories
             return _banco.Categoria.Find(id);
         }
 
+        public Categoria ObterCategoria(string slog)
+        {
+            return _banco.Categoria.Where(a => a.Slog == slog).FirstOrDefault();
+        }
+
         public IEnumerable<Categoria> ObterTodasCategoriasSelect()
         {
             return _banco.Categoria;

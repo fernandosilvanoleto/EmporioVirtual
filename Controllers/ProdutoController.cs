@@ -3,12 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Models;
+using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmporioVirtual.Controllers
 {
     public class ProdutoController : Controller
     {
+        private ICategoriaRepository _categoriaRepository;
+        private IProdutoRepository _produtoRepository;
+        public ProdutoController(ICategoriaRepository categoriarepository, IProdutoRepository produtorepository)
+        {
+            _categoriaRepository = categoriarepository;
+            _produtoRepository = produtorepository;
+        }
+
+        //Protudo/ListagemCategoria/informatica        
+        [HttpGet]
+        [Route("/Produto/Categoria/{slog}")]
+        public IActionResult ListagemCategoria(string slog)
+        {
+            //TODO - Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem utilizadas para apresentar o produto
+            Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slog);
+
+            List<Categoria> lista = GetCategorias(_categoriaRepository.ObterTodasCategoriasSelect().ToList(), CategoriaPrincipal);
+
+            ViewBag.Categorias = lista;
+
+            //TODO - Adaptar o ProdutoRepository para receber uma lista de categoria e filtrar os produtos baseado na lista
+            return View();
+        }
+
+        private List<Categoria> lista = new List<Categoria>();
+        private List<Categoria> GetCategorias(List<Categoria> categorias, Categoria CategoriaPrincipal)
+        {
+            if ( !lista.Exists(a=>a.Id == CategoriaPrincipal.Id))
+            {
+                lista.Add(CategoriaPrincipal);
+            }
+            
+            var ListaCategoriaFilho = categorias.Where(a => a.CategoriaPaiId == CategoriaPrincipal.Id);
+            if (ListaCategoriaFilho.Count() > 0)
+            {
+                lista.AddRange(ListaCategoriaFilho.ToList());
+                foreach (var categoria in ListaCategoriaFilho)
+                {
+                    GetCategorias(categorias, categoria);
+                }
+            }
+            return lista;
+        }
+
+        /* ---------------------------------------------- */
+
         public IActionResult Index()
         {
             return View();
