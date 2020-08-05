@@ -26,34 +26,17 @@ namespace EmporioVirtual.Controllers
             //TODO - Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem utilizadas para apresentar o produto
             Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slog);
 
-            List<Categoria> lista = GetCategorias(_categoriaRepository.ObterTodasCategoriasSelect().ToList(), CategoriaPrincipal);
+            List<Categoria> lista = _categoriaRepository.ObterCategoriasRecursivas(CategoriaPrincipal).ToList();
 
             ViewBag.Categorias = lista;
 
             //TODO - Adaptar o ProdutoRepository para receber uma lista de categoria e filtrar os produtos baseado na lista
+            
+            
             return View();
         }
 
-        private List<Categoria> lista = new List<Categoria>();
-        private List<Categoria> GetCategorias(List<Categoria> categorias, Categoria CategoriaPrincipal)
-        {
-            if ( !lista.Exists(a=>a.Id == CategoriaPrincipal.Id))
-            {
-                lista.Add(CategoriaPrincipal);
-            }
-            
-            var ListaCategoriaFilho = categorias.Where(a => a.CategoriaPaiId == CategoriaPrincipal.Id);
-            if (ListaCategoriaFilho.Count() > 0)
-            {
-                lista.AddRange(ListaCategoriaFilho.ToList());
-                foreach (var categoria in ListaCategoriaFilho)
-                {
-                    GetCategorias(categorias, categoria);
-                }
-            }
-            return lista;
-        }
-
+        
         /* ---------------------------------------------- */
 
         public IActionResult Index()

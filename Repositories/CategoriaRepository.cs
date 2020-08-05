@@ -50,6 +50,33 @@ namespace EmporioVirtual.Repositories
             return _banco.Categoria.Where(a => a.Slog == slog).FirstOrDefault();
         }
 
+        private List<Categoria> categorias;
+        private List<Categoria> ListaCategoriaRecursiva = new List<Categoria>();
+        public IEnumerable<Categoria> ObterCategoriasRecursivas(Categoria CategoriaPai)
+        {
+            if (categorias == null)
+            {
+                categorias = ObterTodasCategoriasSelect().ToList();
+            }
+            // TODO - Melhorar a performance usando Cache
+            
+            if (!ListaCategoriaRecursiva.Exists(a => a.Id == CategoriaPai.Id))
+            {
+                ListaCategoriaRecursiva.Add(CategoriaPai);
+            }
+
+            var ListaCategoriaFilho = categorias.Where(a => a.CategoriaPaiId == CategoriaPai.Id);
+            if (ListaCategoriaFilho.Count() > 0)
+            {
+                ListaCategoriaRecursiva.AddRange(ListaCategoriaFilho.ToList());
+                foreach (var categoria in ListaCategoriaFilho)
+                {
+                    ObterCategoriasRecursivas(categoria);
+                }
+            }
+            return ListaCategoriaRecursiva;
+        } 
+
         public IEnumerable<Categoria> ObterTodasCategoriasSelect()
         {
             return _banco.Categoria;

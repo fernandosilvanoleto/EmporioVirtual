@@ -15,6 +15,7 @@ namespace EmporioVirtual.Repositories.Contracts
         void Excluir(int id);
         Categoria ObterCategoria(int id);
         Categoria ObterCategoria(string slog);
+        IEnumerable<Categoria> ObterCategoriasRecursivas(Categoria CategoriaPai);
         IEnumerable<Categoria> ObterTodasCategoriasSelect();
         IPagedList<Categoria> ObterTodosCategorias(int? pagina);
     }
