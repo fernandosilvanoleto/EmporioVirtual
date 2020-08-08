@@ -1,14 +1,9 @@
-﻿
+﻿@model Categoria
 @{
-    ViewData["Title"] = "ListagemCategoria";
-    var slog = ViewContext.RouteData.Values["slog"];
+    ViewData["Title"] = "Categoria";
 }
+<span id="breadcrumb">Categoria > @Model.Nome</span>
+<br style="clear: both" />
 
-<h1>ListagemCategoria - @slog</h1>
-<ul>
-    @foreach (Categoria categoria in ViewBag.Categorias)
-    {
-        <li>@categoria.Id - @categoria.Nome</li>
-    }
-</ul>
+<vc:produto-listagem></vc:produto-listagem>
 

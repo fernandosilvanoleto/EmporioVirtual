@@ -4,6 +4,7 @@
         var Pagina = 1;
         var Pesquisa = "";
         var Ordenacao = $(this).val();
+        var Fragmento = "#posicao-produto";
 
         MoverScrollOrdenacao();
 
@@ -16,11 +17,15 @@
             Pesquisa = QueryString.get("pesquisa");
         }
 
+        if ($("#breadcrumb").length > 0) {
+            Fragmento = "";
+        }
+
         // gerar a url
         // não precisa, mas deixa ela aqui
         var URL = window.location.hostname + "//" + window.location.port + window.location.pathname;
 
-        var URLComparametros = "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao=" + Ordenacao + "#posicao-produto";
+        var URLComparametros = "?pagina=" + Pagina + "&pesquisa=" + Pesquisa + "&ordenacao=" + Ordenacao + Fragmento;
 
         //alert(URLComparametros);
 

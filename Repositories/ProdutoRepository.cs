@@ -47,7 +47,7 @@ namespace EmporioVirtual.Repositories
 
         public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa)
         {
-            return ObterTodosProdutos(pagina, pesquisa, "A");
+            return ObterTodosProdutos(pagina, pesquisa, "A", null);
             /*
             int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
 
@@ -65,7 +65,7 @@ namespace EmporioVirtual.Repositories
             */
         }
 
-        public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa, string ordenacao)
+        public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa, string ordenacao, IEnumerable<Categoria> categorias)
         {
             int RegistroPorPagina = _configuration.GetValue<int>("RegistroPorPagina");
 
@@ -89,6 +89,13 @@ namespace EmporioVirtual.Repositories
             if (ordenacao == "MA")
             {
                 bancoProduto = bancoProduto.OrderByDescending(a => a.Valor);
+            }
+            if (categorias !=  null && categorias.Count() > 0)
+            {
+                /*
+                 * IENUMERABLE categorias
+                 */
+                bancoProduto = bancoProduto.Where(a => categorias.Select(b => b.Id).Contains(a.CategoriaId));
             }
 
             return bancoProduto.Include(a => a.Imagens).ToPagedList<Produto>(numeroPagina, RegistroPorPagina);

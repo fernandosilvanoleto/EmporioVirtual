@@ -2,6 +2,8 @@
 @{ 
     var pesquisa = Context.Request.Query["pesquisa"];
     var ordenacao = Context.Request.Query["ordenacao"].ToString();
+    // PEGAR A ROTA DINAMICAMENTE
+    var Action = ViewContext.RouteData.Values["action"].ToString();
 }
 @if (Model.Lista.Count > 0)
 {
@@ -42,6 +44,15 @@
             }
 
         </div> <!-- row.// -->
-        @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }))
+        @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action(Action, new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }))
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="alert alert-info">
+            <br />
+            <strong>Ops!</strong> Não temos produtos para essa categoria!!!
+        </div>
     </div>
 }

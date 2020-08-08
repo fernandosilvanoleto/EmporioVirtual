@@ -1,4 +1,5 @@
-﻿using EmporioVirtual.Models.ViewModels;
+﻿using EmporioVirtual.Models;
+using EmporioVirtual.Models.ViewModels;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,15 +12,18 @@ namespace EmporioVirtual.Libraries.Componente
     public class ProdutoListagemViewComponent : ViewComponent
     {
         private IProdutoRepository _produtoRepository;
-        public ProdutoListagemViewComponent(IProdutoRepository produtoRepository)
+        private ICategoriaRepository _categoriaRepository;
+        public ProdutoListagemViewComponent(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
             int? pagina = 1;
             string pesquisa = "";
             string ordenacao = "A";
+            IEnumerable<Categoria> categorias = null;
 
             if (HttpContext.Request.Query.ContainsKey("pagina"))
             {
@@ -35,8 +39,17 @@ namespace EmporioVirtual.Libraries.Componente
             {
                 ordenacao = HttpContext.Request.Query["ordenacao"];
             }
+            if (ViewContext.RouteData.Values.ContainsKey("slog"))
+            {
+                string slog = ViewContext.RouteData.Values["slog"].ToString();
+                //Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem utilizadas para apresentar o produto
+                Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slog);
 
-            var ViewModel = new ProdutoListagemViewModel() { Lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao) };
+                categorias = _categoriaRepository.ObterCategoriasRecursivas(CategoriaPrincipal);
+
+            }
+
+            var ViewModel = new ProdutoListagemViewModel() { Lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa, ordenacao, categorias) };
             
             return View(ViewModel);
         }

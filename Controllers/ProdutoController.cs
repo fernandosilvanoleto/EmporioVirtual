@@ -22,18 +22,9 @@ namespace EmporioVirtual.Controllers
         [HttpGet]
         [Route("/Produto/Categoria/{slog}")]
         public IActionResult ListagemCategoria(string slog)
-        {
-            //TODO - Criar algoritmo recursivo que obtem uma lista com todas as categorias que devem utilizadas para apresentar o produto
-            Categoria CategoriaPrincipal = _categoriaRepository.ObterCategoria(slog);
-
-            List<Categoria> lista = _categoriaRepository.ObterCategoriasRecursivas(CategoriaPrincipal).ToList();
-
-            ViewBag.Categorias = lista;
-
-            //TODO - Adaptar o ProdutoRepository para receber uma lista de categoria e filtrar os produtos baseado na lista
-            
-            
-            return View();
+        {            
+            //TODO - Adaptar o ProdutoRepository para receber uma lista de categoria e filtrar os produtos baseado na lista         
+            return View(_categoriaRepository.ObterCategoria(slog));
         }
 
         
