@@ -7,6 +7,7 @@
         var Fragmento = "#posicao-produto";
 
         MoverScrollOrdenacao();
+        MudarImagemPrincipalProduto();
 
         var QueryString = new URLSearchParams(window.location.search);
         if (QueryString.has("pagina")) {
@@ -42,3 +43,11 @@ function MoverScrollOrdenacao() {
         }
     }
 }
+
+$(document).ready(function () {
+    $(".img-small-wrap img").click(function () {
+        var Caminho = $(this).attr("src");
+        $(".img-big-wrap img").attr("src", Caminho);
+        $(".img-big-wrap a").attr("href", Caminho);
+    });
+});

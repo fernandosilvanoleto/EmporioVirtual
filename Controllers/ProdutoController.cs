@@ -35,24 +35,12 @@ namespace EmporioVirtual.Controllers
             return View();
         }
 
-        public IActionResult Visualizar()
+        [HttpGet]
+        public IActionResult Visualizar(int id)
         {
-            Produto produto = GetProduto();
+            //Obter produto
 
-
-            return View(produto);
-            //return new ContentResult() { Content = "<h2>Notebook Dell - 15 300</h2>", ContentType = "text/html" };
-        }
-
-        private Produto GetProduto()
-        {
-            return new Produto()
-            {
-                Id = 1,
-                Nome = "Dell 15 300",
-                Descricao = "Notebook da Dell",
-                Valor = 4731.31M
-            };
+            return View(_produtoRepository.ObterProduto(id));
         }
 
     }

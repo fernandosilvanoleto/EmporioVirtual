@@ -17,6 +17,7 @@
         <div class="row">
             @foreach (var produto in Model.Lista)
             {
+            <a asp-controller="Produto" asp-action="Visualizar" asp-route-id="@produto.Id">
                 <div class="col-md-3">
                     <figure class="card card-product">
                         <div class="img-wrap">
@@ -41,8 +42,8 @@
                         </div> <!-- bottom-wrap.// -->
                     </figure>
                 </div> <!-- col // -->
+            </a>
             }
-
         </div> <!-- row.// -->
         @Html.PagedListPager((IPagedList)Model.Lista, pagina => Url.Action(Action, new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }))
     </div>
