@@ -43,6 +43,8 @@ namespace EmporioVirtual
 
             //posso injetar a classe Sessao em qualquer elemento
             services.AddScoped<Sessao>();
+
+            services.AddScoped<EmporioVirtual.Libraries.Cookie.Cookie>();
             services.AddScoped<LoginCliente>();
             services.AddScoped<LoginColaborador>();
 
