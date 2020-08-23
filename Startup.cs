@@ -19,6 +19,7 @@ using System.Net;
 using Microsoft.Extensions.Options;
 using EmporioVirtual.Libraries.Email;
 using EmporioVirtual.Libraries.Middleware;
+using EmporioVirtual.Libraries.CarrinhoCompra;
 
 namespace EmporioVirtual
 {
@@ -75,6 +76,7 @@ namespace EmporioVirtual
                 return smtp;
             });
             services.AddScoped<GerenciarEmail>();
+            services.AddScoped<CarrinhoCompra>();
         
 
             //SESSION - Configuração 
