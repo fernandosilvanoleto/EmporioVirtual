@@ -32,7 +32,7 @@ namespace EmporioVirtual.Controllers
             if (produto == null)
             {
                 // produto não existe no banco, apresentar mensagem de erros
-                return View();
+                return View("ItemNaoExiste");
             }
             else
             {
@@ -43,19 +43,20 @@ namespace EmporioVirtual.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
-           
-            return View();
         }
 
-        public IActionResult AlterarQuantidade()
+        public IActionResult AlterarQuantidade(int id, int quantidade)
         {
-            return View();
+            var Item = new Item() { Id = id, Quantidade = quantidade };
+            _carrinhocompra.Atualizar(Item);
+
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult RemoverItem()
+        public IActionResult RemoverItem(int id)
         {
-            return View();
+            _carrinhocompra.Remover(new Item() { Id = id});
+            return RedirectToAction(nameof(Index));
         }
     }
 }
