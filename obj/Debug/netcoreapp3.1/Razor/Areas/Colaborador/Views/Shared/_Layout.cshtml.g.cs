@@ -13,35 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
-using EmporioVirtual.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 2 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 3 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using X.PagedList;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 4 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using EmporioVirtual.Models.Constants;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+using EmporioVirtual.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+using EmporioVirtual.Models.ProdutoAgregador;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2762f96bb035ba90f537ac97e0ea40e9bc51a26b", @"/Areas/Colaborador/Views/Shared/_Layout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0bb0a8aa56ce7df9193704910f33a4a2a28ca82a", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d35b1a4a17045e7e540f42175b0fbe96f8d5154", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
     public class Areas_Colaborador_Views_Shared__Layout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/css/StyleSheet.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -94,7 +101,7 @@ using EmporioVirtual.Models.Constants;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"pt-br\">\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b11730", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b11940", async() => {
                 WriteLiteral("\r\n    <meta charset=\"utf-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n    <meta name=\"description\"");
                 BeginWriteAttribute("content", " content=\"", 263, "\"", 273, 0);
                 EndWriteAttribute();
@@ -107,7 +114,7 @@ using EmporioVirtual.Models.Constants;
 #line hidden
 #nullable disable
                 WriteLiteral("</title>\r\n\r\n    <link rel=\"canonical\" href=\"https://getbootstrap.com/docs/4.5/examples/dashboard/\">\r\n\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b12825", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b13035", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -123,7 +130,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\r\n    <!-- Bootstrap core CSS -->\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b14130", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b14340", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -138,7 +145,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b15310", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b15520", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -167,7 +174,7 @@ using EmporioVirtual.Models.Constants;
 
         ");
                 WriteLiteral("@media (min-width: 768px) {\r\n            .bd-placeholder-img-lg {\r\n                font-size: 3.5rem;\r\n            }\r\n        }\r\n    </style>\r\n    <!-- Custom styles for this template -->\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b17093", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b17303", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -194,7 +201,7 @@ using EmporioVirtual.Models.Constants;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b18977", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b19187", async() => {
                 WriteLiteral(@"
     <nav class=""navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"">
         <a class=""navbar-brand col-md-3 col-lg-2 mr-0 px-3"" href=""/"">Empório Virtual</a>
@@ -205,7 +212,7 @@ using EmporioVirtual.Models.Constants;
         <ul class=""navbar-nav px-3"">
             <li class=""nav-item text-nowrap"">
                 ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b19956", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b20166", async() => {
                     WriteLiteral("Sair");
                 }
                 );
@@ -233,7 +240,7 @@ using EmporioVirtual.Models.Constants;
                     <ul class=""nav flex-column"">
                         <li class=""nav-item"">
                             ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b21659", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b21869", async() => {
                     WriteLiteral("\r\n                                <span data-feather=\"home\"></span>\r\n                                Painel de Controle\r\n                            ");
                 }
                 );
@@ -250,7 +257,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b23229", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b23439", async() => {
                     WriteLiteral("\r\n                                <span data-feather=\"file\"></span>\r\n                                Categorias\r\n                            ");
                 }
                 );
@@ -269,7 +276,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b25009", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b25219", async() => {
                     WriteLiteral("\r\n                                <span data-feather=\"shopping-cart\"></span>\r\n                                Produtos\r\n                            ");
                 }
                 );
@@ -297,7 +304,7 @@ using EmporioVirtual.Models.Constants;
 #line hidden
 #nullable disable
                 WriteLiteral("                            <li class=\"nav-item\">\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b27169", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b27379", async() => {
                     WriteLiteral("\r\n                                    <span data-feather=\"users\"></span>\r\n                                    Colaboradores\r\n                                ");
                 }
                 );
@@ -324,7 +331,7 @@ using EmporioVirtual.Models.Constants;
 #line hidden
 #nullable disable
                 WriteLiteral("                        <li class=\"nav-item\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b29218", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b29428", async() => {
                     WriteLiteral("\r\n                                <span data-feather=\"users\"></span>\r\n                                Clientes\r\n                            ");
                 }
                 );
@@ -406,7 +413,7 @@ using EmporioVirtual.Models.Constants;
 #line hidden
 #nullable disable
                 WriteLiteral("\r\n                \r\n            </main>\r\n        </div>\r\n    </div>\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b33775", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b33985", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -420,7 +427,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    <script>window.jQuery || document.write(\'<script src=\"/resources/lib/jquery3.3.1/jquery-3.3.1.min.js\"><\\/script>\')</script>\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b35012", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b35222", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -434,7 +441,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b36113", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b36323", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -448,7 +455,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b37214", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b37424", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -462,7 +469,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b38315", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b38525", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -476,7 +483,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b39416", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b39626", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -490,7 +497,7 @@ using EmporioVirtual.Models.Constants;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b40517", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2762f96bb035ba90f537ac97e0ea40e9bc51a26b40727", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

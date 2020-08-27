@@ -1,5 +1,6 @@
 ﻿using EmporioVirtual.Database;
 using EmporioVirtual.Models;
+using EmporioVirtual.Models.ProdutoAgregador;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

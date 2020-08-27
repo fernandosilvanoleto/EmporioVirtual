@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmporioVirtual.Libraries.CarrinhoCompra;
 using EmporioVirtual.Models;
+using EmporioVirtual.Models.ProdutoAgregador;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,7 +37,7 @@ namespace EmporioVirtual.Controllers
             }
             else
             {
-                var item = new Item() { Id = id, Quantidade = 1 };
+                var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
 
                 // ADICIONAR ITEM NO CARRINHO
                 _carrinhocompra.Cadastrar(item);
@@ -47,7 +48,7 @@ namespace EmporioVirtual.Controllers
 
         public IActionResult AlterarQuantidade(int id, int quantidade)
         {
-            var Item = new Item() { Id = id, Quantidade = quantidade };
+            var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
             _carrinhocompra.Atualizar(Item);
 
             return RedirectToAction(nameof(Index));
@@ -55,7 +56,7 @@ namespace EmporioVirtual.Controllers
 
         public IActionResult RemoverItem(int id)
         {
-            _carrinhocompra.Remover(new Item() { Id = id});
+            _carrinhocompra.Remover(new ProdutoItem() { Id = id});
             return RedirectToAction(nameof(Index));
         }
     }

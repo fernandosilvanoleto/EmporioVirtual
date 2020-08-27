@@ -6,6 +6,7 @@ using EmporioVirtual.Libraries.Arquivo;
 using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models;
+using EmporioVirtual.Models.ProdutoAgregador;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

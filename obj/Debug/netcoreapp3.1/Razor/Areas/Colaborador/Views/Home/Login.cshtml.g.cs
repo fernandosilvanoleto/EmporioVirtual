@@ -13,35 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
-using EmporioVirtual.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 2 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 3 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using X.PagedList;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+#line 4 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
 using EmporioVirtual.Models.Constants;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+using EmporioVirtual.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "G:\Programação_Udemy\C#\EmporioVirtual\Areas\Colaborador\Views\_ViewImports.cshtml"
+using EmporioVirtual.Models.ProdutoAgregador;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bfda65667bb18233e55b6eae3595254031fedb7a", @"/Areas/Colaborador/Views/Home/Login.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0bb0a8aa56ce7df9193704910f33a4a2a28ca82a", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d35b1a4a17045e7e540f42175b0fbe96f8d5154", @"/Areas/Colaborador/Views/_ViewImports.cshtml")]
     public class Areas_Colaborador_Views_Home_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<EmporioVirtual.Models.Colaborador>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-control"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -132,9 +139,9 @@ Write(ViewData["Title"]);
 #line hidden
 #nullable disable
             WriteLiteral("                        <h4 class=\"card-title mb-4 mt-1\">Entrar</h4>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bfda65667bb18233e55b6eae3595254031fedb7a7583", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bfda65667bb18233e55b6eae3595254031fedb7a7793", async() => {
                 WriteLiteral("\r\n                            <div class=\"form-group\">\r\n                                <label>E-mail</label>\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bfda65667bb18233e55b6eae3595254031fedb7a7988", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bfda65667bb18233e55b6eae3595254031fedb7a8198", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -164,7 +171,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                 <a class=""float-right"" href=""#"">Esqueceu?</a>
                                 <label>Senha</label>
                                 ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bfda65667bb18233e55b6eae3595254031fedb7a10200", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "bfda65667bb18233e55b6eae3595254031fedb7a10410", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

@@ -1,4 +1,4 @@
-﻿@model X.PagedList.IPagedList<EmporioVirtual.Models.Produto>
+﻿@model X.PagedList.IPagedList<EmporioVirtual.Models.ProdutoAgregador.Produto>
 
 @{
     ViewData["Title"] = "Produtos";
@@ -37,6 +37,7 @@
                 </tr>
             </thead>
             <tbody>
+                <! -- precisa chamar essa classe de produto lá em view imports -->
                 @foreach (Produto produto in Model)
                 {
                     <tr>

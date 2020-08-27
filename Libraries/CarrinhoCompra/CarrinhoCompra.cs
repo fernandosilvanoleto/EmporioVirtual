@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EmporioVirtual.Models.ProdutoAgregador;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
 
         // CRUD
 
-        public void Cadastrar(Item item)
+        public void Cadastrar(ProdutoItem item)
         {
-            List<Item> Lista;
+            List<ProdutoItem> Lista;
             if (_cookie.Existe(Key))
             {
                 // LER E ADICIONAR ITENS NO CARRINHO EXISTENTE
@@ -38,7 +39,7 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
             else
             {
                 // CRIAR O COOKIE COM O ITEM DO CARRINHO
-                Lista = new List<Item>();
+                Lista = new List<ProdutoItem>();
                 Lista.Add(item);
 
                 // SALVAR UM NOVO ITEM
@@ -47,7 +48,7 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
             Salvar(Lista);
         }
 
-        public void Atualizar(Item item)
+        public void Atualizar(ProdutoItem item)
         {
             var Lista = Consultar();
             var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
@@ -61,7 +62,7 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
 
         }
 
-        public void Remover(Item item)
+        public void Remover(ProdutoItem item)
         {
             var Lista = Consultar();
             var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
@@ -74,23 +75,23 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
             }
         }
 
-        public List<Item> Consultar()
+        public List<ProdutoItem> Consultar()
         {
             // verificar se o cookie existe
             if (_cookie.Existe(Key))
             {
                 string valor = _cookie.Consultar(Key);
 
-                return JsonConvert.DeserializeObject<List<Item>>(valor);
+                return JsonConvert.DeserializeObject<List<ProdutoItem>>(valor);
             }
             else
             {
-                return new List<Item>();
+                return new List<ProdutoItem>();
             }
                
          }
 
-        public void Salvar(List<Item> Lista)
+        public void Salvar(List<ProdutoItem> Lista)
         {
             // SALVAR COOKIE NO NAVEGADOR
             string Valor = JsonConvert.SerializeObject(Lista);
@@ -113,10 +114,5 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
         }
 
 
-    }
-    public class Item
-    {
-        public int? Id { get; set; }
-        public int? Quantidade { get; set; }
     }
 }
