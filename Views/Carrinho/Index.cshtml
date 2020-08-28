@@ -1,4 +1,5 @@
-﻿
+﻿@model List<EmporioVirtual.Models.ProdutoAgregador.ProdutoItem>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -29,90 +30,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <figure class="itemside align-items-center">
-                                                    <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="img-sm"></div>
-                                                    <figcaption class="info">
-                                                        <a href="#" class="title text-dark">Camera Canon EOS M50 Kit</a>
-                                                        <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>
-                                                    </figcaption>
-                                                </figure>
-                                            </td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="price-wrap">
-                                                    <var class="price">R$ 40.00</var>
-                                                    <small class="text-muted"> R$ 10.00 cada</small>
-                                                </div> <!-- price-wrap .// -->
-                                            </td>
-                                            <td class="text-right d-none d-md-block">
-                                                <a href="" class="btn btn-light"> Remove</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure class="itemside align-items-center">
-                                                    <div class="aside"><img src="bootstrap-ecommerce-html/images/items/2.jpg" class="img-sm"></div>
-                                                    <figcaption class="info">
-                                                        <a href="#" class="title text-dark">ADATA Premier ONE microSDXC</a>
-                                                        <p class="text-muted small">Size: 256 GB  <br> Brand: ADATA </p>
-                                                    </figcaption>
-                                                </figure>
-                                            </td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="price-wrap">
-                                                    <var class="price">R$ 40.00</var>
-                                                    <small class="text-muted"> R$ 10.00 cada</small>
-                                                </div> <!-- price-wrap .// -->
-                                            </td>
-                                            <td class="text-right d-none d-md-block">
-                                                <a href="" class="btn btn-light btn-round"> Remove</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <figure class="itemside align-items-center">
-                                                    <div class="aside"><img src="bootstrap-ecommerce-html/images/items/3.jpg" class="img-sm"></div>
-                                                    <figcaption class="info">
-                                                        <a href="#" class="title text-dark">Gamepad Sony DualShock 4</a>
-                                                        <p class="small text-muted">Version: CUH-ZCT2E  <br> Brand: Sony</p>
-                                                    </figcaption>
-                                                </figure>
-                                            </td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="price-wrap">
-                                                    <var class="price">R$ 40.00</var>
-                                                    <small class="text-muted"> R$ 10.00 cada</small>
-                                                </div> <!-- price-wrap .// -->
-                                            </td>
-                                            <td class="text-right d-none d-md-block">
-                                                <a href="" class="btn btn-light btn-round"> Remove</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                        @foreach (var Item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <figure class="itemside align-items-center">
+                                                        <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="img-sm"></div>
+                                                        <figcaption class="info">
+                                                            <a href="#" class="title text-dark">@Item.Nome</a>
+                                                            <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>
+                                                        </figcaption>
+                                                    </figure>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div class="price-wrap">
+                                                        <var class="price">@((Item.Valor * Item.QuantidadeProdutoCarrinho).ToString("C"))</var>
+                                                        <small class="text-muted"> @Item.Valor.ToString("C") cada</small>
+                                                    </div> <!-- price-wrap .// -->
+                                                </td>
+                                                <td class="text-right d-none d-md-block">
+                                                    <a asp-controller="Carrinho" asp-action="RemoverItem" asp-route-id="@Item.Id" class="btn btn-light"> Remove</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    
                                 </table>
 
                             </div> <!-- table-responsive.// -->

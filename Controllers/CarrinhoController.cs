@@ -22,7 +22,29 @@ namespace EmporioVirtual.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<ProdutoItem> produtoItemCarrinho = _carrinhocompra.Consultar();
+
+            List<ProdutoItem> ProdutoItemCompleto = new List<ProdutoItem>();
+
+            foreach (var item in produtoItemCarrinho)
+            {
+                // TODO - AUTOMAPPER
+                Produto produto = _produtorepository.ObterProduto(item.Id);
+
+                // CRIAR UM PRODUTO ITEM DINAMICAMENTE
+                ProdutoItem produtoItem = new ProdutoItem();
+
+                produtoItem.Id = produto.Id;
+                produtoItem.Nome = produto.Nome;
+                produtoItem.Imagens = produto.Imagens;
+                produtoItem.Valor = produto.Valor;
+                produtoItem.QuantidadeProdutoCarrinho = item.QuantidadeProdutoCarrinho;
+
+                ProdutoItemCompleto.Add(produtoItem);
+
+            }
+
+            return View(ProdutoItemCompleto);
         }
 
         //Item Id = Id Produto
@@ -37,6 +59,7 @@ namespace EmporioVirtual.Controllers
             }
             else
             {
+                // TODO - caso produto já exista, deve ser adicionado uma quantidade maior
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
 
                 // ADICIONAR ITEM NO CARRINHO
