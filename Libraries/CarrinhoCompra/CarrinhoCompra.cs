@@ -27,13 +27,13 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
                 Lista = Consultar();
                 var ItemLocalizado = Lista.SingleOrDefault(a => a.Id == item.Id);
                
-                if (ItemLocalizado != null)
+                if (ItemLocalizado == null)
                 {
                     Lista.Add(item);
                 }
                 else
                 {
-                    ItemLocalizado.Quantidade = ItemLocalizado.Quantidade + 1;
+                    ItemLocalizado.QuantidadeProdutoCarrinho = ItemLocalizado.QuantidadeProdutoCarrinho + 1;
                 } 
             }
             else
@@ -55,7 +55,7 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
 
             if (ItemLocalizado != null)
             {
-                ItemLocalizado.Quantidade = item.Quantidade;
+                ItemLocalizado.QuantidadeProdutoCarrinho = item.QuantidadeProdutoCarrinho;
                 // SALVAR ESSA LISTA
                 Salvar(Lista);
             }

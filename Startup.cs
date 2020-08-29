@@ -20,6 +20,8 @@ using Microsoft.Extensions.Options;
 using EmporioVirtual.Libraries.Email;
 using EmporioVirtual.Libraries.Middleware;
 using EmporioVirtual.Libraries.CarrinhoCompra;
+using AutoMapper;
+using EmporioVirtual.Libraries.AutoMapper;
 
 namespace EmporioVirtual
 {
@@ -34,7 +36,20 @@ namespace EmporioVirtual
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {           
+        {
+            /*
+             * AutoMapper
+             * Adicionar como serviço
+             */
+            //services.AddAutoMapper(config=>config.AddProfile<MappingProfile>());
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             /*
              * Padrão repositório utilizado
              */

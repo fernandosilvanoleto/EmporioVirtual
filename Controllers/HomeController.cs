@@ -178,12 +178,6 @@ namespace EmporioVirtual.Controllers
             return View();
         }
 
-
-        public IActionResult CarrinhoCompra()
-        {
-            return View();
-        }
-
         public IActionResult Privacy()
         {
             return View();

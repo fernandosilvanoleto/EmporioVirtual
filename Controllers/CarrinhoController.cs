@@ -7,6 +7,7 @@ using EmporioVirtual.Models;
 using EmporioVirtual.Models.ProdutoAgregador;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace EmporioVirtual.Controllers
 {
@@ -14,11 +15,13 @@ namespace EmporioVirtual.Controllers
     {
         private CarrinhoCompra _carrinhocompra;
         private IProdutoRepository _produtorepository;
+        private IMapper _mapper;
 
-        public CarrinhoController(CarrinhoCompra carrinhocompra, IProdutoRepository produtorepository)
+        public CarrinhoController(CarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper)
         {
             _carrinhocompra = carrinhocompra;
             _produtorepository = produtorepository;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -28,16 +31,15 @@ namespace EmporioVirtual.Controllers
 
             foreach (var item in produtoItemCarrinho)
             {
-                // TODO - AUTOMAPPER
+                // AUTOMAPPER- COPIAR UM OBJETO PARA OUTRO OBJETO
                 Produto produto = _produtorepository.ObterProduto(item.Id);
 
-                // CRIAR UM PRODUTO ITEM DINAMICAMENTE
-                ProdutoItem produtoItem = new ProdutoItem();
 
-                produtoItem.Id = produto.Id;
-                produtoItem.Nome = produto.Nome;
-                produtoItem.Imagens = produto.Imagens;
-                produtoItem.Valor = produto.Valor;
+
+                // CRIAR UM PRODUTO ITEM DINAMICAMENTE - COM USO DE AUTO MAPPER
+                ProdutoItem produtoItem = _mapper.Map<ProdutoItem>(produto);
+
+                // ADICIONA A ÚNICA PROPRIEDADE QUE NÃO PERTENCE AO PRODUTO
                 produtoItem.QuantidadeProdutoCarrinho = item.QuantidadeProdutoCarrinho;
 
                 ProdutoItemCompleto.Add(produtoItem);
@@ -59,7 +61,7 @@ namespace EmporioVirtual.Controllers
             }
             else
             {
-                // TODO - caso produto já exista, deve ser adicionado uma quantidade maior
+                // caso produto já exista, deve ser adicionado uma quantidade maior
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
 
                 // ADICIONAR ITEM NO CARRINHO
