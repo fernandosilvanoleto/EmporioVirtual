@@ -51,3 +51,20 @@ $(document).ready(function () {
         $(".img-big-wrap a").attr("href", Caminho);
     });
 });
+
+$(document).ready(function () {
+    $("#code_shopp .btn-primary").click(function () {
+        var pai = $(this).parent().parent().parent();
+        if ($(this).hasClass("diminuir")) {
+
+            var id = pai.find(".input_produto_id").val();
+
+            alert("diminuir + :" + id);
+
+        } else if ($(this).hasClass("aumentar")) {
+            var id = pai.find(".input_produto_id").val();
+
+            alert("aumentar + :" + id);            
+        }
+    });
+});

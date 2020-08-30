@@ -14,7 +14,7 @@
 
 
             <!-- ============================ COMPONENT CART ================================= -->
-            <output id="code_shopping_cart_1">
+            <output id="code_shopp">
 
                 <div class="row">
                     <aside class="col-lg-9">
@@ -26,9 +26,9 @@
                                     <thead class="text-muted">
                                         <tr class="small text-uppercase">
                                             <th scope="col">Produto</th>
-                                            <th scope="col" width="120">Quantidade</th>
-                                            <th scope="col" width="120">Preço</th>
-                                            <th scope="col" class="text-right d-none d-md-block" width="200"> </th>
+                                            <th scope="col" width="250">Quantidade</th>
+                                            <th scope="col" width="50">Preço</th>
+                                            <th scope="col" class="text-right d-none d-md-block" width="200"> Ações </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,17 +40,23 @@
                                                         <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="img-sm"></div>
                                                         <figcaption class="info">
                                                             <a href="#" class="title text-dark">@Item.Nome</a>
-                                                            <p class="text-muted small">Quantidade: @Item.QuantidadeProdutoCarrinho</p>
                                                         </figcaption>
                                                     </figure>
                                                 </td>
                                                 <td>
-                                                    <select class="form-control">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                    </select>
+                                                    <div class="col-auto">
+                                                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                                        <input type="hidden" class="input_produto_id" value="@Item.Id"/>
+                                                        <div class="input-group mb-5">
+                                                            <div class="input-group-append">
+                                                                <a href="#" class="btn btn-primary diminuir"> - </a>
+                                                            </div>
+                                                            <input type="text" readonly="readonly" style="width: 10px; text-align:center" class="form-control" value="@Item.QuantidadeProdutoCarrinho">
+                                                            <div class="input-group-append">
+                                                                <a href="#" class="btn btn-primary aumentar" id="Save"> + </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div class="price-wrap">
@@ -119,7 +125,7 @@
                     </aside> <!-- col.// -->
                 </div> <!-- row.// -->
             </output>
-            <a href="#" class="showcode" data-html="code_shopping_cart_1">show code</a>
+            <a href="#" class="showcode" data-html="code_shopp">show code</a>
             <!-- ============================ COMPONENT CART END .// ================================= -->
 
             <hr class="divider">
