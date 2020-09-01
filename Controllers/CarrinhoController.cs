@@ -73,6 +73,7 @@ namespace EmporioVirtual.Controllers
 
         public IActionResult AlterarQuantidade(int id, int quantidade)
         {
+            // VALIDAR SE EXISTE A QUANTIDADE NO ESTOQUE
             var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
             _carrinhocompra.Atualizar(Item);
 

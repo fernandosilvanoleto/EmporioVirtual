@@ -46,12 +46,14 @@
                                                 <td>
                                                     <div class="col-auto">
                                                         <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                                                        <input type="hidden" class="input_produto_id" value="@Item.Id"/>
+                                                        <input type="hidden" class="input_produto_id" value="@Item.Id" />
+                                                        <input type="hidden" class="input_quantidade_produto_estoque" value="@Item.Quantidade" />
+                                                        <input type="hidden" class="input_valor_unitario" value="@Item.Valor" />
                                                         <div class="input-group mb-5">
                                                             <div class="input-group-append">
                                                                 <a href="#" class="btn btn-primary diminuir"> - </a>
                                                             </div>
-                                                            <input type="text" readonly="readonly" style="width: 10px; text-align:center" class="form-control" value="@Item.QuantidadeProdutoCarrinho">
+                                                            <input type="text" readonly="readonly" style="width: 10px; text-align:center" class="form-control inputQuantidadeProdutoCarrinho" value="@Item.QuantidadeProdutoCarrinho">
                                                             <div class="input-group-append">
                                                                 <a href="#" class="btn btn-primary aumentar" id="Save"> + </a>
                                                             </div>

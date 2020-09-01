@@ -54,17 +54,61 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#code_shopp .btn-primary").click(function () {
-        var pai = $(this).parent().parent().parent();
+
+        //var pai = $(this).parent().parent().parent();
+
         if ($(this).hasClass("diminuir")) {
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
 
-            var id = pai.find(".input_produto_id").val();
-
-            alert("diminuir + :" + id);
+            //var id = pai.find(".input_produto_id").val();
+            //alert("diminuir + :" + id);
 
         } else if ($(this).hasClass("aumentar")) {
-            var id = pai.find(".input_produto_id").val();
+            LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));
 
-            alert("aumentar + :" + id);            
+            //var id = pai.find(".input_produto_id").val();
+            //alert("aumentar + :" + id);            
         }
     });
 });
+
+function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
+    alert("LogicaMudarQuantidadeProdutoUnitarioCarrinho");
+
+    var pai = botao.parent().parent().parent();
+
+    var produtoId = pai.find(".input_produto_id").val();
+    var quantidadeEstoque = pai.find(".input_quantidade_produto_estoque").val();
+    var valorUnitario = pai.find(".input_valor_unitario").val();    
+
+    var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");    
+    var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
+
+    var campoValor = botao.parent().parent().parent().parent().parent().find(".price");
+    alert(campoValor);
+
+    if (operacao == "aumentar") {
+
+        quantidadeProdutoCarrinho += 1;        
+
+        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+        valorUnitario = parseInt(valorUnitario);
+        quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);        
+
+        campoValor.text(valorUnitario * quantidadeProdutoCarrinho).ToString("C");
+    } else if (operacao == "diminuir") {
+
+        quantidadeProdutoCarrinho -= 1;
+
+        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+
+        valorUnitario = parseInt(valorUnitario);
+        quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);  
+
+        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+    }
+
+    //ATUALIZAR O SUBTOTAL
+
+};
