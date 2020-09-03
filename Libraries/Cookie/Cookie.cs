@@ -21,6 +21,7 @@ namespace EmporioVirtual.Libraries.Cookie
         {
             CookieOptions Options = new CookieOptions();
             Options.Expires = DateTime.Now.AddDays(10);
+            Options.IsEssential = true; // PARA FUNCIONAR PARA QUALQUER NAVEGADOR!!!
 
             _context.HttpContext.Response.Cookies.Append(Key, Valor, Options);
         }

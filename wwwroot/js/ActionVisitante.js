@@ -54,18 +54,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#code_shopp .btn-primary").click(function () {
-
         //var pai = $(this).parent().parent().parent();
 
         if ($(this).hasClass("diminuir")) {
             LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
-
             //var id = pai.find(".input_produto_id").val();
             //alert("diminuir + :" + id);
 
         } else if ($(this).hasClass("aumentar")) {
             LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));
-
             //var id = pai.find(".input_produto_id").val();
             //alert("aumentar + :" + id);            
         }
@@ -73,42 +70,65 @@ $(document).ready(function () {
 });
 
 function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
-    alert("LogicaMudarQuantidadeProdutoUnitarioCarrinho");
-
     var pai = botao.parent().parent().parent();
 
     var produtoId = pai.find(".input_produto_id").val();
-    var quantidadeEstoque = pai.find(".input_quantidade_produto_estoque").val();
-    var valorUnitario = pai.find(".input_valor_unitario").val();    
+    var quantidadeEstoque = parseInt(pai.find(".input_quantidade_produto_estoque").val());
+    var valorUnitario = parseFloat( pai.find(".input_valor_unitario").val().replace(",", ".") );    
 
     var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");    
     var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
 
     var campoValor = botao.parent().parent().parent().parent().parent().find(".price");
-    alert(campoValor);
 
     if (operacao == "aumentar") {
 
-        quantidadeProdutoCarrinho += 1;        
+        if (quantidadeProdutoCarrinho >= quantidadeEstoque) {
+            //NÃO PODE AUMENTAR
+            alert("Ops! Não temos estoque suficiente que você deseja comprar!");
+        } else {
+            quantidadeProdutoCarrinho += 1;
 
-        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
 
-        valorUnitario = parseInt(valorUnitario);
-        quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);        
+            valorUnitario = parseFloat(valorUnitario);
+            quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
 
-        campoValor.text(valorUnitario * quantidadeProdutoCarrinho).ToString("C");
+            var resultado = valorUnitario * quantidadeProdutoCarrinho;
+
+            campoValor.text(numberToReal(resultado));
+        }
+        
     } else if (operacao == "diminuir") {
+        alert(quantidadeProdutoCarrinho);
+        if (quantidadeProdutoCarrinho == 1)
+        {
+            alert("Ops! Caso não deseje esse produto, remover!!!");
+        }
+        else
+        {
 
-        quantidadeProdutoCarrinho -= 1;
+            quantidadeProdutoCarrinho -= 1;
 
-        campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
+            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
 
-        valorUnitario = parseInt(valorUnitario);
-        quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);  
+            valorUnitario = parseFloat(valorUnitario);
+            quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
 
-        campoValor.text(valorUnitario * quantidadeProdutoCarrinho);
+            var resultado = valorUnitario * quantidadeProdutoCarrinho;
+
+            campoValor.text(numberToReal(resultado));
+
+        }
     }
 
     //ATUALIZAR O SUBTOTAL
 
 };
+
+
+function numberToReal(numero) {
+    var numero = numero.toFixed(2).split('.');
+    numero[0] = "R$" + numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+}
