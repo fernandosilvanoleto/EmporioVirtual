@@ -57,19 +57,21 @@ $(document).ready(function () {
         //var pai = $(this).parent().parent().parent();
 
         if ($(this).hasClass("diminuir")) {
-            LogicaMudarQuantidadeProdutoUnitarioCarrinho("diminuir", $(this));
+            OrquestradorDeAçõesProduto("diminuir", $(this));
             //var id = pai.find(".input_produto_id").val();
             //alert("diminuir + :" + id);
 
         } else if ($(this).hasClass("aumentar")) {
-            LogicaMudarQuantidadeProdutoUnitarioCarrinho("aumentar", $(this));
+            OrquestradorDeAçõesProduto("aumentar", $(this));
             //var id = pai.find(".input_produto_id").val();
             //alert("aumentar + :" + id);            
         }
     });
 });
 
-function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
+function OrquestradorDeAçõesProduto(operacao, botao) {
+
+    // CARREGAMENTO DOS VALORES
     var pai = botao.parent().parent().parent();
 
     var produtoId = pai.find(".input_produto_id").val();
@@ -81,54 +83,80 @@ function LogicaMudarQuantidadeProdutoUnitarioCarrinho(operacao, botao) {
 
     var campoValor = botao.parent().parent().parent().parent().parent().find(".price");
 
-    if (operacao == "aumentar") {
+    var produto = new ProdutoQuantidadeValor(produtoId, quantidadeEstoque, valorUnitario, quantidadeProdutoCarrinho, 0, campoQuantidadeProdutoCarrinho, campoValor);
 
-        if (quantidadeProdutoCarrinho >= quantidadeEstoque) {
-            //NÃO PODE AUMENTAR
-            alert("Ops! Não temos estoque suficiente que você deseja comprar!");
-        } else {
-            quantidadeProdutoCarrinho += 1;
-
-            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
-
-            valorUnitario = parseFloat(valorUnitario);
-            quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
-
-            var resultado = valorUnitario * quantidadeProdutoCarrinho;
-
-            campoValor.text(numberToReal(resultado));
-        }
-        
-    } else if (operacao == "diminuir") {
-        alert(quantidadeProdutoCarrinho);
-        if (quantidadeProdutoCarrinho == 1)
-        {
-            alert("Ops! Caso não deseje esse produto, remover!!!");
-        }
-        else
-        {
-
-            quantidadeProdutoCarrinho -= 1;
-
-            campoQuantidadeProdutoCarrinho.val(quantidadeProdutoCarrinho);
-
-            valorUnitario = parseFloat(valorUnitario);
-            quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
-
-            var resultado = valorUnitario * quantidadeProdutoCarrinho;
-
-            campoValor.text(numberToReal(resultado));
-
-        }
-    }
+    // CHAMADA DE MÉTODO   
+    AlteracaoVisuaisProdutoCarrinho(produto, operacao);
 
     //ATUALIZAR O SUBTOTAL
 
 };
 
+function AlteracaoVisuaisProdutoCarrinho(produto, operacao) {
+    if (operacao == "aumentar") {
+
+        if (produto.quantidadeProdutoCarrinhoAntiga >= produto.quantidadeEstoque) {
+            //NÃO PODE AUMENTAR
+            alert("Ops! Não temos estoque suficiente que você deseja comprar!");
+        } else {
+            produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga + 1;
+
+            produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+
+            //valorUnitario = parseFloat(valorUnitario);
+            //quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
+
+            var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
+
+            produto.campoValor.text(numberToReal(resultado));
+        }
+
+    } else if (operacao == "diminuir") {
+        if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
+            alert("Ops! Caso não deseje esse produto, remover!!!");
+        }
+        else {
+
+            produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
+
+            produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+
+            //valorUnitario = parseFloat(valorUnitario);
+            //quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
+
+            var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
+
+            produto.campoValor.text(numberToReal(resultado));
+
+        }
+    }
+}
 
 function numberToReal(numero) {
     var numero = numero.toFixed(2).split('.');
     numero[0] = "R$" + numero[0].split(/(?=(?:...)*$)/).join('.');
     return numero.join(',');
 }
+
+
+
+
+/*
+ * 
+ *  --------------------- CLASSES ---------------
+ */
+
+class ProdutoQuantidadeValor {
+    constructor(produtoId, quantidadeEstoque, valorUnitario, quantidadeProdutoCarrinhoAntiga, quantidadeProdutoCarrinhoNova, campoQuantidadeProdutoCarrinho, campoValor) {
+        this.produtoId = produtoId;
+        this.quantidadeEstoque = quantidadeEstoque;
+        this.valorUnitario = valorUnitario;
+
+        this.quantidadeProdutoCarrinhoAntiga = quantidadeProdutoCarrinhoAntiga;
+        this.quantidadeProdutoCarrinhoNova = quantidadeProdutoCarrinhoNova;
+
+        this.campoQuantidadeProdutoCarrinho = campoQuantidadeProdutoCarrinho;
+        this.campoValor = campoValor;
+    }
+}
+
