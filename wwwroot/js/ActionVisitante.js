@@ -101,14 +101,10 @@ function AlteracaoVisuaisProdutoCarrinho(produto, operacao) {
         } else {
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga + 1;
 
-            produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+            AtualizarQuantidadeEValor(produto);
 
-            //valorUnitario = parseFloat(valorUnitario);
-            //quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
+            AjaxAlterarQuantidadeProduto(produto);
 
-            var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
-
-            produto.campoValor.text(numberToReal(resultado));
         }
 
     } else if (operacao == "diminuir") {
@@ -119,23 +115,47 @@ function AlteracaoVisuaisProdutoCarrinho(produto, operacao) {
 
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
 
-            produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+            AtualizarQuantidadeEValor(produto);
 
-            //valorUnitario = parseFloat(valorUnitario);
-            //quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
-
-            var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
-
-            produto.campoValor.text(numberToReal(resultado));
+            AjaxAlterarQuantidadeProduto(produto);
 
         }
     }
+}
+
+function AtualizarQuantidadeEValor(produto) {
+    produto.campoQuantidadeProdutoCarrinho.val(produto.quantidadeProdutoCarrinhoNova);
+
+    //valorUnitario = parseFloat(valorUnitario);
+    //quantidadeProdutoCarrinho = parseFloat(quantidadeProdutoCarrinho);
+
+    var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
+
+    produto.campoValor.text(numberToReal(resultado));
 }
 
 function numberToReal(numero) {
     var numero = numero.toFixed(2).split('.');
     numero[0] = "R$" + numero[0].split(/(?=(?:...)*$)/).join('.');
     return numero.join(',');
+}
+
+function AjaxAlterarQuantidadeProduto(produto) {
+    $.ajax({
+        type: "GET",
+        url: "/Carrinho/AlterarQuantidade?id=" + produto.produtoId + "&quantidade=" + produto.quantidadeProdutoCarrinhoNova,
+        error: function () {
+            alert("Ops! Tivemos um erro!!!" + data);
+
+            //ROLLBACK
+            produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga;
+            AtualizarQuantidadeEValor(produto);
+
+        },
+        success: function (data) {
+
+        }
+    });
 }
 
 

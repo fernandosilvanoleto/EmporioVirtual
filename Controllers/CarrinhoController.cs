@@ -77,7 +77,7 @@ namespace EmporioVirtual.Controllers
             var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
             _carrinhocompra.Atualizar(Item);
 
-            return RedirectToAction(nameof(Index));
+            return Ok();//RedirectToAction(nameof(Index));
         }
 
         public IActionResult RemoverItem(int id)
