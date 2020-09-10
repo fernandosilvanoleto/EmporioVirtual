@@ -8,6 +8,7 @@ using EmporioVirtual.Models.ProdutoAgregador;
 using EmporioVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using EmporioVirtual.Libraries.Lang;
 
 namespace EmporioVirtual.Controllers
 {
@@ -74,10 +75,22 @@ namespace EmporioVirtual.Controllers
         public IActionResult AlterarQuantidade(int id, int quantidade)
         {
             // VALIDAR SE EXISTE A QUANTIDADE NO ESTOQUE
-            var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
-            _carrinhocompra.Atualizar(Item);
+            Produto produto = _produtorepository.ObterProduto(id);
+            if (quantidade < 1)
+            {
+                return BadRequest(new { mensagem = Mensagem.MSG_E007 });
+            }
+            else if (quantidade > produto.Quantidade)
+            {
+                return BadRequest(new { mensagem = Mensagem.MSG_E008 });
+            }
+            else
+            {
+                var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
+                _carrinhocompra.Atualizar(Item);
 
-            return Ok();//RedirectToAction(nameof(Index));
+                return Ok(new { mensagem = Mensagem.MSG_S001 });
+            }            
         }
 
         public IActionResult RemoverItem(int id)

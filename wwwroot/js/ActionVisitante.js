@@ -95,10 +95,10 @@ function OrquestradorDeAçõesProduto(operacao, botao) {
 function AlteracaoVisuaisProdutoCarrinho(produto, operacao) {
     if (operacao == "aumentar") {
 
-        if (produto.quantidadeProdutoCarrinhoAntiga >= produto.quantidadeEstoque) {
+        /*if (produto.quantidadeProdutoCarrinhoAntiga >= produto.quantidadeEstoque) {
             //NÃO PODE AUMENTAR
             alert("Ops! Não temos estoque suficiente que você deseja comprar!");
-        } else {
+        } else */{
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga + 1;
 
             AtualizarQuantidadeEValor(produto);
@@ -108,10 +108,10 @@ function AlteracaoVisuaisProdutoCarrinho(produto, operacao) {
         }
 
     } else if (operacao == "diminuir") {
-        if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
+       /* if (produto.quantidadeProdutoCarrinhoAntiga == 1) {
             alert("Ops! Caso não deseje esse produto, remover!!!");
-        }
-        else {
+       }
+        else  */{
 
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga - 1;
 
@@ -144,8 +144,8 @@ function AjaxAlterarQuantidadeProduto(produto) {
     $.ajax({
         type: "GET",
         url: "/Carrinho/AlterarQuantidade?id=" + produto.produtoId + "&quantidade=" + produto.quantidadeProdutoCarrinhoNova,
-        error: function () {
-            alert("Ops! Tivemos um erro!!!" + data);
+        error: function (data) {
+            alert("Ops! Tivemos um erro!!!" + data.responseJSON.mensagem);
 
             //ROLLBACK
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga;
