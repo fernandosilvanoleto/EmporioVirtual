@@ -70,6 +70,8 @@ $(document).ready(function () {
 });
 
 function OrquestradorDeAçõesProduto(operacao, botao) {
+    //TODA VEZ QUE CLICAR, CHAMAR ESSA FUNÇÃO
+    OcultarMensagemDeErro();
 
     // CARREGAMENTO DOS VALORES
     var pai = botao.parent().parent().parent();
@@ -145,7 +147,8 @@ function AjaxAlterarQuantidadeProduto(produto) {
         type: "GET",
         url: "/Carrinho/AlterarQuantidade?id=" + produto.produtoId + "&quantidade=" + produto.quantidadeProdutoCarrinhoNova,
         error: function (data) {
-            alert("Ops! Tivemos um erro!!!" + data.responseJSON.mensagem);
+
+            MostrarMensagemDeErro(data.responseJSON.mensagem);
 
             //ROLLBACK
             produto.quantidadeProdutoCarrinhoNova = produto.quantidadeProdutoCarrinhoAntiga;
@@ -153,13 +156,19 @@ function AjaxAlterarQuantidadeProduto(produto) {
 
         },
         success: function (data) {
-
+            
         }
     });
 }
 
+function MostrarMensagemDeErro(mensagem) {
+    $(".alert-danger").css("display", "block");
+    $(".alert-danger").text(mensagem);
+}
 
-
+function OcultarMensagemDeErro() {
+    $(".alert-danger").css("display", "none");
+}
 
 /*
  * 
