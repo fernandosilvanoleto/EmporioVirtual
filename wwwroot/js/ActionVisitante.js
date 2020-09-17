@@ -134,6 +134,31 @@ function AtualizarQuantidadeEValor(produto) {
     var resultado = produto.valorUnitario * produto.quantidadeProdutoCarrinhoNova;
 
     produto.campoValor.text(numberToReal(resultado));
+
+    // CRIADO EM 17/09/2020 :: ATUALIZA O SUBTOTAL DO INDEX/Carrinho/View
+    AtualizarSubTotal();
+}
+
+function AtualizarSubTotal() {    
+    var SubTotal = 0.0;
+
+    var TagValorPrice_Sub = $(".price");
+
+    //console.log(TagValorPrice_Sub.text());
+
+    TagValorPrice_Sub.each(function () {
+
+        var valorReais = parseFloat($(this).text().replace("R$", "").replace(".", "").replace(" ", "").replace(",", "."));
+        // VERIFICAR SE OS VALORES PASSADOS É NUMBER MESMO HEHEHEHE
+        if (!Number.isNaN(valorReais)) {
+            SubTotal = SubTotal + valorReais;
+            //console.log(SubTotal);
+        }              
+        
+    })
+    //console.log(parseFloat(SubTotal));
+    $(".subtotal_sub").text(numberToReal(SubTotal));
+
 }
 
 function numberToReal(numero) {

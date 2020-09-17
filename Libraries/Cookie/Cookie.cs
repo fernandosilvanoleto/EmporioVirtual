@@ -32,9 +32,9 @@ namespace EmporioVirtual.Libraries.Cookie
 
             // LIBRARIES -> Segurança
             // "KeyCrypt" vem de appsettings.json/appsettings.Development.json => onde contém a chave utilizada para criptografar 
-            //var ValorCrypt = StringCipher.Encrypt(Valor, _configuration.GetValue<string>("KeyCrypt"));
+            var ValorCrypt = StringCipher.Encrypt(Valor, _configuration.GetValue<string>("KeyCrypt"));
 
-            _context.HttpContext.Response.Cookies.Append(Key, Valor, Options);
+            _context.HttpContext.Response.Cookies.Append(Key, ValorCrypt, Options);
         }
 
         public void Atualizar(string Key, string Valor)
@@ -54,12 +54,12 @@ namespace EmporioVirtual.Libraries.Cookie
         public string Consultar(string Key)
         {
             // verificar se o cookie existe
-            //var ValorCrypt = _context.HttpContext.Request.Cookies[Key];
+            var ValorCrypt = _context.HttpContext.Request.Cookies[Key];
 
-            //var Valor = StringCipher.Decrypt(ValorCrypt, _configuration.GetValue<string>("KeyCrypt"));
+            var Valor = StringCipher.Decrypt(ValorCrypt, _configuration.GetValue<string>("KeyCrypt"));
 
-            //return Valor;
-            return _context.HttpContext.Request.Cookies[Key];
+            return Valor;
+            //return _context.HttpContext.Request.Cookies[Key];
         }
 
         public bool Existe(string Key)
