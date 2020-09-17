@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EmporioVirtual.Libraries.Seguranca;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +14,25 @@ namespace EmporioVirtual.Libraries.Cookie
         // injenção de dependência
         // ENTRA NO STARTUP.CS E ADICIONA O ADD SCOPED COM O NOME COOKIE
         // services.AddScoped<EmporioVirtual.Libraries.Cookie.Cookie>();
+        // ADOTAR A CRIPTOGRAFIA QUE CRIEI - 16/09/2020
         private IHttpContextAccessor _context;
-        public Cookie(IHttpContextAccessor context)
+        private IConfiguration _configuration;
+
+        // IConfiguration - USA DA MICROSOFT
+        public Cookie(IHttpContextAccessor context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
         public void Cadastrar(string Key, string Valor)
         {
             CookieOptions Options = new CookieOptions();
             Options.Expires = DateTime.Now.AddDays(10);
             Options.IsEssential = true; // PARA FUNCIONAR PARA QUALQUER NAVEGADOR!!!
+
+            // LIBRARIES -> Segurança
+            // "KeyCrypt" vem de appsettings.json/appsettings.Development.json => onde contém a chave utilizada para criptografar 
+            //var ValorCrypt = StringCipher.Encrypt(Valor, _configuration.GetValue<string>("KeyCrypt"));
 
             _context.HttpContext.Response.Cookies.Append(Key, Valor, Options);
         }
@@ -43,6 +54,11 @@ namespace EmporioVirtual.Libraries.Cookie
         public string Consultar(string Key)
         {
             // verificar se o cookie existe
+            //var ValorCrypt = _context.HttpContext.Request.Cookies[Key];
+
+            //var Valor = StringCipher.Decrypt(ValorCrypt, _configuration.GetValue<string>("KeyCrypt"));
+
+            //return Valor;
             return _context.HttpContext.Request.Cookies[Key];
         }
 
