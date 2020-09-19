@@ -179,6 +179,3 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csprojAssemblyReference.cache
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\AutoMapper.dll
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
-G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cs
-G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache
