@@ -179,3 +179,17 @@ G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csprojAssemblyReference.cache
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\AutoMapper.dll
 G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\Connected Services\WSCorreios\ConnectedService.json
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.Net.Http.WinHttpHandler.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Duplex.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Http.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.NetTcp.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Primitives.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\System.ServiceModel.Security.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cs
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache
