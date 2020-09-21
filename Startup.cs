@@ -22,6 +22,8 @@ using EmporioVirtual.Libraries.Middleware;
 using EmporioVirtual.Libraries.CarrinhoCompra;
 using AutoMapper;
 using EmporioVirtual.Libraries.AutoMapper;
+using EmporioVirtual.Libraries.Gerenciador.Frete;
+using WSCorreios;
 
 namespace EmporioVirtual
 {
@@ -92,7 +94,13 @@ namespace EmporioVirtual
             });
             services.AddScoped<GerenciarEmail>();
             services.AddScoped<CarrinhoCompra>();
-        
+            services.AddScoped<WSCorreiosCalcularFrete>();
+            services.AddScoped<CalcPrecoPrazoWSSoap>(options => {
+                // FAZER A INSTÂNCIA
+                var servico = new CalcPrecoPrazoWSSoapClient(CalcPrecoPrazoWSSoapClient.EndpointConfiguration.CalcPrecoPrazoWSSoap);
+                return servico;
+            });
+
 
             //SESSION - Configuração 
             services.AddMemoryCache(); // guardar dados na memória
