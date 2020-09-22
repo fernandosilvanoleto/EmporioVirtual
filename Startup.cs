@@ -92,14 +92,18 @@ namespace EmporioVirtual
 
                 return smtp;
             });
-            services.AddScoped<GerenciarEmail>();
-            services.AddScoped<CarrinhoCompra>();
-            services.AddScoped<WSCorreiosCalcularFrete>();
+
             services.AddScoped<CalcPrecoPrazoWSSoap>(options => {
                 // FAZER A INSTÂNCIA
                 var servico = new CalcPrecoPrazoWSSoapClient(CalcPrecoPrazoWSSoapClient.EndpointConfiguration.CalcPrecoPrazoWSSoap);
                 return servico;
             });
+
+            services.AddScoped<WSCorreiosCalcularFrete>();
+            services.AddScoped<GerenciarEmail>();
+            services.AddScoped<CarrinhoCompra>();
+            services.AddScoped<WSCorreiosCalcularFrete>();
+            
 
 
             //SESSION - Configuração 
