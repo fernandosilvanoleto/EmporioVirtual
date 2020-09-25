@@ -103,7 +103,8 @@ namespace EmporioVirtual
             services.AddScoped<GerenciarEmail>();
             services.AddScoped<CarrinhoCompra>();
             services.AddScoped<WSCorreiosCalcularFrete>();
-            
+            services.AddScoped<CalcularPacote>();
+
 
 
             //SESSION - Configuração 

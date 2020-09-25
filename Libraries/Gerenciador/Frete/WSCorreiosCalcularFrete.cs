@@ -18,35 +18,35 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
             _configuration = configuration;
             _servico = servico;
         }
-        /*
-        public async Task<List<ValorPrazoFrete>> CalcularFrete(string cepDestion, string tipoFrete, List<Pacote> pacotes)
+        ///*
+        public async Task<ValorPrazoFrete> CalcularFrete(string cepDestino, string tipoFrete, List<Pacote> pacotes)
         {
             List<ValorPrazoFrete> ValorDosPacotesPorFrete = new List<ValorPrazoFrete>();
 
             foreach (var pacote in pacotes)
             {
-                ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestion, tipoFrete, pacote));
+                ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote));
             }
-            List<ValorPrazoFrete> ValorDosFretes = ValorDosPacotesPorFrete
+            ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
                 .GroupBy(a => a.TipoFrete)
                 .Select(list => new ValorPrazoFrete
                 {
                     TipoFrete = list.First().TipoFrete,
                     Prazo = list.Max(c=>c.Prazo),
                     Valor = list.Sum(c=>c.Valor)
-                }).ToList();
+                }).ToList().First();
 
             return ValorDosFretes;
         }
 
-        private async Task<ValorPrazoFrete> CalcularValorPrazoFrete(string cepDestion, string tipoFrete, Pacote pacote)
+        private async Task<ValorPrazoFrete> CalcularValorPrazoFrete(string cepDestino, string tipoFrete, Pacote pacote)
         {
             var cepOrigem = _configuration.GetValue<string>("CepOrigem");
             var maoPropria = _configuration.GetValue<string>("MaoPropria");
             var avisoRecebimento = _configuration.GetValue<string>("AvisoRecebimento");
             var diametro = Math.Max(Math.Max(pacote.Comprimento, pacote.Largura), pacote.Altura);
 
-           cResultado resultado = await _servico.CalcPrecoPrazoAsync("", "", tipoFrete, cepOrigem, cepDestion, pacote.Peso.ToString(), 1, pacote.Comprimento, pacote.Altura, pacote.Largura, diametro, maoPropria, 0, avisoRecebimento);
+           cResultado resultado = await _servico.CalcPrecoPrazoAsync("", "", tipoFrete, cepOrigem, cepDestino, pacote.Peso.ToString(), 1, pacote.Comprimento, pacote.Altura, pacote.Largura, diametro, maoPropria, 0, avisoRecebimento);
 
             if (resultado.Servicos[0].Erro == "0")
             {
@@ -65,6 +65,6 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
             }
 
         }
-        */
+        //*/
     }
 }

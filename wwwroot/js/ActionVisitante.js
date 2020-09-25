@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+
+    MascaraCEP();
+
     $("#ordenacao").change(function () {
         //TODO - Redirecionar para a tela Home/Index passando as QueryString de Ordenação e mantendo a Página de pesquisa
         var Pagina = 1;
@@ -66,6 +69,17 @@ $(document).ready(function () {
             //var id = pai.find(".input_produto_id").val();
             //alert("aumentar + :" + id);            
         }
+    });
+});
+
+$(document).ready(function () {
+    $(".btn-calcular-frete").click(function () {
+        alert("oi");
+        var cep = $(".cep").val().replace(".", "").replace("-","");
+        alert(cep);
+
+        // FAZER REQUISIÇÃO A AJAX
+
     });
 });
 
@@ -194,6 +208,12 @@ function MostrarMensagemDeErro(mensagem) {
 function OcultarMensagemDeErro() {
     $(".alert-danger").css("display", "none");
 }
+
+function MascaraCEP() {
+    $(".cep").mask("00.000-000");
+}
+
+
 
 /*
  * 

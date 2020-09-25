@@ -7,6 +7,7 @@ using EmporioVirtual.Models.ProdutoAgregador;
 
 namespace EmporioVirtual.Libraries.Gerenciador.Frete
 {
+    //INJETAR CLASSE EM STARTUP - 24/09/2020
     public class CalcularPacote
     {
         //RECEBER UMA LISTA DE PRODUTOS PARA CALCULAR FRETE
