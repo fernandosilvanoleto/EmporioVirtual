@@ -39,7 +39,7 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
                     //CRIAR NOVOS PACOTES:
                     // SE O PESO > 30kg, DIMENSÃO > 200 cm = CRIAR NOVO PACOTE
 
-                    if (peso > 30 || dimensao_produto > 200)
+                    if (peso > 30 || dimensao_produto > 200 || altura > 105 || comprimento > 105 || largura > 105)
                     {
                         pacotes.Add(pacote);
                         pacote = new Pacote();
@@ -55,7 +55,7 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
                 }
             }
 
-            //pacotes.Add(pacotes);
+            pacotes.Add(pacote);
 
             return pacotes;
         }

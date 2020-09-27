@@ -79,6 +79,16 @@ $(document).ready(function () {
         alert(cep);
 
         // FAZER REQUISIÇÃO A AJAX
+        $.ajax({
+            type: "GET",
+            url: "/Carrinho/CalcularFrete?cepDestino=" + cep,
+            error: function(data) {
+                console.info(data);
+            },
+            success: function (data) {
+                console.info(data);
+            }
+        });
 
     });
 });

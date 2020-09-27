@@ -25,25 +25,39 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
 
             foreach (var pacote in pacotes)
             {
-                ValorDosPacotesPorFrete.Add(await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote));
+                var resultado = await CalcularValorPrazoFrete(cepDestino, tipoFrete, pacote);
+
+                if (resultado != null)
+                {
+                    ValorDosPacotesPorFrete.Add(resultado);
+                }
+                
             }
-            ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
+
+            if (ValorDosPacotesPorFrete.Count > 0)
+            {
+                ValorPrazoFrete ValorDosFretes = ValorDosPacotesPorFrete
                 .GroupBy(a => a.TipoFrete)
                 .Select(list => new ValorPrazoFrete
                 {
                     TipoFrete = list.First().TipoFrete,
-                    Prazo = list.Max(c=>c.Prazo),
-                    Valor = list.Sum(c=>c.Valor)
+                    Prazo = list.Max(c => c.Prazo),
+                    Valor = list.Sum(c => c.Valor)
                 }).ToList().First();
 
-            return ValorDosFretes;
+                return ValorDosFretes;
+            }
+
+            return null;
+            
         }
 
         private async Task<ValorPrazoFrete> CalcularValorPrazoFrete(string cepDestino, string tipoFrete, Pacote pacote)
         {
-            var cepOrigem = _configuration.GetValue<string>("CepOrigem");
-            var maoPropria = _configuration.GetValue<string>("MaoPropria");
-            var avisoRecebimento = _configuration.GetValue<string>("AvisoRecebimento");
+            // 
+            var cepOrigem = _configuration.GetValue<String>("Frete:CepOrigem");
+            var maoPropria = _configuration.GetValue<String>("Frete:MaoPropria");
+            var avisoRecebimento = _configuration.GetValue<String>("Frete:AvisoRecebimento");
             var diametro = Math.Max(Math.Max(pacote.Comprimento, pacote.Largura), pacote.Altura);
 
            cResultado resultado = await _servico.CalcPrecoPrazoAsync("", "", tipoFrete, cepOrigem, cepDestino, pacote.Peso.ToString(), 1, pacote.Comprimento, pacote.Altura, pacote.Largura, diametro, maoPropria, 0, avisoRecebimento);
@@ -57,6 +71,12 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
                     Prazo = int.Parse(resultado.Servicos[0].PrazoEntrega),
                     Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
                 };
+            }
+            else if (resultado.Servicos[0].Erro == "-888")
+            {
+                // REFERENTE AO SEDEX10
+                // SEDEX10 - não entrega naquela região
+                return null;
             }
             else
             {
