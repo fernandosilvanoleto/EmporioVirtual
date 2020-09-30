@@ -1,4 +1,5 @@
 ﻿using EmporioVirtual.Models;
+using EmporioVirtual.Models.Constants;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -67,12 +68,12 @@ namespace EmporioVirtual.Libraries.Gerenciador.Frete
                 // TUDO CERTO - OK
                 return new ValorPrazoFrete()
                 {
-                    TipoFrete = tipoFrete,
+                    TipoFrete = TipoFreteConstant.GetNames(tipoFrete),
                     Prazo = int.Parse(resultado.Servicos[0].PrazoEntrega),
-                    Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", "").Replace(",", "."))
+                    Valor = double.Parse(resultado.Servicos[0].Valor.Replace(".", ""))
                 };
             }
-            else if (resultado.Servicos[0].Erro == "-888")
+            else if (resultado.Servicos[0].Erro == "-888" || resultado.Servicos[0].Erro == "008")
             {
                 // REFERENTE AO SEDEX10
                 // SEDEX10 - não entrega naquela região

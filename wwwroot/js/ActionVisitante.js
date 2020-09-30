@@ -82,10 +82,24 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "/Carrinho/CalcularFrete?cepDestino=" + cep,
-            error: function(data) {
+            error: function (data) {
+                MostrarMensagemDeErro("Ops! Tivemos um erro ao obter o frete ... " + data.Message);
                 console.info(data);
             },
             success: function (data) {
+                // LIMPAR REGISTROS LÁ DO INDEX - CARRINHO
+                $(".container-frete").html(" ");
+
+                html = " ";
+                for (var i = 0; i < data.length; i++) {
+                    var TipoFrete = data[i].tipoFrete;
+                    var Valor = data[i].valor;
+                    var Prazo = data[i].prazo;
+
+                    // CRIAR MENSAGEN NO INDEX - CARRINHOCONTROLLER
+                    html += "<dl class=\"dlist - align\"><dt><input type=\"radio\" name=\"frete\" value=\"" + TipoFrete + "\" /></dt><dd>" + TipoFrete + " -  " + numberToReal(Valor) + " (" + Prazo +" dias úteis  )</dd></dl>";
+                }
+                $(".container-frete").html(html);
                 console.info(data);
             }
         });
