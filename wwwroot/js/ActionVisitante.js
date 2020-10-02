@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     MascaraCEP();
+    AJAXCalcularFrete();
 
     $("#ordenacao").change(function () {
         //TODO - Redirecionar para a tela Home/Index passando as QueryString de Ordenação e mantendo a Página de pesquisa
@@ -41,7 +42,7 @@
 function MoverScrollOrdenacao() {
     if (window.location.hash.length > 0) {
         var hash = window.location.hash;
-        if (hash == "#posicao-produto") {            
+        if (hash == "#posicao-produto") {
             window.scrollBy(0, 450);
         }
     }
@@ -74,9 +75,21 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $(".btn-calcular-frete").click(function () {
-        alert("oi");
-        var cep = $(".cep").val().replace(".", "").replace("-","");
-        alert(cep);
+
+        AJAXCalcularFrete();
+
+    });
+});
+
+function AJAXCalcularFrete() {
+    //alert("oi");
+    var cep = $(".cep").val().replace(".", "").replace("-", "");
+
+    if (cep.length == 8) {
+        //alert(cep);
+
+        // LIMPAR REGISTROS LÁ DO INDEX - CARRINHO
+        $(".container-frete").html("<img src='\img\Loading.gif' />");
 
         // FAZER REQUISIÇÃO A AJAX
         $.ajax({
@@ -87,25 +100,26 @@ $(document).ready(function () {
                 console.info(data);
             },
             success: function (data) {
-                // LIMPAR REGISTROS LÁ DO INDEX - CARRINHO
-                $(".container-frete").html(" ");
-
                 html = " ";
+
                 for (var i = 0; i < data.length; i++) {
                     var TipoFrete = data[i].tipoFrete;
                     var Valor = data[i].valor;
                     var Prazo = data[i].prazo;
 
                     // CRIAR MENSAGEN NO INDEX - CARRINHOCONTROLLER
-                    html += "<dl class=\"dlist - align\"><dt><input type=\"radio\" name=\"frete\" value=\"" + TipoFrete + "\" /></dt><dd>" + TipoFrete + " -  " + numberToReal(Valor) + " (" + Prazo +" dias úteis  )</dd></dl>";
+                    html += "<dl class=\"dlist - align\"><dt><input type=\"radio\" name=\"frete\" value=\"" + TipoFrete + "\" /></dt><dd>" + TipoFrete + " -  " + numberToReal(Valor) + " (" + Prazo + " dias úteis  )</dd></dl>";
                 }
                 $(".container-frete").html(html);
                 console.info(data);
             }
         });
+    }
+    else {
+        MostrarMensagemDeErro("Digite o CEP, para calcular frete!");
+    }
 
-    });
-});
+}
 
 function OrquestradorDeAçõesProduto(operacao, botao) {
     //TODA VEZ QUE CLICAR, CHAMAR ESSA FUNÇÃO
@@ -116,9 +130,9 @@ function OrquestradorDeAçõesProduto(operacao, botao) {
 
     var produtoId = pai.find(".input_produto_id").val();
     var quantidadeEstoque = parseInt(pai.find(".input_quantidade_produto_estoque").val());
-    var valorUnitario = parseFloat( pai.find(".input_valor_unitario").val().replace(",", ".") );    
+    var valorUnitario = parseFloat(pai.find(".input_valor_unitario").val().replace(",", "."));
 
-    var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");    
+    var campoQuantidadeProdutoCarrinho = pai.find(".inputQuantidadeProdutoCarrinho");
     var quantidadeProdutoCarrinho = parseInt(campoQuantidadeProdutoCarrinho.val());
 
     var campoValor = botao.parent().parent().parent().parent().parent().find(".price");
@@ -177,7 +191,7 @@ function AtualizarQuantidadeEValor(produto) {
     AtualizarSubTotal();
 }
 
-function AtualizarSubTotal() {    
+function AtualizarSubTotal() {
     var SubTotal = 0.0;
 
     var TagValorPrice_Sub = $(".price");
@@ -191,8 +205,8 @@ function AtualizarSubTotal() {
         if (!Number.isNaN(valorReais)) {
             SubTotal = SubTotal + valorReais;
             //console.log(SubTotal);
-        }              
-        
+        }
+
     })
     //console.log(parseFloat(SubTotal));
     $(".subtotal_sub").text(numberToReal(SubTotal));
@@ -219,7 +233,8 @@ function AjaxAlterarQuantidadeProduto(produto) {
 
         },
         success: function (data) {
-            
+            // CHAMAR PARA CALCULAR O FRETE
+            AJAXCalcularFrete();
         }
     });
 }
