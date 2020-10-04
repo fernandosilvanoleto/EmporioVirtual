@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     MascaraCEP();
-    AJAXCalcularFrete();
+    AJAXCalcularFrete(false);
 
     $("#ordenacao").change(function () {
         //TODO - Redirecionar para a tela Home/Index passando as QueryString de Ordenação e mantendo a Página de pesquisa
@@ -74,22 +74,31 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $(".btn-calcular-frete").click(function () {
+    $(".btn-calcular-frete").click(function (e) {
 
-        AJAXCalcularFrete();
+        AJAXCalcularFrete(true);
+        e.preventDefault();
 
     });
 });
 
-function AJAXCalcularFrete() {
+function AJAXCalcularFrete(callByButton) {
+    if (callByButton == false) {
+        if ($.cookie('CarrinhoCEP') != undefined) {
+            $(".cep").val($.cookie('Carrinho.CEP'));
+        }
+    }
     //alert("oi");
     var cep = $(".cep").val().replace(".", "").replace("-", "");
 
     if (cep.length == 8) {
         //alert(cep);
 
+        // CRIAR UM COOKIE PARA ARMAZENAR O CEP - 04/10/2020        
+        $.cookie('CarrinhoCEP', $(".cep").val());
+
         // LIMPAR REGISTROS LÁ DO INDEX - CARRINHO
-        $(".container-frete").html("<img src='\img\Loading.gif' />");
+        $(".container-frete").html("<br /><img src='\\img\\\Loading.gif' />");
 
         // FAZER REQUISIÇÃO A AJAX
         $.ajax({
@@ -116,7 +125,11 @@ function AJAXCalcularFrete() {
         });
     }
     else {
-        MostrarMensagemDeErro("Digite o CEP, para calcular frete!");
+        if (callByButton == true) {
+            // SERVE PARA QUANDO FOR ACESSAR A PÁGINA DE CARRINHO DE PRIMEIRA, NÃO APARECER ESSA MENSAGEM
+            // SÓ APARECE ESSA MENSAGEM, QUANDO CONTINUAR A COMPRA E NÃO PASSAR O CEP CORRETAMENTE
+            MostrarMensagemDeErro("Digite o CEP, para calcular frete!");
+        }        
     }
 
 }
@@ -234,7 +247,7 @@ function AjaxAlterarQuantidadeProduto(produto) {
         },
         success: function (data) {
             // CHAMAR PARA CALCULAR O FRETE
-            AJAXCalcularFrete();
+            AJAXCalcularFrete(false);
         }
     });
 }
