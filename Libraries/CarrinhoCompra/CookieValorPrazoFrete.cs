@@ -38,7 +38,7 @@ namespace EmporioVirtual.Libraries.CarrinhoCompra
             }
         }
 
-        public void RemoverTodos()
+        public void Remover()
         {
             // REMOVER SÓ O CARRO, EM VEZ DE TUDO
             _cookie.Remover(Key);

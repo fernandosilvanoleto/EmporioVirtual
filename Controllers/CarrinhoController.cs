@@ -16,19 +16,21 @@ namespace EmporioVirtual.Controllers
 {
     public class CarrinhoController : Controller
     {
-        private CookieCarrinhoCompra _carrinhocompra;
+        private CookieCarrinhoCompra _cookiecarrinhocompra;
         private IProdutoRepository _produtorepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wsorreiosCalcularFrete;
         private CalcularPacote _calcularpacote;
+        private CookieValorPrazoFrete _cookieValorPrazoFrete;
 
-        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote)
+        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote, CookieValorPrazoFrete cookieValorPrazoFrete)
         {
-            _carrinhocompra = carrinhocompra;
+            _cookiecarrinhocompra = carrinhocompra;
             _produtorepository = produtorepository;
             _mapper = mapper;
             _wsorreiosCalcularFrete = wsorreiosCalcularFrete;
             _calcularpacote = calcularpacote;
+            _cookieValorPrazoFrete = cookieValorPrazoFrete;
         }
         public IActionResult Index()
         {
@@ -54,7 +56,7 @@ namespace EmporioVirtual.Controllers
                 var item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = 1 };
 
                 // ADICIONAR ITEM NO CARRINHO
-                _carrinhocompra.Cadastrar(item);
+                _cookiecarrinhocompra.Cadastrar(item);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -75,7 +77,7 @@ namespace EmporioVirtual.Controllers
             else
             {
                 var Item = new ProdutoItem() { Id = id, QuantidadeProdutoCarrinho = quantidade };
-                _carrinhocompra.Atualizar(Item);
+                _cookiecarrinhocompra.Atualizar(Item);
 
                 return Ok(new { mensagem = Mensagem.MSG_S001 });
             }            
@@ -83,7 +85,7 @@ namespace EmporioVirtual.Controllers
 
         public IActionResult RemoverItem(int id)
         {
-            _carrinhocompra.Remover(new ProdutoItem() { Id = id});
+            _cookiecarrinhocompra.Remover(new ProdutoItem() { Id = id});
             return RedirectToAction(nameof(Index));
         }
 
@@ -105,10 +107,13 @@ namespace EmporioVirtual.Controllers
                 if (valorSEDEX != null) lista.Add(valorSEDEX);
                 if (valorSEDEX10 != null) lista.Add(valorSEDEX10);
 
+                _cookieValorPrazoFrete.Cadastrar(lista);
+
                 return Ok(lista);
             }
             catch (Exception e)
             {
+                _cookieValorPrazoFrete.Remover();
                 return BadRequest(e);
             }            
         }
@@ -117,7 +122,7 @@ namespace EmporioVirtual.Controllers
 
         private List<ProdutoItem> CarregarProdutoBancoDados()
         {
-            List<ProdutoItem> produtoItemCarrinho = _carrinhocompra.Consultar();
+            List<ProdutoItem> produtoItemCarrinho = _cookiecarrinhocompra.Consultar();
 
             List<ProdutoItem> ProdutoItemCompleto = new List<ProdutoItem>();
 
