@@ -101,9 +101,10 @@ namespace EmporioVirtual
 
             services.AddScoped<WSCorreiosCalcularFrete>();
             services.AddScoped<GerenciarEmail>();
-            services.AddScoped<CarrinhoCompra>();
+            services.AddScoped<CookieCarrinhoCompra>();
             services.AddScoped<WSCorreiosCalcularFrete>();
             services.AddScoped<CalcularPacote>();
+            services.AddScoped<CookieValorPrazoFrete>();
 
 
 

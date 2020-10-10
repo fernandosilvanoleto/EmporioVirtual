@@ -16,13 +16,13 @@ namespace EmporioVirtual.Controllers
 {
     public class CarrinhoController : Controller
     {
-        private CarrinhoCompra _carrinhocompra;
+        private CookieCarrinhoCompra _carrinhocompra;
         private IProdutoRepository _produtorepository;
         private IMapper _mapper;
         private WSCorreiosCalcularFrete _wsorreiosCalcularFrete;
         private CalcularPacote _calcularpacote;
 
-        public CarrinhoController(CarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote)
+        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote)
         {
             _carrinhocompra = carrinhocompra;
             _produtorepository = produtorepository;

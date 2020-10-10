@@ -90,6 +90,7 @@ function AJAXCalcularFrete(callByButton) {
     }
     //alert("oi");
     var cep = $(".cep").val().replace(".", "").replace("-", "");
+    $.removeCookie("Carrinho.TipoFrete");
 
     if (cep.length == 8) {
         //alert(cep);
@@ -99,6 +100,9 @@ function AJAXCalcularFrete(callByButton) {
 
         // LIMPAR REGISTROS LÁ DO INDEX - CARRINHO
         $(".container-frete").html("<br /><img src='\\img\\\Loading.gif' />");
+
+        $(".frete").text("R$ 0,00");
+        $(".total_frete").text("R$ 0,00");
 
         // FAZER REQUISIÇÃO A AJAX
         $.ajax({
@@ -117,10 +121,23 @@ function AJAXCalcularFrete(callByButton) {
                     var Prazo = data[i].prazo;
 
                     // CRIAR MENSAGEN NO INDEX - CARRINHOCONTROLLER
-                    html += "<dl class=\"dlist - align\"><dt><input type=\"radio\" name=\"frete\" value=\"" + TipoFrete + "\" /></dt><dd>" + TipoFrete + " -  " + numberToReal(Valor) + " (" + Prazo + " dias úteis  )</dd></dl>";
+                    html += "<dl class=\"dlist - align\"><dt><input type=\"radio\" name=\"frete\" value=\"" + TipoFrete + "\" /> <input type=\"hidden\" name=\"valor\" value=\"" + Valor + "\" /> </dt><dd>" + TipoFrete + " -  " + numberToReal(Valor) + " (" + Prazo + " dias úteis  )</dd></dl>";
                 }
                 $(".container-frete").html(html);
-                console.info(data);
+                $(".container-frete").find("input[type=radio]").change(function () {
+                    var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
+
+                    $.cookie("Carrinho.TipoFrete", $(this).val());
+
+                    $(".frete").text(numberToReal(valorFrete));        
+
+                    var subTotal = parseFloat($(".subtotal_sub").text().replace("R$", "").replace(".", "").replace(",", "."));
+                   
+                    var total_frete = valorFrete += subTotal;
+
+                    $(".total_frete").text(numberToReal(total_frete));
+                });
+                //console.info(data);
             }
         });
     }
@@ -128,6 +145,7 @@ function AJAXCalcularFrete(callByButton) {
         if (callByButton == true) {
             // SERVE PARA QUANDO FOR ACESSAR A PÁGINA DE CARRINHO DE PRIMEIRA, NÃO APARECER ESSA MENSAGEM
             // SÓ APARECE ESSA MENSAGEM, QUANDO CONTINUAR A COMPRA E NÃO PASSAR O CEP CORRETAMENTE
+            $(".container-frete").html("");
             MostrarMensagemDeErro("Digite o CEP, para calcular frete!");
         }        
     }
