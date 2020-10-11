@@ -83,6 +83,7 @@ $(document).ready(function () {
 });
 
 function AJAXCalcularFrete(callByButton) {
+    $(".btn-continuar-frete").addClass("disabled");
     if (callByButton == false) {
         if ($.cookie('CarrinhoCEP') != undefined) {
             $(".cep").val($.cookie('Carrinho.CEP'));
@@ -128,7 +129,7 @@ function AJAXCalcularFrete(callByButton) {
                     var valorFrete = parseFloat($(this).parent().find("input[type=hidden]").val());
 
                     $.cookie("Carrinho.TipoFrete", $(this).val());
-
+                    $(".btn-continuar-frete").removeClass("disabled");
                     $(".frete").text(numberToReal(valorFrete));        
 
                     var subTotal = parseFloat($(".subtotal_sub").text().replace("R$", "").replace(".", "").replace(",", "."));
