@@ -40,14 +40,25 @@
                                             <tr>
                                                 <td>
                                                     <figure class="itemside align-items-center">
-                                                        <div class="aside"><img src="bootstrap-ecommerce-html/images/items/1.jpg" class="img-sm"></div>
+                                                        @if (Item.Imagens.Count > 0)
+                                                        {
+                                                            <div class="aside"><img src="@Item.Imagens.First().Caminho" class="img-sm"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="aside"><img src="~/img/Img_Padrao.png" class="img-sm"></div>
+                                                        }
                                                         <figcaption class="info">
                                                             <a href="#" class="title text-dark">@Item.Nome</a>
+                                                            <dl class="dlist-inline small">
+                                                                <dt>Descrição: </dt>
+                                                                <dd>@Item.Descricao</dd>
+                                                            </dl>
                                                         </figcaption>
                                                     </figure>
                                                 </td>
                                                 <td>
-                                                    <div class="col-auto">
+                                                    <div class="col-auto control-inline">
                                                         <label class="sr-only" for="inlineFormInputGroup">Username</label>
                                                         <input type="hidden" class="input_produto_id" value="@Item.Id" />
                                                         <input type="hidden" class="input_quantidade_produto_estoque" value="@Item.Quantidade" />
@@ -170,8 +181,8 @@
                     <a href="#" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
 
 
-                    
-                </aside>               
+
+                </aside>
             </div> <!-- container.// -->
         </div>
     </section>
@@ -186,7 +197,12 @@
                     <div class="box">
                         <dl class="dlist-align">
                             <dt>CEP: </dt>
-                            <dd><input type="text" name="cep" class="form-control cep" /> <a href="#" class="btn btn-outline-primary btn-calcular-frete">Ok</a> </dd>
+                            <dd>
+                                <input type="text" name="cep" class="form-control cep" />
+                                <a href="#" class="btn btn-outline-primary btn-calcular-frete">
+                                    Ok
+                                </a>
+                            </dd>
                         </dl>
 
                         <div class="container-frete">
