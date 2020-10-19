@@ -5,221 +5,194 @@
     decimal SubTotal = 0;
 }
 
-<div class="container">
-    <section class="section-info" id="shopping_cart">
-        <div class="container">
-            <br />
-            <br />
-            <h1 class="doc-title">Carrinho de compras</h1>
+@if (Model.Count > 0)
+{
+    <div class="container">
+        <section class="section-info" id="shopping_cart">
+            <div class="container">
+                <br />
+                <br />
+                <h1 class="doc-title">Carrinho de compras</h1>
 
-            <div class="alert alert-danger" style="display: none" role="alert">
+                <div class="alert alert-danger" style="display: none" role="alert">
 
-            </div>
+                </div>
 
-            <!-- ============================ COMPONENT CART ================================= -->
-            <output id="code_shopp">
+                <!-- ============================ COMPONENT CART ================================= -->
+                <output id="code_shopp">
 
-                <div class="row">
-                    <aside class="col-lg-9">
-                        <div class="card">
+                    <div class="row">
+                        <aside class="col-lg-12">
+                            <div class="card">
 
-                            <div class="table-responsive">
+                                <div class="table-responsive">
 
-                                <table class="table table-borderless table-shopping-cart">
-                                    <thead class="text-muted">
-                                        <tr class="small text-uppercase">
-                                            <th scope="col">Produto</th>
-                                            <th scope="col" width="250">Quantidade</th>
-                                            <th scope="col" width="50">Preço</th>
-                                            <th scope="col" class="text-right d-none d-md-block" width="200"> Ações </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var Item in Model)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    <figure class="itemside align-items-center">
-                                                        @if (Item.Imagens.Count > 0)
-                                                        {
-                                                            <div class="aside"><img src="@Item.Imagens.First().Caminho" class="img-sm"></div>
-                                                        }
-                                                        else
-                                                        {
-                                                            <div class="aside"><img src="~/img/Img_Padrao.png" class="img-sm"></div>
-                                                        }
-                                                        <figcaption class="info">
-                                                            <a href="#" class="title text-dark">@Item.Nome</a>
-                                                            <dl class="dlist-inline small">
-                                                                <dt>Descrição: </dt>
-                                                                <dd>@Item.Descricao</dd>
-                                                            </dl>
-                                                        </figcaption>
-                                                    </figure>
-                                                </td>
-                                                <td>
-                                                    <div class="col-auto control-inline">
-                                                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                                                        <input type="hidden" class="input_produto_id" value="@Item.Id" />
-                                                        <input type="hidden" class="input_quantidade_produto_estoque" value="@Item.Quantidade" />
-                                                        <input type="hidden" class="input_valor_unitario" value="@Item.Valor" />
-                                                        <div class="input-group mb-5">
-                                                            <div class="input-group-append">
-                                                                <a href="#" class="btn btn-primary diminuir"> - </a>
-                                                            </div>
-                                                            <input type="text" readonly="readonly" style="width: 10px; text-align:center" class="form-control inputQuantidadeProdutoCarrinho" value="@Item.QuantidadeProdutoCarrinho">
-                                                            <div class="input-group-append">
-                                                                <a href="#" class="btn btn-primary aumentar" id="Save"> + </a>
+                                    <table class="table table-borderless table-shopping-cart">
+                                        <thead class="text-muted">
+                                            <tr class="small text-uppercase">
+                                                <th scope="col">Produto</th>
+                                                <th scope="col" width="250">Quantidade</th>
+                                                <th scope="col" width="50">Preço</th>
+                                                <th scope="col" class="text-right d-none d-md-block" width="200"> Ações </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var Item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <figure class="itemside align-items-center">
+                                                            @if (Item.Imagens.Count > 0)
+                                                            {
+                                                                <div class="aside"><img src="@Item.Imagens.First().Caminho" class="img-sm"></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="aside"><img src="~/img/Img_Padrao.png" class="img-sm"></div>
+                                                            }
+                                                            <figcaption class="info">
+                                                                <a href="#" class="title text-dark">@Item.Nome</a>
+                                                                <dl class="dlist-inline small">
+                                                                    <dt>Descrição: </dt>
+                                                                    <dd>@Item.Descricao</dd>
+                                                                </dl>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </td>
+                                                    <td>
+                                                        <div class="col-auto control-inline">
+                                                            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                                            <input type="hidden" class="input_produto_id" value="@Item.Id" />
+                                                            <input type="hidden" class="input_quantidade_produto_estoque" value="@Item.Quantidade" />
+                                                            <input type="hidden" class="input_valor_unitario" value="@Item.Valor" />
+                                                            <div class="input-group mb-5">
+                                                                <div class="input-group-append">
+                                                                    <a href="#" class="btn btn-primary diminuir"> - </a>
+                                                                </div>
+                                                                <input type="text" readonly="readonly" style="width: 10px; text-align:center" class="form-control inputQuantidadeProdutoCarrinho" value="@Item.QuantidadeProdutoCarrinho">
+                                                                <div class="input-group-append">
+                                                                    <a href="#" class="btn btn-primary aumentar" id="Save"> + </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                @{
-                                                    var ResultadoSubTotalItem = Item.Valor * Item.QuantidadeProdutoCarrinho;
-                                                    SubTotal = SubTotal + ResultadoSubTotalItem;
+                                                    </td>
+                                                    @{
+                                                        var ResultadoSubTotalItem = Item.Valor * Item.QuantidadeProdutoCarrinho;
+                                                        SubTotal = SubTotal + ResultadoSubTotalItem;
 
-                                                }
-                                                <td>
-                                                    <div class="price-wrap">
-                                                        <var class="price">@((ResultadoSubTotalItem).ToString("C"))</var>
-                                                        <small class="text-muted"> @Item.Valor.ToString("C") cada</small>
-                                                    </div> <!-- price-wrap .// -->
-                                                </td>
-                                                <td class="text-right d-none d-md-block">
-                                                    <a asp-controller="Carrinho" asp-action="RemoverItem" asp-route-id="@Item.Id" class="btn btn-light"> Remove</a>
-                                                </td>
-                                            </tr>
-                                        }
+                                                    }
+                                                    <td>
+                                                        <div class="price-wrap">
+                                                            <var class="price">@((ResultadoSubTotalItem).ToString("C"))</var>
+                                                            <small class="text-muted"> @Item.Valor.ToString("C") cada</small>
+                                                        </div> <!-- price-wrap .// -->
+                                                    </td>
+                                                    <td class="text-right d-none d-md-block">
+                                                        <a asp-controller="Carrinho" asp-action="RemoverItem" asp-route-id="@Item.Id" class="btn btn-light"> Remove</a>
+                                                    </td>
+                                                </tr>
+                                            }
 
-                                </table>
+                                    </table>
 
-                            </div> <!-- table-responsive.// -->
+                                </div> <!-- table-responsive.// -->
 
-                            <div class="card-body border-top">
-                                <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-                            </div> <!-- card-body.// -->
+                            </div> <!-- card.// -->
 
-                        </div> <!-- card.// -->
+                        </aside>
 
-                    </aside> <!-- col.// -->
-                    <aside class="col-lg-3">
+                    </div> <!-- row.// -->
+                </output>
+                <hr class="divider">
 
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label>Have coupon?</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="" placeholder="Coupon code">
-                                            <span class="input-group-append">
-                                                <button class="btn btn-primary">Apply</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div> <!-- card-body.// -->
-                        </div> <!-- card.// -->
+                <div class="row">
+                    <aside class="col-md-9">
+                        <!-- ============================ COMPONENT 3  ================================= -->
+                        <output id="code_cart_review">
+                            <div class="card">
+                                <h3> Resumo </h3>
+                                <article class="card-body border-top">
 
-                        <div class="card">
-                            <div class="card-body">
-                                <dl class="dlist-align">
-                                    <dt>Total price:</dt>
-                                    <dd class="text-right">$69.97</dd>
-                                </dl>
-                                <dl class="dlist-align">
-                                    <dt>Discount:</dt>
-                                    <dd class="text-right text-danger">- $10.00</dd>
-                                </dl>
-                                <dl class="dlist-align">
-                                    <dt>Total:</dt>
-                                    <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
-                                </dl>
-                                <hr>
-                                <p class="text-center mb-3">
-                                    <img src="bootstrap-ecommerce-html/images/misc/payments.png" height="26">
-                                </p>
-                                <a href="#" class="btn btn-primary btn-block"> Make Purchase </a>
-                                <a href="#" class="btn btn-light btn-block">Continue Shopping</a>
-                            </div> <!-- card-body.// -->
-                        </div> <!-- card.// -->
+                                    <dl class="row">
+                                        <dt class="col-sm-10">Subtotal: <span class="float-right text-muted">2 items</span></dt>
+                                        <dd class="col-sm-2 text-right subtotal_sub"><strong>@SubTotal.ToString("C")</strong></dd>
+
+                                        <dt class="col-sm-10">Frete: </dt>
+                                        <dd class="col-sm-2 text-right frete"><strong>R$ 0,00</strong></dd>
+
+                                        <dt class="col-sm-10">Total:</dt>
+                                        <dd class="col-sm-2 text-right total_frete"><strong class="h5 text-dark">R$ 0,00</strong></dd>
+                                    </dl>
+
+                                </article> <!-- card-body.// -->
+                            </div>
+                        </output>
+
 
                     </aside> <!-- col.// -->
-                </div> <!-- row.// -->
-            </output>
-            <a href="#" class="showcode" data-html="code_shopp">show code</a>
-            <!-- ============================ COMPONENT CART END .// ================================= -->
+                    <aside class="col-md-4">
+                        <a href="#" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
 
-            <hr class="divider">
 
+
+                    </aside>
+                </div> <!-- container.// -->
+            </div>
+        </section>
+        <section id="parameters">
+            <h2 class="title-doc">Correios</h2>
             <div class="row">
-                <aside class="col-md-9">
-                    <!-- ============================ COMPONENT 3  ================================= -->
-                    <output id="code_cart_review">
-                        <div class="card">
-                            <h3> Resumo </h3>
-                            <article class="card-body border-top">
-
-                                <dl class="row">
-                                    <dt class="col-sm-10">Subtotal: <span class="float-right text-muted">2 items</span></dt>
-                                    <dd class="col-sm-2 text-right subtotal_sub"><strong>@SubTotal.ToString("C")</strong></dd>
-
-                                    <dt class="col-sm-10">Frete: </dt>
-                                    <dd class="col-sm-2 text-right frete"><strong>R$ 0,00</strong></dd>
-
-                                    <dt class="col-sm-10">Total:</dt>
-                                    <dd class="col-sm-2 text-right total_frete"><strong class="h5 text-dark">R$ 0,00</strong></dd>
-                                </dl>
-
-                            </article> <!-- card-body.// -->
-                        </div>
-                    </output>
-                    <a href="#" class="showcode" data-html="code_cart_review">show code</a>
-                    <!-- ============================ COMPONENT 3  ================================= -->
-
-                </aside> <!-- col.// -->
                 <aside class="col-md-4">
-                    <a href="#" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
-
-
-
-                </aside>
-            </div> <!-- container.// -->
-        </div>
-    </section>
-    <section id="parameters">
-        <h2 class="title-doc">Correios</h2>
-        <div class="row">
-            <aside class="col-md-4">
-                <h4 class="subtitle-doc">
-                    Frete
-                </h4>
-                <div id="code_desc_align">
-                    <div class="box">
-                        <dl class="dlist-align">
-                            <dt>CEP: </dt>
-                            <dd>
-                                <input type="text" name="cep" class="form-control cep" />
-                                <a href="#" class="btn btn-outline-primary btn-calcular-frete">
-                                    Ok
-                                </a>
-                            </dd>
-                        </dl>
-
-                        <div class="container-frete">
-
-                        </div>
-
-                        @*<dl class="dlist-align">
-                                <dt><input type="radio" name="frete" value="sedex" /> </dt>
-                                <dd>SEDE: </dd>
-                            </dl>
+                    <h4 class="subtitle-doc">
+                        Frete
+                    </h4>
+                    <div id="code_desc_align">
+                        <div class="box">
                             <dl class="dlist-align">
-                                <dt><input type="radio" name="frete" value="pac" /> </dt>
-                                <dd>PAC: </dd>
-                            </dl>*@
+                                <dt>CEP: </dt>
+                                <dd>
+                                    <input type="text" name="cep" class="form-control cep" />
+                                    <a href="#" class="btn btn-outline-primary btn-calcular-frete">
+                                        Ok
+                                    </a>
+                                </dd>
+                            </dl>
+
+                            <div class="container-frete">
+
+                            </div>
+
+                            @*<dl class="dlist-align">
+                                    <dt><input type="radio" name="frete" value="sedex" /> </dt>
+                                    <dd>SEDE: </dd>
+                                </dl>
+                                <dl class="dlist-align">
+                                    <dt><input type="radio" name="frete" value="pac" /> </dt>
+                                    <dd>PAC: </dd>
+                                </dl>*@
+                        </div>
                     </div>
-                </div>
-            </aside>
-        </div>
-    </section>
+                </aside>
+            </div>
+        </section>
+    </div>
+}
+else
+{
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            Ainda não adicionou um produto ao seu carinho? <a asp-controller="Home" asp-action="Index">Clique aqui</a> e começa a comprar!!!
+        </div>        
+        <br />
+        <br />
+        <div class="offset-md-4 col-md-4">
+            <a class="btn btn-outline-primary btn-continuar-comprar" asp-action="Index" asp-controller="Home">
+                Vamos as compras
+            </a>
+        </div>        
+    </div>
 </div>
+}
+
+

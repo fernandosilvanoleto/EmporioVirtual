@@ -193,3 +193,4 @@ G:\Programação_Udemy\C#\EmporioVirtual\bin\Debug\netcoreapp3.1\runtimes\win7\l
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.csproj.CoreCompileInputs.cache
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cs
 G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\EmporioVirtual.MvcApplicationPartsAssemblyInfo.cache
+G:\Programação_Udemy\C#\EmporioVirtual\obj\Debug\netcoreapp3.1\Razor\Views\Pagamento\Index.cshtml.g.cs

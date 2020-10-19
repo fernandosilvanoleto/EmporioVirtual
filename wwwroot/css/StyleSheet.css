@@ -114,3 +114,20 @@
 .control-inline {
     flex-wrap: nowrap;
 }
+
+.dlist-align dd {
+    margin-left: 65px;
+
+}
+
+.dlist-align dt {
+    width: 60px;
+    text-align: left;
+}
+
+.btn-continuar-frete .btn-continuar-comprar {
+    width: 100%;
+    min-height: 36px;
+    font-size: 20px;
+}
+
