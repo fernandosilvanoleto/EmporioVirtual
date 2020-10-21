@@ -1,6 +1,7 @@
-﻿
+﻿@model List<EmporioVirtual.Models.ProdutoAgregador.ProdutoItem>
 @{
     ViewData["Title"] = "Index";
+    decimal SubTotal = 0;
 }
 
 <div class="container">
@@ -9,44 +10,59 @@
     <div class="row">
         <div class="col-md-6">
             <aside>
-                <h3 class="subtitle-doc">
-                    # itemside image2
-                    <a href="#" data-html="code_itemside_img2" class="showcode">[code]</a>
+                <h3 class="subtitle-doc">                    
+                    Seus produtos
                 </h3>
                 <div id="code_itemside_img2">
                     <div class="box items-bordered-wrap">
-                        <figure class="itemside">
-                            <div class="aside"><img src="images/items/4.jpg" class="img-sm"></div>
-                            <figcaption class="text-wrap align-self-center">
-                                <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
-                                <div class="price-wrap">
-                                    <span class="price-new">$1280</span>
-                                    <del class="price-old text-muted">$1980</del>
-                                </div> <!-- price-wrap.// -->
-                            </figcaption>
-                        </figure>
-                        <figure class="itemside">
-                            <div class="aside"><img src="images/items/5.jpg" class="img-sm"></div>
-                            <figcaption class="text-wrap align-self-center">
-                                <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
-                                <div class="price-wrap">
-                                    <span class="price-new">$1280</span>
-                                </div> <!-- price-wrap.// -->
-                            </figcaption>
-                        </figure>
-                        <figure class="itemside">
-                            <div class="aside"><img src="images/items/6.jpg" class="img-sm"></div>
-                            <figcaption class="text-wrap align-self-center">
-                                <h6 class="title"><a href="#">Some name of item goes here nice</a></h6>
-                                <div class="price-wrap">
-                                    <span class="price-new">$1280</span>
-                                </div> <!-- price-wrap.// -->
-                            </figcaption>
-                        </figure>
+                        @foreach (var produtoitem in Model)
+                        {
+                            <figure class="itemside">
+                                <div class="aside">
+                                    @if (produtoitem.Imagens.Count > 0)
+                                    {
+                                        <div class="aside"><img src="@produtoitem.Imagens.First().Caminho" class="img-sm"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="aside"><img src="~/img/Img_Padrao.png" class="img-sm"></div>
+                                    }
+                                </div>
+                                <figcaption class="text-wrap align-self-center">
+
+                                    @{
+                                        var ResultadoSubTotalItem = produtoitem.Valor * produtoitem.QuantidadeProdutoCarrinho;
+                                        SubTotal = SubTotal + ResultadoSubTotalItem;
+                                    }
+
+                                    <h6 class="title"><strong>@produtoitem.Nome</strong></h6>
+                                    <div class="price-wrap">
+                                        <span class="price-new">@produtoitem.Valor.ToString("C") x @produtoitem.QuantidadeProdutoCarrinho = <strong>@ResultadoSubTotalItem.ToString("C")</strong></span>
+                                    </div> <!-- price-wrap.// -->
+                                </figcaption>
+                            </figure>
+                        }
                     </div> <!-- box.// -->
+                    <div class="box">
+                        <h3> Resumo </h3>
+                        <article class="card-body border-top">
+
+                            <dl class="row">
+                                <dt class="col-sm-10">Subtotal: <span class="float-right text-muted">2 items</span></dt>
+                                <dd class="col-sm-2 text-right subtotal_sub"><strong>@SubTotal.ToString("C")</strong></dd>
+
+                                <dt class="col-sm-10">Frete -PAC/SEDEX:</dt>
+                                <dd class="col-sm-2 text-right frete"><strong>R$ 0,00</strong></dd>
+
+                                <dt class="col-sm-10">Total:</dt>
+                                <dd class="col-sm-2 text-right total_frete"><strong>R$ 0,00</strong></dd>
+                            </dl>
+
+                        </article> <!-- card-body.// -->
+                    </div>
 
                 </div> <!-- code-wrap.// -->
-            </aside>
+</aside>
         </div>
         <div class="col-md-6">
             <aside>
@@ -58,32 +74,27 @@
                         <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                                    <i class="fa fa-credit-card"></i> Credit Card
+                                    <i class="fa fa-credit-card"></i> Cartão de Crédito
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                                    <i class="fab fa-paypal"></i>  Paypal
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                                    <i class="fa fa-university"></i>  Bank Transfer
+                                    <i class="fab fa-paypal"></i>  Boleto
                                 </a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="nav-tab-card">
-                                <p class="alert alert-success">Some text success or error</p>
+                                <p class="alert alert-danger">Some text success or error</p>
                                 <form role="form">
                                     <div class="form-group">
-                                        <label for="username">Full name (on the card)</label>
+                                        <label for="username">Nome (no Cartão)</label>
                                         <input type="text" class="form-control" name="username" placeholder="" required="">
                                     </div> <!-- form-group.// -->
 
                                     <div class="form-group">
-                                        <label for="cardNumber">Card number</label>
+                                        <label for="cardNumber">Número do Cartão</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="cardNumber" placeholder="">
                                             <div class="input-group-append">
@@ -98,7 +109,7 @@
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label><span class="hidden-xs">Expiration</span> </label>
+                                                <label><span class="hidden-xs">Vencimento</span> </label>
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" placeholder="MM" name="">
                                                     <input type="number" class="form-control" placeholder="YY" name="">
@@ -107,43 +118,21 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">Cód. de Segurança <i class="fa fa-question-circle"></i></label>
                                                 <input type="number" class="form-control" required="">
                                             </div> <!-- form-group.// -->
                                         </div>
                                     </div> <!-- row.// -->
-                                    <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                                    <button class="subscribe btn btn-primary btn-block" type="button"> Confirmar </button>
                                 </form>
                             </div> <!-- tab-pane.// -->
                             <div class="tab-pane fade" id="nav-tab-paypal">
-                                <p>Paypal is easiest way to pay online</p>
+                                <p>Clique no botão para imprimir o boleto bancário</p>
                                 <p>
-                                    <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
+                                    <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Imprimir Boleto </button>
                                 </p>
-                                <p>
-                                    <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div>
-                            <div class="tab-pane fade" id="nav-tab-bank">
-                                <p>Bank accaunt details</p>
-                                <dl class="param">
-                                    <dt>BANK: </dt>
-                                    <dd> THE WORLD BANK</dd>
-                                </dl>
-                                <dl class="param">
-                                    <dt>Accaunt number: </dt>
-                                    <dd> 12345678912345</dd>
-                                </dl>
-                                <dl class="param">
-                                    <dt>IBAN: </dt>
-                                    <dd> 123456789</dd>
-                                </dl>
-                                <p>
-                                    <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua.
-                                </p>
-                            </div> <!-- tab-pane.// -->
+                                <a href="" class="btn btn-primary">Prosseguir</a>
+                            </div>                            
                         </div> <!-- tab-content .// -->
 
                     </div> <!-- card-body.// -->

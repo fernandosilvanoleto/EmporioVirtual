@@ -11,26 +11,18 @@ using AutoMapper;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models.Constants;
 using EmporioVirtual.Libraries.Gerenciador.Frete;
+using EmporioVirtual.Controllers.Base;
 
 namespace EmporioVirtual.Controllers
 {
-    public class CarrinhoController : Controller
+    //NOVIDADE ==> HERDAR DE BASE CONTROLLER => 20/10/2020
+    public class CarrinhoController : BaseController
     {
-        private CookieCarrinhoCompra _cookiecarrinhocompra;
-        private IProdutoRepository _produtorepository;
-        private IMapper _mapper;
-        private WSCorreiosCalcularFrete _wsorreiosCalcularFrete;
-        private CalcularPacote _calcularpacote;
-        private CookieValorPrazoFrete _cookieValorPrazoFrete;
 
-        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote, CookieValorPrazoFrete cookieValorPrazoFrete)
+        // UM CONSTRUTOR SIMPLES
+        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote, CookieValorPrazoFrete cookieValorPrazoFrete) : base(carrinhocompra, produtorepository, mapper, wsorreiosCalcularFrete, calcularpacote, cookieValorPrazoFrete)
         {
-            _cookiecarrinhocompra = carrinhocompra;
-            _produtorepository = produtorepository;
-            _mapper = mapper;
-            _wsorreiosCalcularFrete = wsorreiosCalcularFrete;
-            _calcularpacote = calcularpacote;
-            _cookieValorPrazoFrete = cookieValorPrazoFrete;
+
         }
         public IActionResult Index()
         {
@@ -120,7 +112,10 @@ namespace EmporioVirtual.Controllers
 
 
 
-        private List<ProdutoItem> CarregarProdutoBancoDados()
+        /*
+         * DESATIVADA :: 20/10/2020
+         * 
+         * private List<ProdutoItem> CarregarProdutoBancoDados()
         {
             List<ProdutoItem> produtoItemCarrinho = _cookiecarrinhocompra.Consultar();
 
@@ -144,6 +139,6 @@ namespace EmporioVirtual.Controllers
             }
 
             return ProdutoItemCompleto;
-        }
+        }*/
     }
 }
