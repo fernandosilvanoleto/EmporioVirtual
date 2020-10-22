@@ -51,14 +51,19 @@ namespace EmporioVirtual.Libraries.Cookie
             _context.HttpContext.Response.Cookies.Delete(Key);
         }
 
-        public string Consultar(string Key)
+
+        // NOVA FUNCIONALIDADE :: 22/10/2020 -> SERVIR PARA PagamentoController
+        // bool Cript = true -> NÃO IMPACTAR OUTRAS FUNCIONALIDADES => É CHAMADO DE VALOR PADRÃO
+        public string Consultar(string Key, bool Cript = true)
         {
             // verificar se o cookie existe
-            var ValorCrypt = _context.HttpContext.Request.Cookies[Key];
+            var valor = _context.HttpContext.Request.Cookies[Key];
+            if (Cript)
+            {
+                valor = StringCipher.Decrypt(valor, _configuration.GetValue<string>("KeyCrypt"));
+            }
 
-            var Valor = StringCipher.Decrypt(ValorCrypt, _configuration.GetValue<string>("KeyCrypt"));
-
-            return Valor;
+            return valor;
             //return _context.HttpContext.Request.Cookies[Key];
         }
 
