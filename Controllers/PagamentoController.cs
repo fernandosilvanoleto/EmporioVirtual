@@ -28,25 +28,24 @@ namespace EmporioVirtual.Controllers
             // USAR CLASSE COOKIE DA LIB
             // QUAL USUÁRIO SELECIONOU
             var TipoFreteSelecionadoPeloUsuario = _cookie.Consultar("Carrinho.TipoFrete", false);
-
-            // 
-            var Frete = _cookieValorPrazoFrete.Consultar().Where(a => a.TipoFrete == TipoFreteSelecionadoPeloUsuario).FirstOrDefault();
-
-            if (Frete != null)
+            if (TipoFreteSelecionadoPeloUsuario != null)
             {
+                // fazer a seleção dentro da lista
+                var Frete = _cookieValorPrazoFrete.Consultar().Where(a => a.TipoFrete == TipoFreteSelecionadoPeloUsuario).FirstOrDefault();
+                if (Frete != null)
+                {
+                    ViewBag.Frete = Frete;
+                    // BUSCAR PRODUTOS DO COOKIE ESCOLHIDOS
+                    List<ProdutoItem> produtoItemProduto = CarregarProdutoBancoDados();
 
+                    // CARREGAR O PRODUTO NA TELA :: INDEX
+                    return View(produtoItemProduto);
+                }
             }
-            else
-            {
+            
                 TempData["MSG_E"] = Mensagem.MSG_E009;
                 return RedirectToAction("Index", "Carrinho");
-            }
-
-            // BUSCAR PRODUTOS DO COOKIE ESCOLHIDOS
-            List<ProdutoItem> produtoItemProduto = CarregarProdutoBancoDados();
-
-            // CARREGAR O PRODUTO NA TELA :: INDEX
-            return View(produtoItemProduto);
+            
         }
     }
 }

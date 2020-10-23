@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6">
             <aside>
-                <h3 class="subtitle-doc">                    
+                <h3 class="subtitle-doc">
                     Seus produtos
                 </h3>
                 <div id="code_itemside_img2">
@@ -52,17 +52,20 @@
                                 <dd class="col-sm-2 text-right subtotal_sub"><strong>@SubTotal.ToString("C")</strong></dd>
 
                                 <dt class="col-sm-10">Frete -PAC/SEDEX:</dt>
-                                <dd class="col-sm-2 text-right frete"><strong>R$ 0,00</strong></dd>
+                                <dd class="col-sm-2 text-right frete">@ViewBag.Frete.TipoFrete - @ViewBag.Frete.Valor.ToString("C")</dd>
 
                                 <dt class="col-sm-10">Total:</dt>
-                                <dd class="col-sm-2 text-right total_frete"><strong>R$ 0,00</strong></dd>
+                                @{
+                                    decimal valorfrete = (decimal)ViewBag.Frete.Valor;
+                                }
+                                <dd class="col-sm-2 text-right total_frete"><strong>@( (SubTotal + valorfrete).ToString("C") )</strong></dd>
                             </dl>
 
                         </article> <!-- card-body.// -->
                     </div>
 
                 </div> <!-- code-wrap.// -->
-</aside>
+            </aside>
         </div>
         <div class="col-md-6">
             <aside>
@@ -132,7 +135,7 @@
                                     <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Imprimir Boleto </button>
                                 </p>
                                 <a href="" class="btn btn-primary">Prosseguir</a>
-                            </div>                            
+                            </div>
                         </div> <!-- tab-content .// -->
 
                     </div> <!-- card-body.// -->
