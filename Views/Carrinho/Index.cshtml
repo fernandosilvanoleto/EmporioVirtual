@@ -1,4 +1,5 @@
 ﻿@model List<EmporioVirtual.Models.ProdutoAgregador.ProdutoItem>
+@inject EmporioVirtual.Libraries.Login.LoginCliente _loginCliente
 
 @{
     ViewData["Title"] = "Index";
@@ -131,11 +132,20 @@
 
                     </aside> <!-- col.// -->
                     <aside class="col-md-4">
+                        @if (_loginCliente.GetCliente() == null)
+                        {
+                            // USUÁRIO NÃO LOGADO
+                            // REDIRECIONAR PARA TELA DE LOGIN/Cadastro
 
-                        <a asp-action="Index" asp-controller="Pagamento" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
+                            <a asp-action="Login" asp-controller="Home" asp-area="Cliente" asp-route-returnUrl="@Url.Action("Index", "Pagamento", new { area = ""})" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
 
-
-
+                        }
+                        else
+                        {
+                            // USUÁRIO LOGADO
+                            // REDIRECIONAR PARA TELA DE PAGAMENTO
+                            <a asp-action="Index" asp-controller="Pagamento" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
+                        }
                     </aside>
                 </div> <!-- container.// -->
             </div>

@@ -23,14 +23,14 @@ namespace EmporioVirtual.Areas.Colaborador.Controllers
         }
         public IActionResult Index(int? pagina, string pesquisa)
         {
-            IPagedList<Cliente> clientes = _clienterepository.ObterTodosClientes(pagina, pesquisa);
+            IPagedList<Models.Cliente> clientes = _clienterepository.ObterTodosClientes(pagina, pesquisa);
             return View(clientes);
         }
 
         [ValidateHttpReferer]
         public IActionResult AtivarDesativar(int id)
         {
-            Cliente cliente = _clienterepository.ObterCliente(id);
+            Models.Cliente cliente = _clienterepository.ObterCliente(id);
 
             if (cliente.Situacao == SituacaoConstant.Ativo)
             {

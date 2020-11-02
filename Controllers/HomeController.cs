@@ -22,7 +22,6 @@ namespace EmporioVirtual.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private IClienteRepository _repositoryCliente;
         private INewsLetterRepository _repositoryNewsLetter;
         private IProdutoRepository _produtorepository;
@@ -118,75 +117,6 @@ namespace EmporioVirtual.Controllers
             }
 
             return View(nameof(Contato));
-        }
-
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login([FromForm] Cliente cliente)
-        {
-            Cliente clienteDB = _repositoryCliente.Login(cliente.Email, cliente.Senha);
-
-            if (clienteDB != null)
-            {
-                _loginCliente.Login(clienteDB);
-
-                // com url action se tiver alteração de nome no método, aqui altera tbém
-                return new RedirectResult(Url.Action(nameof(Painel)));
-            }
-            else
-            {
-                ViewData["Msg_Error"] = "Usuário ou Senha incorretos! Por favor, coloque as informações corretas!!!";
-                return View();
-            }            
-        }
-
-        [HttpGet]
-        [ClienteAutorizacaoAttribute]
-        public IActionResult Painel()
-        {
-            return new ContentResult() { Content = "Este é o painel do Cliente!!!" };
-        }
-
-        [HttpGet]
-        public IActionResult CadastroCliente()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult CadastroCliente([FromForm] Cliente cliente)
-        {
-            ModelState.Remove("Senha");
-            if (ModelState.IsValid)
-            {
-                cliente.Situacao = SituacaoConstant.Ativo; 
-                
-                cliente.Senha = KeyGenerator.GetUnique(8);
-
-                _repositoryCliente.Cadastrar(cliente);                
-
-                TempData["Mensagem_S"] = "Cadastro realizado com sucesso";
-
-                //TODO: Implementar redirecionamento diferentes(Painel)
-                return RedirectToAction(nameof(CadastroCliente));
-            }
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        }        
     }
 }
