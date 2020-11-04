@@ -83,9 +83,10 @@ namespace EmporioVirtual.Areas.Cliente.Controllers
         }
 
         [HttpPost]
-        public IActionResult CadastroCliente([FromForm] Models.Cliente cliente)
+        public IActionResult CadastroCliente([FromForm] Models.Cliente cliente, string returnUrl = null)
         {
             ModelState.Remove("Senha");
+            ModelState.Remove("ConfirmarSenha");
             if (ModelState.IsValid)
             {
                 cliente.Situacao = SituacaoConstant.Ativo;
@@ -94,10 +95,19 @@ namespace EmporioVirtual.Areas.Cliente.Controllers
 
                 _repositoryCliente.Cadastrar(cliente);
 
+                _loginCliente.Login(cliente);
+
                 TempData["Mensagem_S"] = "Cadastro realizado com sucesso";
 
-                //TODO: Implementar redirecionamento diferentes(Painel)
-                return RedirectToAction(nameof(CadastroCliente));
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }           
+
             }
             return View();
         }

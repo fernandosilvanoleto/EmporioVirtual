@@ -21,7 +21,7 @@
                         {
                             <p class="alert alert-danger">@Html.Raw(ViewData["Msg_Error"])</p>
                         }
-                        <a asp-action="CadastroCliente" asp-controller="Home" class="float-right btn btn-outline-primary">Cadastra-se</a>
+                        <a asp-action="CadastroCliente" asp-controller="Home" asp-route-returnUrl="@Context.Request.Query["returnUrl"]" class="float-right btn btn-outline-primary">Cadastra-se</a>
                         <h4 class="card-title mb-4 mt-1">Entrar</h4>
                         <form method="post">
                             <div class="form-group">
