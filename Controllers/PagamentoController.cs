@@ -6,6 +6,7 @@ using AutoMapper;
 using EmporioVirtual.Controllers.Base;
 using EmporioVirtual.Libraries.CarrinhoCompra;
 using EmporioVirtual.Libraries.Cookie;
+using EmporioVirtual.Libraries.Filtro;
 using EmporioVirtual.Libraries.Gerenciador.Frete;
 using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models.ProdutoAgregador;
@@ -21,6 +22,8 @@ namespace EmporioVirtual.Controllers
         {
             _cookie = cookie;
         }
+
+        [ClienteAutorizacao]
         public IActionResult Index()
         {
             // Cookie => INFORMAÇÕES DO FRETE CORREIOS

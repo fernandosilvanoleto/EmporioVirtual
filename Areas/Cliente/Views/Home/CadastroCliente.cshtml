@@ -59,6 +59,43 @@
                                     <input type="email" asp-for="Email" class="form-control" placeholder="">
                                     <span asp-validation-for="Email"></span>
                                 </div>
+
+                                <div class="form-group">
+                                    <label asp-for="CEP">CEP</label>
+                                    <input type="text" asp-for="CEP" class="form-control" placeholder="">
+                                    <span asp-validation-for="CEP"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Estado">Estado</label>
+                                    <input type="text" asp-for="Estado" class="form-control" placeholder="">
+                                    <span asp-validation-for="Estado"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Cidade">Cidade</label>
+                                    <input type="text" asp-for="Cidade" readonly="readonly" class="form-control" placeholder="">
+                                    <span asp-validation-for="Cidade"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Endereco">Endereco</label>
+                                    <input type="text" asp-for="Endereco" readonly="readonly" class="form-control" placeholder="">
+                                    <span asp-validation-for="Endereco"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Complemento">Complemento</label>
+                                    <input type="text" asp-for="Complemento" class="form-control" placeholder="">
+                                    <span asp-validation-for="Complemento"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Numero">Número</label>
+                                    <input type="text" asp-for="Numero" class="form-control" placeholder="">
+                                    <span asp-validation-for="Numero"></span>
+                                </div>
+
                                 <div class="form-group">
                                     <label asp-for="Senha">Senha</label>
                                     <input class="form-control" asp-for="Senha" type="password">

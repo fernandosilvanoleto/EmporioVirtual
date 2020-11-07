@@ -32,6 +32,18 @@ namespace EmporioVirtual.Models
         [EmailAddress(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E004")]
         public string Email { get; set; }
 
+        public string CEP { get; set; }
+        public string Estado { get; set; }
+        public string Cidade { get; set; }
+
+        [Display(Name = "Endereço")]
+        public string Endereco { get; set; }
+
+        public string Complemento { get; set; }
+
+        [Display(Name = "Número")]
+        public string Numero { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(6, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Senha { get; set; }
