@@ -4,14 +4,16 @@ using EmporioVirtual.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmporioVirtual.Migrations
 {
     [DbContext(typeof(EmporioVirtualContext))]
-    partial class EmporioVirtualContextModelSnapshot : ModelSnapshot
+    [Migration("20201108162725_ClienteBairro_5")]
+    partial class ClienteBairro_5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,12 +54,6 @@ namespace EmporioVirtual.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Bairro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Bairro_2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Bairro_3")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CEP")

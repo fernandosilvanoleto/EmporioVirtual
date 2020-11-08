@@ -82,6 +82,39 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $("#CEP").keyup(function () {
+        OcultarMensagemDeErro();
+
+        if ($(this).val().length == 10) {
+
+            var cep = RemoverMascara($(this).val());
+
+            $.ajax({
+                type: "GET",
+                url: "https://viacep.com.br/ws/" + cep +"/json/?callback=callback_name",
+                dataType: "jsonp",
+                error: function (data) {
+                    MostrarMensagemDeErro("Opps! Tivemos um erro na busca do CEP!!!");
+                    
+                },
+                success: function (data) {
+                    //
+                    if (data.erro == undefined) {
+                        console.info(data);
+                        $("#Estado").val(data.uf);
+                        $("#Cidade").val(data.localidade);
+                    } else {
+                        alert("error");
+                    }
+                    
+                }
+            });
+        }
+
+    });
+});
+
 function AJAXCalcularFrete(callByButton) {
     $(".btn-continuar-frete").addClass("disabled");
     if (callByButton == false) {
@@ -303,5 +336,9 @@ class ProdutoQuantidadeValor {
         this.campoQuantidadeProdutoCarrinho = campoQuantidadeProdutoCarrinho;
         this.campoValor = campoValor;
     }
+}
+
+function RemoverMascara(valor) {
+    return valor.replace(".", "").replace("-", "");
 }
 

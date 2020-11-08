@@ -33,6 +33,9 @@ namespace EmporioVirtual.Models
         public string Email { get; set; }
 
         public string CEP { get; set; }
+
+        public string Bairro { get; set; }
+
         public string Estado { get; set; }
         public string Cidade { get; set; }
 
