@@ -112,6 +112,19 @@ namespace EmporioVirtual.Areas.Cliente.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CadastroEnderecoEntrega()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult CadastroEnderecoEntrega([FromForm] EnderecoEntrega enderecoEntrega)
+        {
+            return View();
+        }
+        
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,89 @@
+﻿@model EmporioVirtual.Models.Cliente
+
+@{
+    ViewData["Title"] = "Cadastro de Endereço - Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <main role="main">
+
+        <section class="container" style="margin-top: 50px">
+            <div class="row">
+                <aside class="col-sm-6">
+                    <div id="code_register_1">
+                        <div class="card">
+                            <header class="card-header">
+                                <a asp-controller="Home" asp-action="Login" class="float-right btn btn-outline-primary mt-1">Entrar</a>
+                                <h4 class="card-title mt-2">Cadastro</h4>
+                            </header>
+                            <article class="card-body">
+                                @if (TempData["Mensagem_S"] != null)
+                                {
+                                    <p class="alert alert-success">@TempData["Mensagem_S"]</p>
+                                }
+                                <div class="form-group">
+                                    <label asp-for="Nome">Nome do Endereço</label>
+                                    <input type="text" asp-for="Nome" class="form-control" placeholder="">
+                                    <span asp-validation-for="Nome"></span>
+                                </div>                               
+                                
+
+                                <div class="form-group">
+                                    <label asp-for="CEP">CEP</label>
+                                    <input type="text" asp-for="CEP" class="cep form-control" placeholder="">
+                                    <span asp-validation-for="CEP"></span>
+                                </div>
+                                <div class="alert alert-danger" style="display: none;">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Estado">Estado</label>
+                                    <input type="text" asp-for="Estado" readonly="readonly" class="form-control" placeholder="">
+                                    <span asp-validation-for="Estado"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Cidade">Cidade</label>
+                                    <input type="text" asp-for="Cidade" readonly="readonly" class="form-control" placeholder="">
+                                    <span asp-validation-for="Cidade"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Bairro">Bairro</label>
+                                    <input type="text" asp-for="Bairro" class="form-control" placeholder="">
+                                    <span asp-validation-for="Bairro"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Endereco">Endereco</label>
+                                    <input type="text" asp-for="Endereco" class="form-control" placeholder="">
+                                    <span asp-validation-for="Endereco"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Complemento">Complemento</label>
+                                    <input type="text" asp-for="Complemento" class="form-control" placeholder="">
+                                    <span asp-validation-for="Complemento"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Numero">Número</label>
+                                    <input type="text" asp-for="Numero" class="form-control" placeholder="">
+                                    <span asp-validation-for="Numero"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Cadastrar </button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+</form>

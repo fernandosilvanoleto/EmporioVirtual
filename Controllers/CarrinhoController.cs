@@ -81,7 +81,12 @@ namespace EmporioVirtual.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       
+        public IActionResult EnderecoEntrega()
+        {
+            return View();
+        }        
+
+
         public async Task<IActionResult> CalcularFrete(int cepDestino)
         {
             try

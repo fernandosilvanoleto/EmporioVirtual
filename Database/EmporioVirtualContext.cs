@@ -27,6 +27,7 @@ namespace EmporioVirtual.Database
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Produto> Produto { get; set; }
         public DbSet<Imagem> Imagem { get; set; }
-
+        public DbSet<EnderecoEntrega> EnderecoEntrega { get; set; }
+       
     }
 }
