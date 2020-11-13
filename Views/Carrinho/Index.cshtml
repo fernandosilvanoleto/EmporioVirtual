@@ -137,14 +137,14 @@
                             // USUÁRIO NÃO LOGADO
                             // REDIRECIONAR PARA TELA DE LOGIN/Cadastro
 
-                            <a asp-action="Login" asp-controller="Home" asp-area="Cliente" asp-route-returnUrl="@Url.Action("Index", "Pagamento", new { area = ""})" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
+                            <a asp-action="Login" asp-controller="Home" asp-area="Cliente" asp-route-returnUrl="@Url.Action("EnderecoEntrega", "Carrinho", new { area = ""})" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
 
                         }
                         else
                         {
                             // USUÁRIO LOGADO
                             // REDIRECIONAR PARA TELA DE PAGAMENTO
-                            <a asp-action="Index" asp-controller="Pagamento" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
+                            <a asp-action="EnderecoEntrega" asp-controller="Carrinho" class="btn btn-primary btn-continuar-frete disabled">Continuar</a>
                         }
                     </aside>
                 </div> <!-- container.// -->

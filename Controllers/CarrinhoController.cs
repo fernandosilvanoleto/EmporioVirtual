@@ -12,17 +12,21 @@ using EmporioVirtual.Libraries.Lang;
 using EmporioVirtual.Models.Constants;
 using EmporioVirtual.Libraries.Gerenciador.Frete;
 using EmporioVirtual.Controllers.Base;
+using EmporioVirtual.Libraries.Login;
+using EmporioVirtual.Libraries.Filtro;
 
 namespace EmporioVirtual.Controllers
 {
     //NOVIDADE ==> HERDAR DE BASE CONTROLLER => 20/10/2020
     public class CarrinhoController : BaseController
     {
-
+        private LoginCliente _loginCliente;
+        private IEnderecoEntregaRepository _enderecoEntregaRepository;
         // UM CONSTRUTOR SIMPLES
-        public CarrinhoController(CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote, CookieValorPrazoFrete cookieValorPrazoFrete) : base(carrinhocompra, produtorepository, mapper, wsorreiosCalcularFrete, calcularpacote, cookieValorPrazoFrete)
+        public CarrinhoController(LoginCliente loginCliente, IEnderecoEntregaRepository enderecoEntregaRepository, CookieCarrinhoCompra carrinhocompra, IProdutoRepository produtorepository, IMapper mapper, WSCorreiosCalcularFrete wsorreiosCalcularFrete, CalcularPacote calcularpacote, CookieValorPrazoFrete cookieValorPrazoFrete) : base(carrinhocompra, produtorepository, mapper, wsorreiosCalcularFrete, calcularpacote, cookieValorPrazoFrete)
         {
-
+            _loginCliente = loginCliente;
+            _enderecoEntregaRepository = enderecoEntregaRepository;
         }
         public IActionResult Index()
         {
@@ -81,8 +85,14 @@ namespace EmporioVirtual.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [ClienteAutorizacao]
         public IActionResult EnderecoEntrega()
         {
+            Cliente cliente = _loginCliente.GetCliente();
+            IList<EnderecoEntrega> enderecos = _enderecoEntregaRepository.ObterTodosEnderecosEntregaCliente(cliente.Id);
+
+            ViewBag.Cliente = cliente;
+            ViewBag.Enderecos = enderecos;
             return View();
         }        
 

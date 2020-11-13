@@ -18,13 +18,15 @@ namespace EmporioVirtual.Areas.Cliente.Controllers
     public class HomeController : Controller
     {
         private IClienteRepository _repositoryCliente;
+        private IEnderecoEntregaRepository _enderecoEntrega;
         private LoginCliente _loginCliente;
         private GerenciarEmail _gerenciaremail;
 
         //INJEÇÃO DE DEPENDÊNCIA
-        public HomeController(IClienteRepository repositorycliente, LoginCliente loginCliente, GerenciarEmail gerenciaremail)
+        public HomeController(IClienteRepository repositorycliente, IEnderecoEntregaRepository enderecoEntrega, LoginCliente loginCliente, GerenciarEmail gerenciaremail)
         {
             _repositoryCliente = repositorycliente;
+            _enderecoEntrega = enderecoEntrega;
             _loginCliente = loginCliente;
             _gerenciaremail = gerenciaremail;
         }
@@ -119,8 +121,23 @@ namespace EmporioVirtual.Areas.Cliente.Controllers
         }
         
         [HttpPost]
-        public IActionResult CadastroEnderecoEntrega([FromForm] EnderecoEntrega enderecoEntrega)
+        public IActionResult CadastroEnderecoEntrega([FromForm] EnderecoEntrega enderecoEntrega, string returnUrl = null)
         {
+            if (ModelState.IsValid)
+            {
+                enderecoEntrega.ClienteId = _loginCliente.GetCliente().Id;
+
+                _enderecoEntrega.Cadastrar(enderecoEntrega);
+
+                if (returnUrl == null)
+                {
+                    // LISTAGEM DE ENDEREÇOS
+                }
+                else
+                {
+                    return LocalRedirectPermanent(returnUrl);
+                }
+            }
             return View();
         }
         
