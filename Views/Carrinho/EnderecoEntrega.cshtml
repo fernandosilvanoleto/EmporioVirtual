@@ -7,42 +7,34 @@
     <div class="row">
         <div class="col-md-12">
             <!-- Listar só os endereços -->
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <tbody>
                     <tr>
                         <th scope="row">
-                            <input type="radio" name="endereco" value="0" />
+                            <input type="radio" name="endereco" value="0" id="0-end" />
                         </th>
                         <td>
-                            <strong>Nome: </strong> Endereço do Cliente
-                            <p>
-                                @ViewBag.Cliente.CEP | @ViewBag.Cliente.Estado, @ViewBag.Cliente.Cidade, @ViewBag.Cliente.Bairro, @ViewBag.Cliente.Endereco, @ViewBag.Cliente.Complemento, @ViewBag.Cliente.Numero
-                            </p>
-                        </td>
-                        <td>
-                            <strong>Frete: </strong>
-                            <p>
-                                R$ 120,00
-                            </p>
+                            <label for="0-end">
+                                <strong>Nome: </strong> Endereço do Cliente
+                                <p>
+                                    @ViewBag.Cliente.CEP | @ViewBag.Cliente.Estado, @ViewBag.Cliente.Cidade, @ViewBag.Cliente.Bairro, @ViewBag.Cliente.Endereco, @ViewBag.Cliente.Complemento, @ViewBag.Cliente.Numero
+                                </p>
+                            </label>
                         </td>
                     </tr>
                     @foreach (EnderecoEntrega endereco in ViewBag.Enderecos)
                     {
                         <tr>
                             <th scope="row">
-                                <input type="radio" name="endereco" value="0" />
+                                <input type="radio" name="endereco" value="@endereco.Id" id="@endereco.Id-end" />
                             </th>
                             <td>
-                                <strong>Nome: </strong> @endereco.Nome
-                            <p>
-                                @endereco.CEP | @endereco.Estado, @endereco.Cidade, @endereco.Bairro, @endereco.Endereco, @endereco.Complemento, @endereco.Numero
-                            </p>
-                            </td>
-                            <td>
-                                <strong>Frete: </strong>
-                                <p>
-                                    R$ 20,00
-                                </p>
+                                <label for="@endereco.Id-end">
+                                    <strong>Nome: </strong> @endereco.Nome
+                                    <p>
+                                        @endereco.CEP | @endereco.Estado, @endereco.Cidade, @endereco.Bairro, @endereco.Endereco, @endereco.Complemento, @endereco.Numero
+                                    </p>
+                                </label>
                             </td>
                         </tr>
                     }
@@ -52,6 +44,45 @@
             <div class="text-center">
                 <a asp-action="CadastroEnderecoEntrega" asp-controller="Home" asp-area="Cliente" asp-route-returnUrl="@Url.Action("EnderecoEntrega", "Carrinho", new { area = "" } )" class="btn btn-outline-primary">Cadastrar Novo Endereço</a>
             </div>
+
+            <br />
+
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">PAC</h5>
+                        <p class="card-text">Dias </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <input type="radio" name="frete" value="PAC" />
+                        </small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">SEDEX</h5>
+                        <p class="card-text">Dias</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <input type="radio" name="frete" value="SEDEX" />
+                        </small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">SEDEX10</h5>
+                        <p class="card-text">Dias</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <input type="radio" name="frete" value="SEDEX10" />
+                        </small>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <br />

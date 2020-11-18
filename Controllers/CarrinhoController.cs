@@ -114,9 +114,16 @@ namespace EmporioVirtual.Controllers
                 if (valorSEDEX != null) lista.Add(valorSEDEX);
                 if (valorSEDEX10 != null) lista.Add(valorSEDEX10);
 
-                _cookieValorPrazoFrete.Cadastrar(lista);
+                var frete = new Frete()
+                {
+                    CEP = cepDestino,
+                    //CodCarrinho = HashCode,
+                    ListaValores = lista
+                };
 
-                return Ok(lista);
+                //_cookieValorPrazoFrete.Cadastrar(frete);
+
+                return Ok(frete);
             }
             catch (Exception e)
             {
